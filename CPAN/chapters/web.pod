@@ -1,7 +1,7 @@
 
 =head0 Web Frameworks
 
-=head1 Dancer}
+=head1 Dancer
 
 =head1 Mojolicious
 
