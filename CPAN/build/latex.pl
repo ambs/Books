@@ -7,10 +7,12 @@ use utf8;
 use File::Slurp qw.edit_file.;
 use Pod::PseudoPod::LaTeX;
 
-my @files = map { "chapters/$_.pod" } (qw.intro oo templates  web database xml markup.);
+my @files = (qw.preamble intro oo templates  web database xml markup.);
 my $pod = 'build/book.pod';
 my $tex = "book.tex";
 
+
+@files = map { "chapters/$_.pod" } @files;
 
 create_single_pod   (pod => $pod, files => \@files);
 create_tex_from_pod (pod => $pod, tex => $tex);
@@ -20,14 +22,17 @@ unlink $pod;
 
 sub post_process_tex {
     my $filename = shift;
-    edit_file { s/section\*/section/g } $filename;
+    edit_file {
+        s/section\*/section/g;
+        s/section\{\*/section*{/g;
+        s/chapter\{\*/chapter*{/g;
+    } $filename;
 }
 
 sub create_single_pod {
-    my %data = @_;
-    my $pod = $data{pod} or die;
+    my %data  = @_;
+    my $pod   = $data{pod} or die;
     my @files = @{$data{files}} or die;
-
 
     open my $out, ">:utf8", $pod or die "Can't create file!";
 
@@ -43,9 +48,9 @@ sub create_single_pod {
 }
 
 sub parse_pod_file {
-    my %data = @_;
-    my $fh  = $data{out} or die;
-    my $pod = $data{pod} or die;
+    my %data   = @_;
+    my $fh     = $data{out} or die;
+    my $pod    = $data{pod} or die;
     my $parser = Pod::PseudoPod::LaTeX->new();
     # $parser->emit_environments( sidebar => 'sidebar' );
     $parser->output_fh($fh);
@@ -54,6 +59,8 @@ sub parse_pod_file {
 
 sub add_tex_preamble {
     my $fh = shift;
+    # XXX - TODO: put this into a separate .tex file, and copy its
+    #             contents here.
     print $fh <<'EOTeX'
 \documentclass[a4paper]{book}
 
@@ -76,6 +83,7 @@ sub add_tex_preamble {
 \date{}
 
 \begin{document}
+\frontmatter
 \maketitle
 
 EOTeX

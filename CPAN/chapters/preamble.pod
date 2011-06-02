@@ -1,0 +1,12 @@
+=head0 *Preamble
+
+foo
+
+=for latex
+
+\tableofcontents
+
+\mainmatter
+
+=end
+
