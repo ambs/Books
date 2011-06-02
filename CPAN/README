@@ -1,0 +1,29 @@
+
+Book Guides
+--------------------------------
+
+1. Chapters should be independents
+
+A reader can read just a chapter, and no dependencies to other chapter
+should exist. Only pointers for further information.
+
+2. Sections should be independents
+
+Only the first paragraphs of the chapter, before the first section,
+should/can compare the modules being discussed. Each module section
+should not compare to other modules unless it is strictly necessary.
+
+3. See also section
+
+Each chapter should end in a special section named 'See also', that is
+an itemize of modules available on CPAN for similar tasks, and small
+description on them.
+
+4. Depth
+
+No section should have more than 15 pages. I can accept a limit of 20
+for big frameworks like Catalyst. If it is impossible to explain the
+module in such a reduced number of pages, then the module should not
+be included (put it into the see also section, and point to other
+books/documentation).
+
