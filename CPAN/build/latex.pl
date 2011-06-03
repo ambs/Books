@@ -7,12 +7,16 @@ use utf8;
 use File::Slurp qw.edit_file.;
 use Pod::PseudoPod::LaTeX;
 
-my @files = (qw.preamble intro oo templates  web database xml markup.);
+
 my $pod = 'build/book.pod';
 my $tex = "book.tex";
 
 
-@files = map { "chapters/$_.pod" } @files;
+my @files = sort {
+      $a =~ m!(\d+)-! and my $c = $1;
+      $b =~ m!(\d+)-! and my $d = $1;
+      $c <=> $d
+} <chapters/*pod>;
 
 create_single_pod   (pod => $pod, files => \@files);
 create_tex_from_pod (pod => $pod, tex => $tex);

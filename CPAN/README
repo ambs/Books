@@ -1,5 +1,5 @@
 
-Book Guides
+Book Guidelines
 --------------------------------
 
 1. Chapters should be independents
@@ -27,3 +27,9 @@ module in such a reduced number of pages, then the module should not
 be included (put it into the see also section, and point to other
 books/documentation).
 
+
+Build
+--------------------------------
+
+ATM for building you need my branch of Pod::PseudoPod::LaTeX,
+available from https://github.com/ambs/Pod-PseudoPod-LaTeX
