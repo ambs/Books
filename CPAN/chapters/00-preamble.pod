@@ -1,12 +1,63 @@
-=head0 *Preamble
-
-foo
 
 =for latex
 
-\tableofcontents
-
-\mainmatter
+\parskip 2mm
 
 =end
 
+=head0 *Preamble
+
+This book does not intend to be a complete reference to all modules
+from CPAN, neither a complete reference to some modules from
+CPAN. That would be mostly impossible to print, as there are thousands
+of Perl modules available, and some of them have rather long
+documentation.
+
+That said, what this book aims is to introduce a set of useful modules
+and frameworks that are not easy to learn just by reading the main
+Module documentation file (the one you usually get when executing
+C<perldoc Module> on the command line).
+
+The book is split in different chapters, each one covering a specific
+type of modules or frameworks. For instance, we have a chapter on web
+frameworks, and a chapter on XML parsers. For each chapter you will
+get a brief explanation or comparison between the modules that will be
+described, together with the reason why those modules where
+chosen. Then, each section will focus in one of chose modules. And the
+chapter ends with a special section, where pointers to other useful
+modules that were not discussed but might be useful.
+
+When writing this book we tried to make it possible to be read in any
+order: you can peek a chapter about a topic you are interested in, and
+read it without reading all the other chapters. We even tried to make
+sections independent, so you can read a section on a specific
+framework without needing to read the sections for the other
+frameworks. Nevertheless, it might be a good idea to read the
+introduction to that chapter before reading a specific section.
+
+If you are new to Perl or to using modules from CPAN we suggest you
+start by reading our first chapter. It presents some of the history
+about CPAN, how it works, who contributes code, how you can install
+modules from CPAN in your computer and where you can get information
+on how to contribute to CPAN.
+
+Regarding previous knowledge on Perl or CPAN, we expect you to know
+how to write basic Perl programs, including the use of modules and
+references. The usage of I<old> Object Oriented Perl might be useful
+as well.
+
+=for latex
+
+\parskip 0mm
+\tableofcontents
+\mainmatter
+\parskip 2mm
+
+=end
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:
