@@ -77,6 +77,7 @@ sub add_tex_preamble {
 \usepackage{xunicode}
 \usepackage{multicol}
 \usepackage{xltxtra}
+\usepackage{asbook}
 \usepackage{texilikecover}
 \usepackage{url}
 
