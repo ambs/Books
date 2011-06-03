@@ -58,7 +58,7 @@ sub parse_pod_file {
     my %data   = @_;
     my $fh     = $data{out} or die;
     my $pod    = $data{pod} or die;
-    my $parser = Pod::PseudoPod::LaTeX->new();
+    my $parser = Pod::PseudoPod::LaTeX->new(keep_ligatures => 1);
     # $parser->emit_environments( sidebar => 'sidebar' );
     $parser->output_fh($fh);
     $parser->parse_file($pod);
