@@ -4,3 +4,11 @@
 =head1 YAML
 
 =head1 JSON
+
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:

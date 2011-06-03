@@ -1,2 +1,10 @@
 
 =head0 The Comprehensive Perl Archive Network
+
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:

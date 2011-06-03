@@ -4,3 +4,11 @@
 =head1 DBI
 
 =head1 DBIx::Class
+
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:

@@ -8,3 +8,10 @@
 =head1 Moose
 
 
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:
+

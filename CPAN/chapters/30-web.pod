@@ -7,3 +7,11 @@
 
 =head1 Catalyst
 
+
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:

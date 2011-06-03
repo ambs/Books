@@ -4,3 +4,11 @@
 =head1 XML::LibXML
 
 =head1 XML::Parser
+
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:
