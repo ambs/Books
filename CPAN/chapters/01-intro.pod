@@ -1,6 +1,18 @@
 
 =head0 The Comprehensive Perl Archive Network
 
+The Comprehensive Perl Archive Network, known as CPAN is an archive of
+Perl applications, modules and frameworks. It is named after another
+archive, The Comprehensive TeX Archive Network, an archive of TeX and
+LaTeX modules and styles.
+
+CPAN is an Archive of Perl stuff, it is available throught the Network
+and is Comprehensive, in the sense that it is a large collection, but
+also that it includes nearly all developed modules, and they are
+available in an organized way.
+
+CPAN is available from L<http://cpan.org/> or one of the hundreds of
+available mirror.
 
 =cut
 

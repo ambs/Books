@@ -30,6 +30,9 @@ sub post_process_tex {
         s/section\*/section/g;
         s/section\{\*/section*{/g;
         s/chapter\{\*/chapter*{/g;
+
+        s!\bLaTeX\b!\\LaTeX{}!g;
+        s!\bTeX\b!\\TeX{}!g;
     } $filename;
 }
 
@@ -75,6 +78,7 @@ sub add_tex_preamble {
 \usepackage{multicol}
 \usepackage{xltxtra}
 \usepackage{texilikecover}
+\usepackage{url}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \setmainfont[Mapping=tex-text]{Baskerville}
