@@ -4,6 +4,7 @@
 \usepackage{xltxtra}
 \usepackage{url}
 \usepackage{framed}
+\usepackage{fancyvrb}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \setmainfont[Mapping=tex-text]{Baskerville}
@@ -90,7 +91,7 @@
   \leavevmode\Large\bfseries\raggedright
   \leavevmode\Large\bfseries\raggedright
 %  \thesection\quad 
-  #2
+  {\fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=1.25]{Hoefler Text Italic} #2}
   \par
   \endgroup
   \vskip 2ex\nobreak

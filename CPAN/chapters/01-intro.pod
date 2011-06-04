@@ -54,6 +54,69 @@ portable and if tests pass.
 
 =back
 
+=head1 Installing CPAN Modules
+
+There are two main different ways to install a module from CPAN: using
+an automated installation tool, like C<cpan>, C<cpanp> or C<cpanm>, or
+installing manually. The main difference is that the automated
+approach fetches the module from CPAN, calculates its dependencies and
+install them. When installing manually, you will need to follow the
+non installed dependencies by yourself.
+
+=head2 *Using C<cpan>
+
+The command line tool C<cpan> ships with Perl, and can be described as
+the official tool to install modules. The only situations whether you
+probably do not have C<cpan> installed in your system are derived of
+using ActiveState ActivePerl (in this case read the section on
+C<PPM>), or using a Linux distribution that splits the Perl package in
+smaller packages. In this case use your package system and search for
+the C<cpan> package.
+
+Usually you want to run C<cpan> as a system administrator, so you have
+the needed permissions to write into the system tree. Recent C<cpan>
+versions have an automated configuring system. Nevertheless, if you
+run C<cpan> and it asks a lot of questions, you are safe on choosing
+the default answers. Just take care of choosing a nearby mirror, so
+packages download faster.
+
+C<cpan> can be used from the command line issuing:
+
+    cpan Module::Name Another::Module
+
+This will install in your system the two modules C<Module::Name> and
+C<Another::Module>. The other approach is using C<cpan> shell. For
+that, just type C<cpan> in your command line, and a C<cpan> shell will
+appear. You can get help on the C<cpan> shell commands using C<h>. To
+install modules use the C<i> command.
+
+=begin screen
+
+ cpan shell -- CPAN exploration and modules installation
+ Enter 'h' for help.
+  
+ cpan[1]> i Module::Name Another::Module
+
+=end screen
+
+=head2 *Using C<cpanp>
+
+C<cpanp> is the command line tool to the C<CPANPLUS> module, that
+enhances the C<CPAN> module used by C<cpan> with some new
+functionalities. Although some C<cpanp> commands differ from the ones
+available on C<cpan>, the basic behavior is similar. To install from
+the command line add the C<-i> switch:
+
+    cpanp -i Module::Name Another::Module
+
+For the interactive shell, C<cpanp> also uses the C<i> command.
+
+=head2 *Using C<cpanm>
+
+=head2 *ActivePerl PPM
+
+=head2 *Manual Install
+
 =cut
 
 ## Local Variables:

@@ -31,6 +31,8 @@ sub post_process_tex {
         s/section\{\*/section*{/g;
         s/chapter\{\*/chapter*{/g;
 
+        s/\\scriptsize\n\\begin{Verbatim/\\begin{Verbatim/g;
+
         s!\bLaTeX\b!\\LaTeX{}!g;
         s!\bTeX\b!\\TeX{}!g;
     } $filename;
