@@ -2,8 +2,8 @@
 \usepackage{fontspec}
 \usepackage{multicol}
 \usepackage{xltxtra}
-\usepackage{texilikecover}
 \usepackage{url}
+\usepackage{framed}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \setmainfont[Mapping=tex-text]{Baskerville}
@@ -96,4 +96,34 @@
   \addcontentsline{toc}{section}{%
 %    \protect\numberline{\thesection}%
     #1}%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 3. Title page
+
+
+\newcommand{\subtitle}[1]{\def\@subtitle{#1}}
+\renewcommand{\and}{\\[2mm]}
+
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}
+  \mbox{}
+  \vfill
+  \begin{center}
+    \noindent{\huge\bfseries \fontspec[Color=33333355,Scale=2]{Hoefler Text Italic}\@title}\\    
+
+    \vskip 1cm
+
+    {\fontspec[Contextuals={WordInitial,WordFinal},Color=999999FF,Scale=1.5]{Hoefler Text Italic} \@subtitle}
+  \vfill
+    {\fontspec[Contextuals={WordInitial,WordFinal},Color=33333355,Scale=1.5]{Hoefler Text Italic} \@date}
+  \end{center}
+  \vfill
+  \begin{leftbar}
+    \fontspec[Contextuals={WordInitial,WordFinal},Color=33333355,Scale=1.5]{Hoefler Text Italic}
+    \noindent    \@author
+  \end{leftbar}
+  \cleardoublepage
 }

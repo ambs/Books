@@ -77,7 +77,7 @@ sub add_tex_preamble {
 \title{CPAN Modules and Frameworks}
 \subtitle{A bunch of relevant Perl modules and frameworks available from CPAN}
 \author{Alberto Simões \and Nuno Carvalho}
-\date{}
+\date{First Edition}
 
 \begin{document}
 \frontmatter
