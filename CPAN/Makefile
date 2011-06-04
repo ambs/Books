@@ -6,4 +6,6 @@ book.pdf: book.tex
 book.tex: build/latex.pl chapters/*.pod tex/asbook.sty
 	build/latex.pl
 
-
+clean:
+	find . -name '*~' -delete
+	rm -f book.* *.log
