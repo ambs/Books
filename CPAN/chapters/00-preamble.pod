@@ -52,6 +52,7 @@ as well.
 \tableofcontents
 \mainmatter
 \parskip 2mm
+\pagestyle{fancy}
 
 =end
 

@@ -12,6 +12,8 @@
 
 \usepackage{color}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% 1. Set Chapter style
@@ -47,7 +49,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% 2. Set Section style
-
 
 \def\section{\@ifstar\unnumberedsection\numberedsection}
 
@@ -103,7 +104,6 @@
 %%
 %% 3. Title page
 
-
 \newcommand{\subtitle}[1]{\def\@subtitle{#1}}
 \renewcommand{\and}{\\[2mm]}
 
@@ -127,3 +127,25 @@
   \end{leftbar}
   \cleardoublepage
 }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 4. Headings and Footers
+
+\pagestyle{plain}
+\usepackage{fancyhdr}
+\fancyhead[LE,RO]{\small\thepage}
+\fancyfoot[R,L]{}
+%%\fancyfoot[C]{\today}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{}
+\renewcommand{\chaptermark}[1]{\markboth{ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{ \thesection.\ #1}}
+%\rhead{\nouppercase{\rightmark}}
+%\lhead{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\small\rightmark}}
+\fancyhead[RE]{\nouppercase{\small\leftmark}}
+%\fancyhead[RE,LO]{}      
