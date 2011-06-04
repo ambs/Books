@@ -1,3 +1,4 @@
+
 book.pdf: book.tex
 	TEXINPUTS=$$TEXINPUTS:tex xelatex book.tex
 	TEXINPUTS=$$TEXINPUTS:tex xelatex book.tex

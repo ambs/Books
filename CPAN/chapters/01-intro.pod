@@ -11,8 +11,48 @@ and is Comprehensive, in the sense that it is a large collection, but
 also that it includes nearly all developed modules, and they are
 available in an organized way.
 
+Note that CPAN does not have any kind of guarantee that the available
+modules are not malicious, or that provides the documented
+features. Therefore, knowing what modules are being used by the
+community is great, as it gives information about their quality and
+trust.
+
 CPAN is available from L<http://cpan.org/> or one of the hundreds of
-available mirror.
+available mirror. You can access the modules using C<FTP> or, more
+interesting, using the search feature of CPAN. It will give you
+information on the module author, what the latest version is, points
+to the download file, gives you access to the module documentation and
+a rating system, where users can rate modules.
+
+There are a bunch of other web sites that were developed to make the
+CPAN experience more rich. There are some of them:
+
+=over
+
+=item B<AnnoCPAN>
+
+AnnoCPAN (L<http://www.annocpan.org>) gives you access to modules
+documentation, but also to annotations over that documentation. What
+this means, is that any user can annotate the documentation with
+further information, incoherences and other (relevant) information.
+
+=item B<CPANForum>
+
+CPANForum (L<http://cpanforum.com/>) offers a forum for each
+module. Some authors maintain their forum active, some others do not
+use them. Some others, prefer to create forums in other web sites, or
+to create mailing lists.
+
+=item B<CPANTesters>
+
+CPANTesters (L<http://static.cpantesters.org/>) gives information
+about how each module installs, and how their tests pass or fail in
+different architectures. When installing a module, if the build fails,
+this web site can be used to detect whether it is a local fail, or a
+known bug. For module developers it is useful to check if modules are
+portable and if tests pass.
+
+=back
 
 =cut
 
