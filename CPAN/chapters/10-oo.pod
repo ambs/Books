@@ -3,6 +3,12 @@
 
 =head1 Moo
 
+=begin CPANinfo
+
+B<CPAN:> L<http://search.cpan.org/dist/Moo>
+
+=end CPANinfo
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
 sodales pellentesque lectus. Nam sed augue magna, eget gravida
 nulla. Aenean vitae augue id orci dignissim pellentesque. Quisque vel
