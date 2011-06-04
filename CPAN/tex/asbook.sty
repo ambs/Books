@@ -1,19 +1,28 @@
+\usepackage{polyglossia}
+\usepackage{fontspec}
+\usepackage{multicol}
+\usepackage{xltxtra}
+\usepackage{texilikecover}
+\usepackage{url}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Mapping=tex-text]{Baskerville}
+\setsansfont[Mapping=tex-text]{Skia}
+\setmonofont{Courier}
 
 \usepackage{color}
-\makeatother
 \def\@makechapterhead#1{%
-  \vspace*{50\p@}%
-  \definecolor{chaptergrey}{rgb}{0.6,0.6,0.6}%
+  \vspace*{10\p@}%
   {\parindent \z@ \raggedright \normalfont
     \ifnum \c@secnumdepth >\m@ne
       \if@mainmatter
-        \huge\bfseries \@chapapp\space \thechapter
-        \par\nobreak
-        \vskip 20\p@
+      {\huge\bfseries\fontspec[Variant=2,Color=DDDDDDFF,Scale=2]{Zapfino}\@chapapp\space \thechapter}\\[-30\p@]
+      
       \fi
     \fi
     \interlinepenalty\@M
-    \Huge \bfseries #1\par\nobreak
+    {
+      \fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=2.5]{Hoefler Text Italic}  #1\par\nobreak
+    }
     \vskip 40\p@
   }}
-\makeatletter

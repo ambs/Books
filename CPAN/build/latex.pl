@@ -71,20 +71,8 @@ sub add_tex_preamble {
     print $fh <<'EOTeX'
 \documentclass[a4paper]{book}
 
-\usepackage{polyglossia}
-\setdefaultlanguage{english}
-\usepackage{fontspec}
-\usepackage{xunicode}
-\usepackage{multicol}
-\usepackage{xltxtra}
 \usepackage{asbook}
-\usepackage{texilikecover}
-\usepackage{url}
-
-\defaultfontfeatures{Scale=MatchLowercase}
-\setmainfont[Mapping=tex-text]{Baskerville}
-\setsansfont[Mapping=tex-text]{Skia}
-\setmonofont{Courier}
+\setdefaultlanguage{english}
 
 \title{CPAN Modules and Frameworks}
 \subtitle{A bunch of relevant Perl modules and frameworks available from CPAN}
