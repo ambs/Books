@@ -12,6 +12,10 @@
 
 \usepackage{color}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 1. Set Chapter style
+
 \def\@makechapterhead#1{%
   \vspace*{10\p@}%
   {\parindent \z@ \raggedright \normalfont
@@ -38,3 +42,58 @@
     }
     \vskip 40\p@
   }}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 2. Set Section style
+
+
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+
+\def\numberedsection{\@ifnextchar[%]
+  \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+
+\def\unnumberedsection{\@ifnextchar[%]
+  \unnumberedsectionwithtwoarguments\unnumberedsectionwithoneargument}
+
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+
+\def\unnumberedsectionwithoneargument#1{\unnumberedsectionwithtwoarguments[#1]{#1}}
+
+\def\numberedsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{section}%
+  \noindent
+  \begingroup
+  \leavevmode\Large\raggedright
+  \llap{\fontspec[Variant=2,Color=BBBBBBFF,Scale=1]{Zapfino}\thesection}%
+  {\ \ \fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=1.25]{Hoefler Text Italic} #2}
+  \par
+  \endgroup
+  \vskip 2ex\nobreak
+  \addcontentsline{toc}{section}{%
+    \protect\numberline{\thesection}%
+    #1}%
+  }
+
+\def\unnumberedsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+%  \refstepcounter{section}%
+  \noindent
+  \begingroup
+  \leavevmode\Large\bfseries\raggedright
+  \leavevmode\Large\bfseries\raggedright
+%  \thesection\quad 
+  #2
+  \par
+  \endgroup
+  \vskip 2ex\nobreak
+  \addcontentsline{toc}{section}{%
+%    \protect\numberline{\thesection}%
+    #1}%
+}
