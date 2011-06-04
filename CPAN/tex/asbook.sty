@@ -11,6 +11,7 @@
 \setmonofont{Courier}
 
 \usepackage{color}
+
 \def\@makechapterhead#1{%
   \vspace*{10\p@}%
   {\parindent \z@ \raggedright \normalfont
@@ -20,6 +21,17 @@
       
       \fi
     \fi
+    \interlinepenalty\@M
+    {
+      \fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=2.5]{Hoefler Text Italic}  #1\par\nobreak
+    }
+    \vskip 40\p@
+  }}
+
+\def\@makeschapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
     \interlinepenalty\@M
     {
       \fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=2.5]{Hoefler Text Italic}  #1\par\nobreak
