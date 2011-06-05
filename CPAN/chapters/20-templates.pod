@@ -3,7 +3,11 @@
 
 =head1 Template::Toolkit
 
+X<Module, Template::Toolkit>X<Template::Toolkit>
+
 =head1 HTML::Template::Pro
+
+X<Module, HTML::Template::Pro>X<HTML::Template::Pro>
 
 
 =cut

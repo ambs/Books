@@ -9,6 +9,10 @@
 
 =head1 JSON::XS
 
+=head1 Text::Markup
+
+(Textile, Mediawiki...)
+
 =cut
 
 ## Local Variables:

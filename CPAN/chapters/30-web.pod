@@ -3,9 +3,15 @@
 
 =head1 Dancer
 
+X<Module, Dancer> X<Dancer>
+
 =head1 Mojolicious
 
+X<Module, Mojolicious> X<Mojolicious>
+
 =head1 Catalyst
+
+X<Module, Catalyst> X<Catalyst>
 
 
 
