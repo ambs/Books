@@ -70,7 +70,7 @@ non installed dependencies by yourself.
 
 =head2 *Using C<cpan>
 
-X<Command, cpan>X<cpan>
+X<Command, cpan> X<cpan>
 The command line tool C<cpan> ships with Perl, and can be described as
 the official tool to install modules. The only situations whether you
 probably do not have C<cpan> installed in your system are derived of
@@ -96,7 +96,9 @@ that, just type C<cpan> in your command line, and a C<cpan> shell will
 appear. You can get help on the C<cpan> shell commands using C<h>. To
 install modules use the C<i> command.
 
-=begin screen
+=begin screen Simple cpan interaction
+
+Z<cpaninstall>
 
  cpan shell -- CPAN exploration and modules installation
  Enter 'h' for help.
@@ -107,7 +109,7 @@ install modules use the C<i> command.
 
 =head2 *Using C<cpanp>
 
-X<Command, cpanp>X<cpanp>X<Module, CPANPLUS>
+X<Command, cpanp> X<cpanp> X<Module, CPANPLUS>
 C<cpanp> is the command line tool to the C<CPANPLUS> module, that
 enhances the C<CPAN> module used by C<cpan> with some new
 functionalities. Although some C<cpanp> commands differ from the ones
@@ -116,15 +118,15 @@ the command line add the C<-i> switch:
 
     cpanp -i Module::Name Another::Module
 
-For the interactive shell, C<cpanp> also uses the C<i> command.
+For the interactive shell, C<cpanp> also uses the C<i> command (see A<cpaninstall>).
 
 =head2 *Using C<cpanm>
 
-X<Command, cpanm>X<cpanm>
+X<Command, cpanm> X<cpanm>
 
 =head2 *ActivePerl PPM
 
-X<PPM>X<ActivePerl>
+X<PPM> X<ActivePerl>
 
 =head2 *Manual Install
 

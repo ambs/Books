@@ -5,6 +5,8 @@
 
 =begin CPANinfo
 
+B<Documented version:> 0.009008
+
 B<CPAN:> L<http://search.cpan.org/dist/Moo>
 
 =end CPANinfo
