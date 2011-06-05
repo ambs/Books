@@ -1,10 +1,23 @@
 
 =head0 XML Processing
 
+=head1 XML::DOM
+
+=head1 XML::DT
+
 =head1 XML::LibXML
 
 =head1 XML::Parser
 
+=head1 XML::Rules
+
+=head1 XML::Simple
+
+=head1 XML::Twig
+
+=head1 XML::Writer::Simple
+
+=head1 XML::XPath
 
 =cut
 

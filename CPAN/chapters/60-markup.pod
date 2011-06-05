@@ -3,8 +3,11 @@
 
 =head1 YAML
 
+=head1 YAML::XS
+
 =head1 JSON
 
+=head1 JSON::XS
 
 =cut
 

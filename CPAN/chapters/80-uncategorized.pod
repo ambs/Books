@@ -1,0 +1,22 @@
+
+=head0 Uncategorized
+
+Some modules are very specific for a given task, and although there is not
+a chapter devoted to theses tasks, they are still worth mention. This
+chapter enumerates some relevant and important modules that do not have
+place in any of the previous chapters.
+
+=head1 MIME::Base64
+
+=head1 Smart::Comments
+
+=head1 Modern::Perl
+
+
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:
