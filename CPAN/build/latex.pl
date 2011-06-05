@@ -72,7 +72,10 @@ sub add_tex_preamble {
     # XXX - TODO: put this into a separate .tex file, and copy its
     #             contents here.
     print $fh <<'EOTeX'
-\documentclass[a4paper]{book}
+\documentclass[a5paper,twoside,9pt]{extbook}
+\usepackage[left=1.7cm,right=2.2cm,top=2cm,bottom=1.5cm,footskip=7mm,headsep=7mm]{geometry}
+\usepackage{makeidx}
+\makeindex
 
 \usepackage{asbook}
 \setdefaultlanguage{english}
@@ -92,6 +95,7 @@ EOTeX
 sub add_tex_postamble {
     my $fh = shift;
     print $fh <<'EOTeX'
+\printindex
 \end{document}
 EOTeX
 }

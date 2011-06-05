@@ -1,6 +1,7 @@
 
 =head0 The Comprehensive Perl Archive Network
 
+X<CPAN>
 The Comprehensive Perl Archive Network, known as CPAN is an archive of
 Perl applications, modules and frameworks. It is named after another
 archive, The Comprehensive TeX Archive Network, an archive of TeX and
@@ -31,21 +32,24 @@ CPAN experience more rich. There are some of them:
 
 =item B<AnnoCPAN>
 
+X<CPAN, AnnoCPAN>
 AnnoCPAN (L<http://www.annocpan.org>) gives you access to modules
 documentation, but also to annotations over that documentation. What
 this means, is that any user can annotate the documentation with
 further information, incoherences and other (relevant) information.
 
-=item B<CPANForum>
+=item B<CPAN Forum>
 
-CPANForum (L<http://cpanforum.com/>) offers a forum for each
+X<CPAN, Forum>
+CPAN Forum (L<http://cpanforum.com/>) offers a forum for each
 module. Some authors maintain their forum active, some others do not
 use them. Some others, prefer to create forums in other web sites, or
 to create mailing lists.
 
-=item B<CPANTesters>
+=item B<CPAN Testers>
 
-CPANTesters (L<http://static.cpantesters.org/>) gives information
+X<CPAN, Testers>
+CPAN Testers (L<http://static.cpantesters.org/>) gives information
 about how each module installs, and how their tests pass or fail in
 different architectures. When installing a module, if the build fails,
 this web site can be used to detect whether it is a local fail, or a
@@ -56,6 +60,7 @@ portable and if tests pass.
 
 =head1 Installing CPAN Modules
 
+X<Module, installing>
 There are two main different ways to install a module from CPAN: using
 an automated installation tool, like C<cpan>, C<cpanp> or C<cpanm>, or
 installing manually. The main difference is that the automated
@@ -65,6 +70,7 @@ non installed dependencies by yourself.
 
 =head2 *Using C<cpan>
 
+X<Command, cpan>X<cpan>
 The command line tool C<cpan> ships with Perl, and can be described as
 the official tool to install modules. The only situations whether you
 probably do not have C<cpan> installed in your system are derived of
@@ -101,6 +107,7 @@ install modules use the C<i> command.
 
 =head2 *Using C<cpanp>
 
+X<Command, cpanp>X<cpanp>X<Module, CPANPLUS>
 C<cpanp> is the command line tool to the C<CPANPLUS> module, that
 enhances the C<CPAN> module used by C<cpan> with some new
 functionalities. Although some C<cpanp> commands differ from the ones
@@ -113,9 +120,15 @@ For the interactive shell, C<cpanp> also uses the C<i> command.
 
 =head2 *Using C<cpanm>
 
+X<Command, cpanm>X<cpanm>
+
 =head2 *ActivePerl PPM
 
+X<PPM>X<ActivePerl>
+
 =head2 *Manual Install
+
+X<Module, manual installation>
 
 =cut
 
