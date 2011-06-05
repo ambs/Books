@@ -1,0 +1,10 @@
+
+=head0 Working With Internet Protocols
+
+=head1 LWP
+
+=head1 WWW::Mechanize
+
+=head1 Email::Sender
+
+or Email::Simple::Creator?
