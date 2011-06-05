@@ -130,7 +130,41 @@ X<PPM> X<ActivePerl>
 
 =head2 *Manual Install
 
-X<Module, manual installation>
+X<Module, manual installation> The process of installing a module by
+hand depends a little of your operating system.  The instructions
+presented here describe the most usual process. First, get the module
+archive from a CPAN mirror. These files are usually named I<tarballs>,
+and are compressed using C<gzip> and archived by C<tar>. For this
+example we will describe the process of installing C<Try::Tiny>:
+
+=begin screen Manual installation of a Perl Module
+ 
+ $ tar zxf Try-Tiny-0.09.tar.gz
+ $ cd Try-Tiny-0.09
+ $ perl Makefile.PL
+ Checking if your kit is complete...
+ Looks good
+ Writing Makefile for Try::Tiny
+ Writing MYMETA.yml
+ $ make
+ cp lib/Try/Tiny.pm blib/lib/Try/Tiny.pm
+ Manifying blib/man3/Try::Tiny.3
+ $ make test
+ PERL_DL_NONLAZY=1 /opt/local/bin/perl [...] t/*.t
+ t/basic.t ....... ok     
+ t/finally.t ..... ok     
+ t/given_when.t .. ok   
+ t/when.t ........ ok   
+ All tests successful.
+ Files=4, Tests=48,  0 wallclock secs
+ ( 0.06 usr  0.02 sys +  0.14 cusr  0.03 csys =  0.25 CPU)
+ Result: PASS
+ $ sudo make install
+ [...]
+ $ cd ..
+ $ rm -fr Try-Tiny-0.09*
+
+=end screen
 
 =cut
 

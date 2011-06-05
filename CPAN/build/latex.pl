@@ -31,7 +31,13 @@ sub post_process_tex {
         s/section\{\*/section*{/g;
         s/chapter\{\*/chapter*{/g;
 
-        s/\\scriptsize\n\\begin{Verbatim/\\begin{Verbatim/g;
+        s/\\scriptsize\n\\begin{Verbatim/\\small\n\\begin{Verbatim/g;
+        # this depends on the previous one
+        s/
+          \\vspace{-6pt}\n(\\small\n\\begin{Verbatim}\[[^]]+frame=single[^]]+\])
+         /
+          "\\vspace{-2pt}\n$1" # this way I can keep the indentation O:-)
+         /xge;
 
         s!\bLaTeX\b!\\LaTeX{}!g;
         s!\bTeX\b!\\TeX{}!g;
