@@ -27,6 +27,11 @@ module in such a reduced number of pages, then the module should not
 be included (put it into the see also section, and point to other
 books/documentation).
 
+5. Formatting
+
+Use C<...> for module names. Do not forget to add X<Module, name> and
+X<name> whenever you mention a module (once per section, of course)
+
 
 Build
 --------------------------------

@@ -3,6 +3,8 @@
 
 =head1 Moo
 
+X<Moo>X<Module, Moo>
+
 =begin CPANinfo
 
 B<Documented version:> 0.009008
@@ -30,6 +32,8 @@ faucibus.
 
 =head1 Mouse
 
+X<Mouse>X<Module, Mouse>
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
 sodales pellentesque lectus. Nam sed augue magna, eget gravida
 nulla. Aenean vitae augue id orci dignissim pellentesque. Quisque vel
@@ -49,6 +53,7 @@ faucibus.
 
 =head1 Moose
 
+X<Moose>X<Module, Moose>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
 sodales pellentesque lectus. Nam sed augue magna, eget gravida

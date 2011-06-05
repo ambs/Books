@@ -39,6 +39,8 @@ sub post_process_tex {
           "\\vspace{-2pt}\n$1" # this way I can keep the indentation O:-)
          /xge;
 
+        s!}``!}''!g;
+
         s!\bLaTeX\b!\\LaTeX{}!g;
         s!\bTeX\b!\\TeX{}!g;
     } $filename;

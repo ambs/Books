@@ -93,8 +93,8 @@ C<cpan> can be used from the command line issuing:
 This will install in your system the two modules C<Module::Name> and
 C<Another::Module>. The other approach is using C<cpan> shell. For
 that, just type C<cpan> in your command line, and a C<cpan> shell will
-appear. You can get help on the C<cpan> shell commands using C<h>. To
-install modules use the C<i> command.
+appear. You can get help on the C<cpan> shell commands using "C<h>". To
+install modules use the "C<i>" command.
 
 =begin screen Simple cpan interaction
 
@@ -114,7 +114,7 @@ C<cpanp> is the command line tool to the C<CPANPLUS> module, that
 enhances the C<CPAN> module used by C<cpan> with some new
 functionalities. Although some C<cpanp> commands differ from the ones
 available on C<cpan>, the basic behavior is similar. To install from
-the command line add the C<-i> switch:
+the command line add the "C<-i>" switch:
 
     cpanp -i Module::Name Another::Module
 
@@ -161,6 +161,7 @@ example we will describe the process of installing C<Try::Tiny>:
  Result: PASS
  $ sudo make install
  [...]
+ Appending installation info to /opt/local/lib/.../perllocal.pod
  $ cd ..
  $ rm -fr Try-Tiny-0.09*
 

@@ -8,9 +8,13 @@ place in any of the previous chapters.
 
 =head1 MIME::Base64
 
+=head1 Modern::Perl
+
+=head1 Perl::Critic
+
 =head1 Smart::Comments
 
-=head1 Modern::Perl
+
 
 
 
