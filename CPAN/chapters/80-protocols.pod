@@ -8,3 +8,11 @@
 =head1 Email::Sender
 
 or Email::Simple::Creator?
+
+
+=cut
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:

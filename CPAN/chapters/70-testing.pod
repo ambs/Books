@@ -7,7 +7,7 @@
 
 =head1 Test::TCP
 
-
+=head1 Devel::Cover
 
 =cut
 
