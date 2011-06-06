@@ -43,9 +43,15 @@ B<CPAN:> L<http://search.cpan.org/dist/Moo>
 
 =end CPANinfo
 
-C<Moo> uses the same approach as blessed references: a package is
-equivalent to what we are used to call a class. A simple object
-definition for a I<Person> can be:
+C<Moo> uses the usual approach to define objects: use packages (the
+Perl equivalent to what we are used to call classes). Follows a simple
+example of a I<Person> object with two attributes, I<name> and
+I<phone>. The first is a read only attribute (you can't change the
+person name after initializing the object) while the second has
+read/write permissions. This information is used by C<Moo> to define
+whether to create accessors that are able to set and get values, or
+just get values. The I<required> option means that every time a
+I<Person> object is created a name must be supplied.
 
 =begin Perl
 
@@ -57,6 +63,30 @@ definition for a I<Person> can be:
  has phone => ( is => 'rw' );
 
  1;
+
+=end Perl
+
+Note that the fat arrow is equivalent to a comma, and the parenthesis
+are not needed. The first attribute could be defined as:
+
+  has "name", "is", "ro", "required", 1;
+
+but its legibility is not the same. Therefore we will stick to the
+usage of the fat arrow together with parenthesis to group attribute
+options.
+
+This object usage is similar to the usage of standard blessed
+objects. C<Moo> creates automatically the constructor and accessors.
+
+=begin Perl
+
+ use Person;
+ my $person = Person->new(name => 'John');
+
+ print $person->name;
+
+ $person->phone("93453423");
+ print $person->phone;
 
 =end Perl
 
