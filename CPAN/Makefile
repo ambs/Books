@@ -1,11 +1,11 @@
 
-book.pdf: book.tex
+book.pdf: book.tex tex/asbook.sty
 	TEXINPUTS=$$TEXINPUTS:tex xelatex book
 	makeindex book
 	TEXINPUTS=$$TEXINPUTS:tex xelatex book
 	TEXINPUTS=$$TEXINPUTS:tex xelatex book
 
-book.tex: build/latex.pl chapters/*.pod tex/asbook.sty
+book.tex: build/latex.pl chapters/*.pod
 	build/latex.pl
 
 clean:
