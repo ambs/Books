@@ -4,7 +4,6 @@
 \usepackage{xltxtra}
 \usepackage{url}
 \usepackage{framed}
-
 \usepackage{fancyvrb}
 \fvset{numbers=left}
 
@@ -37,7 +36,7 @@
     {
       \fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=2.5]{Hoefler Text Italic}  #1\par\nobreak
     }
-    \vskip 40\p@
+    \vskip 15\p@
   }}
 
 \def\@makeschapterhead#1{%
@@ -48,7 +47,7 @@
     {
       \fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=2.5]{Hoefler Text Italic}  #1\par\nobreak
     }
-    \vskip 40\p@
+    \vskip 15\p@
   }}
 
 
@@ -162,3 +161,33 @@
 
 
 \newenvironment{cpaninfo}{\begin{flushright}\parskip 0pt}{\end{flushright}}
+
+
+
+
+\usepackage{listings}
+
+\lstset{ %
+  language=Perl,                % choose the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny,      % the size of the fonts that are used for the line-numbers
+  % stepnumber=2,                   % the step between two line-numbers.
+  % numbersep=5pt,                  % how far the line-numbers are from the code
+  % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  % showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  % showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=leftline,	                % adds a frame around the code
+  % tabsize=2,	                % sets default tabsize to 2 spaces
+  % captionpos=b,                   % sets the caption-position to bottom
+  % breaklines=true,                % sets automatic line breaking
+  % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+  % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  % morekeywords={*,...}            % if you want to add more keywords to the set
+  identifierstyle=\ttfamily,
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+}

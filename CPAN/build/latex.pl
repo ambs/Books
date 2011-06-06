@@ -71,7 +71,8 @@ sub parse_pod_file {
     my $parser = Pod::PseudoPod::LaTeX->new(keep_ligatures => 1);
     $parser->output_fh($fh);
     $parser->accept_target_as_text('CPANinfo');
-    $parser->emit_environments('CPANinfo' => 'cpaninfo');
+    $parser->accept_target('Perl');
+    $parser->emit_environments('CPANinfo' => 'cpaninfo', 'Perl' => 'lstlisting');
     $parser->parse_file($pod);
 }
 
