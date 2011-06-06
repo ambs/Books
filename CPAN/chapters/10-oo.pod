@@ -90,6 +90,22 @@ objects. C<Moo> creates automatically the constructor and accessors.
 
 =end Perl
 
+Unlike the next two alternatives, C<Moo> doesn't have a type
+system. If you need to guarantee that an attribute keeps a specific
+type of data, you need to validate it yourself. That is done adding a
+code reference. The next example is a redefinition of the attribute
+C<phone> forcing a nine digits string:
+
+=begin Perl
+
+ has phone => (
+      is  => 'rw',
+      isa => sub {
+         die "Need a nine digit string!" unless $_[0] =~ /^\d{9}$/
+      };
+
+=end Perl
+
 =head1 Mouse
 
 X<Mouse>X<Module, Mouse>
