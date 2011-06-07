@@ -148,11 +148,104 @@ the new number acknowledging the change:
 
 =end Perl
 
-=head2 *Roles
+=head2 *Inheritance and Roles
 
-foo bar zbr ugh
+The usual inheritance between classes is also possible. In fact,
+C<Moo> supports multiple super-classes. They are defined with the
+C<extends> methodN<< Calling C<extends> more than once will B<replace>
+the super-classes, not add a new. >>:
+
+=begin Perl
+
+ package Student;
+ extends 'Person';
+
+ has final_grade => ( is => 'rw' );
+ 1;
+
+=end Perl
+
+One of C<Moo> premises to remain small is not support to
+C<super>. This means it is not that easy to override
+methods. Nevertheless it can be done using method modifiers (see
+A<moomodifiers>).
+
+If the code being extended (the super-class) will never be
+instantiated, probably you want to use I<roles>. I<Roles> can be seen
+as the Java interfaces, or as a specific set of methods that implement
+a specific functionality. C<Moo> roles are defined using the
+C<Role::Tiny> X<Module, Role::Tiny> X<Role::Tiny> module.
+
+The definition of a role is simple. Just define a package and use
+C<Role::Tiny>:
+
+=begin Perl
+
+ package Some:Role...
+ use Role::Tiny;
+ 1;
+
+=end Perl
+
+In your C<Moo> code, switch from role to role using C<with>. For
+simplicity C<Moo> activates one role at a time:
+
+=begin Perl
+
+  ...
+  with 'Foo::Role';
+  ...
+
+=end Perl
+
+=head2 *Methods Modifiers
+
+Z<moomodifiers>X<Class::Method::Modifiers>X<Module, Class::Method::Modifiers>
+
+The method modifiers here described are not really part of the object
+system, but are available in C<Moo> as a workaround for some
+limitations, like the lack of C<super> support. They are implemented
+though the C<Class::Method::Modifiers> module that can be used
+independently.
+
+These methods can be viewed as hooks that are called before and/or
+after some methods are called. To set some code to be run C<before> a
+method call is as easy as:
+
+=begin Perl
+
+   before method_name => sub { ... }
+
+=end Perl
+
+The method will receive the same arguments as the method
+itself. Return values are ignored, but you can change C<@_> directly,
+and the changed values will be received by the original method.
+
+C<after> works in the same way, and receives C<@_> as the original
+method received. This means that if the original method changes the
+values, C<after> will receive them modified.
+
+Finally, there is C<around>, that is called instead of the original
+method. This means that the code run should call the original
+method. In this case, the function you define will receive as the
+first argument the method that is being replaced.
+
+=begin Perl
+
+  around method => sub { 
+           my ($orig, ...) = @_;
+           foo
+           $ret = $orig(...);
+           bar
+           return whatever;
+  }
+
+=end Perl
 
 =head1 Mouse
+
+
 
 X<Mouse>X<Module, Mouse>
 
