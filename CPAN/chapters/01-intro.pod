@@ -139,7 +139,17 @@ knowing the when needed a password will be asked.
 
 =head2 *ActivePerl PPM
 
-X<PPM> X<ActivePerl>
+X<PPM> X<ActivePerl> PPM stands for I<Perl Package Manager>, and it is
+an application by ActiveState to install modules from their own module
+repository. These packages have the advantage of being pre-compiled,
+making it easier to install on Windows machines without a compiler
+available. The main drawback is that PPM repositories do not have all
+available modules from CPAN, and it is natural that the module you
+need is not there.
+
+Therefore, the authors suggest Windows users to download Strawberry
+Perl X<Strawberry Perl> that includes C<cpan> and a quite complete
+build system.
 
 =head2 *Manual Install
 
@@ -179,6 +189,30 @@ example we will describe the process of installing C<Try::Tiny>:
  $ rm -fr Try-Tiny-0.09*
 
 =end screen
+
+Follows a brief explanation of the issued commands:
+
+=over
+
+=item Line 1: C<< tar zxf Try-Tiny-0.09.tar.gz >>
+
+=item Line 2: C<< cd Try-Tiny-0.09 >>
+
+=item Line 3: C<< perl Makefile.PL >>
+
+Build.PL
+
+=item Line 8: C<< make >>
+
+nmake / dmake
+
+=item Line 11: C<< make test >>
+
+=item Line 21: C<< make install >>
+
+sudo / windows
+
+=back
 
 =cut
 
