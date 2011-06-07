@@ -176,27 +176,44 @@ as the Java interfaces, or as a specific set of methods that implement
 a specific functionality. C<Moo> roles are defined using the
 C<Role::Tiny> X<Module, Role::Tiny> X<Role::Tiny> module.
 
-The definition of a role is simple. Just define a package and use
-C<Role::Tiny>:
+The definition of a role is simple. Create a brand new package, use
+C<Role::Tiny>, and write all the code the role should implement. As a
+simple example consider a role that dumps the object to the standard
+error (useful for debugging):
 
 =begin Perl
 
- package Some:Role...
+ package Dumper::Role;
  use Role::Tiny;
+ use Data::Dumper;
+
+ sub dump {
+   my $self = shift;
+   print STDERR Dumper($self);
+ }
  1;
 
 =end Perl
 
-In your C<Moo> code, switch from role to role using C<with>. For
-simplicity C<Moo> activates one role at a time:
+Now, you can switch from role to role using C<with>. For simplicity
+C<Moo> activates only one role at a time. Our main program now can
+say:
 
 =begin Perl
 
-  ...
-  with 'Foo::Role';
-  ...
+ use Moo;
+ use Person;
+
+ my $person = Person->new(name => 'Mary', phone => '987654321');
+
+ with 'Dumper::Role';
+ $person->dump;
 
 =end Perl
+
+Note that the C<dump> method is not implemented in the I<Person>
+class, but rather in the role. This means you can activate this role
+for any object.
 
 =head2 *Methods Modifiers
 
@@ -204,17 +221,20 @@ Z<moomodifiers>X<Class::Method::Modifiers>X<Module, Class::Method::Modifiers>
 
 The method modifiers here described are not really part of the object
 system, but are available in C<Moo> as a workaround for some
-limitations, like the lack of C<super> support. They are implemented
+limitations, like the lack of access to C<super>. They are implemented
 though the C<Class::Method::Modifiers> module that can be used
 independently.
 
 These methods can be viewed as hooks that are called before and/or
-after some methods are called. To set some code to be run C<before> a
-method call is as easy as:
+after some methods are called. As an example, we want to add a line of
+debug before dumping a person. Therefore, in the C<Person.pm> file we
+will switch to the role that implements C<dump>, and activate a
+modifier, asking to run some code before the actual method:
 
 =begin Perl
 
-   before method_name => sub { ... }
+   with 'Dumper::Role';
+   before dump => sub { print STDERR "Dumping a Person!\n" };
 
 =end Perl
 
@@ -227,18 +247,27 @@ method received. This means that if the original method changes the
 values, C<after> will receive them modified.
 
 Finally, there is C<around>, that is called instead of the original
-method. This means that the code run should call the original
-method. In this case, the function you define will receive as the
-first argument the method that is being replaced.
+method. This means that the code run should call the original method
+(if needed, or just ignore it). For that to be possible, the code you
+define will receive as first argument the method that is being
+replaced. Suppose you have a role that implements a method similar
+with the described above, to send a SMS message, but that uses the
+phone number stored in the object, but you need to add a prefix to the
+number ("+0", for instance) before calling it, and that you need to
+get the result (a boolean) and transform it into a string "OK" or
+"NOK":
 
 =begin Perl
 
-  around method => sub { 
-           my ($orig, ...) = @_;
-           foo
-           $ret = $orig(...);
-           bar
-           return whatever;
+  with 'SMS::Role';
+  around send_sms => sub { 
+           my ($orig, $self, $message) = @_;
+
+           my $number = $self->phone; # save number
+           $self->phone("+0$number");
+           my $ok = $self->$orig($message);
+           $self->phone($number); # revert number
+           return $ok ? "OK" : "NOK";
   }
 
 =end Perl
