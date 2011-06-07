@@ -30,11 +30,15 @@ books/documentation).
 5. Formatting
 
 Use C<...> for module names. Do not forget to add X<Module, name> and
-X<name> whenever you mention a module (once per section, of course)
+X<name> whenever you mention a module (once per section, of course).
+
+Also, for footnotes, use N<< ... >> but do not leave a blank space
+before the N. If it gets glued with another word, the parser will
+detect it correctly.
 
 
 Build
 --------------------------------
 
 ATM for building you need my branch of Pod::PseudoPod::LaTeX,
-available from https://github.com/ambs/Pod-PseudoPod-LaTeX
+available from https://github.com/ambs/Pod-PseudoPod-LaTeX/my-merge

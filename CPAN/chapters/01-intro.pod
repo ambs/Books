@@ -122,7 +122,20 @@ For the interactive shell, C<cpanp> also uses the C<i> command (see A<cpaninstal
 
 =head2 *Using C<cpanm>
 
-X<Command, cpanm> X<cpanm>
+X<Command, cpanm> X<cpanm> C<cpanm> is available through
+X<App::Cpanminus> C<App::Cpanminus> module. The main advantage of
+C<cpanm> regarding the other two approaches described above is
+efficiency. C<cpanm> is very quick, as it doesn't perform the amount
+of checks C<cpan> or C<cpanp> does. Nevertheless, you probably want to
+use it. Install the module, and use C<cpanm> from the command lineN<<
+C<cpanm> does not have an interactive shell. You must use it directly
+from the command line. >>.
+
+   cpanm -S Module::Name another::Module
+
+The "C<-S>" switch is used to ask C<cpanm> to call C<sudo> when
+installing the module. This way you can call C<cpanm> from your user,
+knowing the when needed a password will be asked.
 
 =head2 *ActivePerl PPM
 
