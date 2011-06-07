@@ -194,23 +194,53 @@ Follows a brief explanation of the issued commands:
 
 =over
 
-=item Line 1: C<< tar zxf Try-Tiny-0.09.tar.gz >>
+=item *
 
-=item Line 2: C<< cd Try-Tiny-0.09 >>
+B<Line 1:> uncompress the tarball. The command used is the more common
+for most Unix/BSD systems. It might be similar under Windows if you
+have GNU tools installed. If not, you can download a tool to
+uncompress this kind of files, like C<7zip> or C<IzArch>.
 
-=item Line 3: C<< perl Makefile.PL >>
+=item *
 
-Build.PL
+B<Line 2:> go to the folder created after uncompressing the tarball.
 
-=item Line 8: C<< make >>
+=item *
 
-nmake / dmake
+B<Line 3:> run C<perl> against the C<Makefile.PL> file, to configure the
+module. Note that some modules use other build system, named
+C<Module::Build> X<Module, Module::Build> X<Module::Build> instead of
+C<ExtUtils::MakeMaker> X<Module, ExtUtils::MakeMaker>
+X<ExtUtils::MakeMaker>, the one responsible for C<Makefile.PL>. In
+this case, you should run C<perl> against the C<Build.PL> file:
 
-=item Line 11: C<< make test >>
+   perl Build.PL
 
-=item Line 21: C<< make install >>
+=item *
 
-sudo / windows
+B<Line 8:> this step is the process of building the module files. When the module
+is just composed by Perl modules, this step just copy some files from
+different places to a temporary staging folder named C<blib>. If the
+module includes C<C> code, this step will also compile it.
+
+Depending on your system C<make> might be named C<nmake> or
+C<dmake>. Also, if in the previous step you needed to use C<Build.PL>,
+then instead of C<make> you should run the newly created C<Build>
+file.
+
+=item *
+
+B<Line 11:> after compiling the module it is a good idea to test if
+your module is passing all the tests defined by the developers. To
+test your newly compiled module run C<< make test >> or C<< Build test
+>> depending on the module you are installing.
+
+=item *
+
+B<Line 21:> finally, time to install the module. Just run C<< make
+install >> or C<< Build install >>. It might be a good idea to run
+this command as superuser (for example, prepending C<sudo> to the
+command).
 
 =back
 
