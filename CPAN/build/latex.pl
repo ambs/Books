@@ -39,6 +39,8 @@ sub post_process_tex {
           "\\vspace{-2pt}\n$1" # this way I can keep the indentation O:-)
          /xge;
 
+        s!frame=single,label=!frame=single,numbers=left,label=!g;
+
         s!}``!}''!g;
 
         s!\bLaTeX\b!\\LaTeX{}!g;
@@ -72,7 +74,8 @@ sub parse_pod_file {
     $parser->output_fh($fh);
     $parser->accept_target_as_text('CPANinfo');
     $parser->accept_target('Perl');
-    $parser->emit_environments('CPANinfo' => 'cpaninfo', 'Perl' => 'lstlisting');
+    $parser->emit_environments('CPANinfo' => 'cpaninfo',
+                               'Perl'     => 'lstlisting');
     $parser->parse_file($pod);
 }
 

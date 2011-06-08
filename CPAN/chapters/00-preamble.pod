@@ -23,7 +23,7 @@ type of modules or frameworks. For instance, we have a chapter on web
 frameworks, and a chapter on XML parsers. For each chapter you will
 get a brief explanation or comparison between the modules that will be
 described, together with the reason why those modules where
-chosen. Then, each section will focus in one of chose modules. And the
+chosen. Then, each section will focus in one of those modules. And the
 chapter ends with a special section, where pointers to other useful
 modules that were not discussed but might be useful.
 

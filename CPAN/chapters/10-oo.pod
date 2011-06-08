@@ -25,11 +25,12 @@ C<Moose>, making it easier to switch whenever needed.
 Another implementation, named C<Moo>, claims to be yet smaller and
 faster than C<Mouse>, although it does not have much users yet.
 
-Given all these modules share the basic syntax, this chapter structure
-will be slightly different from the next ones. First, we will present
-C<Moo>, then, what C<Mouse> offers over C<Moo>, and finally, what
-C<Moose> offers more than C<Mouse>. This approach will make this
-chapter smaller and help the reader when choosing one implementation.
+Given that all these modules share the basic syntax, this chapter
+structure will be slightly different from the next ones. First, we
+will present C<Moo>, then, what C<Mouse> offers over C<Moo>, and
+finally, what C<Moose> offers more than C<Mouse>. This approach will
+make this chapter smaller and help the reader when choosing one
+implementation.
 
 =head1 Moo
 
@@ -54,7 +55,7 @@ change the person name after initializing the object) while the second
 has read/write permissions. This information is used by C<Moo> to
 define whether to create accessors that are able to set and get
 values, or just get values. The I<required> option means that every
-time a I<Person> object is created a name must be supplied.
+time a I<Person> object is created a name must be provided.
 
 =begin Perl
 
@@ -77,7 +78,8 @@ usage of the fat arrow together with parenthesis or indentation to
 group attribute options.
 
 This object usage is similar to the usage of standard blessed
-objects. C<Moo> creates automatically the constructor and accessors.
+reference objects. C<Moo> creates automatically the constructor and
+accessors.
 
 =begin Perl
 
