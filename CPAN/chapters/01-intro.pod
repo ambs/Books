@@ -96,9 +96,9 @@ that, just type C<cpan> in your command line, and a C<cpan> shell will
 appear. You can get help on the C<cpan> shell commands using "C<h>". To
 install modules use the "C<i>" command.
 
-=begin screen Simple cpan interaction
-
 Z<cpaninstall>
+
+=begin screen Simple cpan interaction
 
  cpan shell -- CPAN exploration and modules installation
  Enter 'h' for help.

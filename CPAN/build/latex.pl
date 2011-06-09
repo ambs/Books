@@ -43,6 +43,8 @@ sub post_process_tex {
 
         s!}``!}''!g;
 
+        s/titleref/nameref/g;
+
         s!\bLaTeX\b!\\LaTeX{}!g;
         s!\bTeX\b!\\TeX{}!g;
     } $filename;
