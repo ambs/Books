@@ -217,7 +217,7 @@ Note that the C<dump> method is not implemented in the I<Person>
 class, but rather in the role. This means you can activate this role
 for any object.
 
-=head2 *Methods Modifiers
+=head2 *Method Modifiers
 
 Z<moomodifiers>X<Class::Method::Modifiers>X<Module, Class::Method::Modifiers>
 
@@ -286,6 +286,83 @@ B<CPAN:> L<http://search.cpan.org/dist/Mouse>
 
 =end CPANinfo
 
+As mentioned in this chapter introduction C<Mouse> aims to be a subset
+implementation of C<Moose>, with fewer dependencies, with an optional
+XS back-end (meaning you will not necessarily need a C<< C >>
+compiler) and reducing the C<Moose> startup time.
+
+=head2 *Attributes
+
+The syntax for defining attributes is the same C<Moo> uses. The first
+main difference is that C<Mouse> introduces a type system, instead of
+the code reference that C<Moo> uses to check values types. Some of
+C<Mouse> data types are: C<Any> to store anything, C<Bool> for boolean
+values, C<Str> to store a string or a number, just like Perl scalar
+variables handle them, C<Num> for numbers, including reals, C<Int> for
+integer numbers, C<ClassName> when you are storing a object class
+name, C<Ref> for any kind of reference, C<ScalarRef> for a reference
+to a scalar, C<ArrayRef> to a reference to an array, C<HashRef> to a
+reference to hashes, C<RegexpRef> for regular expressions, etc. You
+can get a detailed list and their relationship in the
+C<Mouse::Util::TypeConstraints>. This
+module also allows you to define sub-types based on the built-in
+types. Finally, if you define a type name that is unknown, C<Mouse>
+will interpret it as the name of a class that should be checked using
+C<ref>.
+
+The C<default> value for the attribute can be set like with C<Moo>
+using a code reference, but it is also possible to specify directly a
+value. But be caution about references.
+
+Our I<Person> class is written with C<Mouse> as follows:
+
+=begin Perl
+
+ package Person;
+ use Mouse;
+
+ has name  => 
+      is => 'ro', required => 1,  isa => 'Str';
+ has phone =>
+      is => 'rw',
+      isa => 'Str',
+      trigger => sub {
+         send_sms( to => $_[1],
+                   msg => "Phone number correctly updated.")
+      };
+ has sex =>
+      is => 'ro', default => "female";
+ 1;
+
+=end Perl
+
+There are some relevant differences in this code. First, we are not
+requiring the phone number to have nine digits. Check
+A<typeconstraints> for a solution through subtypes. The other
+difference is more subtle: the C<trigger> method receives the same
+first two arguments as the C<Moo> example, but a third argument is
+also supplied: the value before the attribution takes place.
+
+=head2 *Inheritance and Roles
+
+Inheritance in C<Mouse> is also handled using the C<extends>
+method. 
+
+Roles (handled by C<Mouse::Role> X<Mouse::Role> X<Module,
+Mouse::Role>), ...
+
+=head2 *Method Modifiers
+
+C<Mouse> supports C<before>, C<after> and C<around>, just like C<Moo>
+The main difference is that they accept a regular expression, and will
+apply the modifier to all the methods that match the expression.
+
+=head2 *Type Constraints
+
+Z<typeconstraints> X<Module,
+Mouse::Util::TypeConstraints> X<Mouse::Util::TypeConstraints>
+
+=head2 *Meta-Model
 
 =head1 Moose
 
