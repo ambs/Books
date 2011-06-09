@@ -13,10 +13,12 @@ CPAN. That would be mostly impossible to print, as there are thousands
 of Perl modules available, and some of them have rather long
 documentation.
 
-That said, what this book aims is to introduce a set of useful modules
-and frameworks that are not easy to learn just by reading the main
+That said, B<< this book aims to introduce a set of useful modules and
+frameworks >> that are not easy to learn just by reading the main
 Module documentation file (the one you usually get when executing
-C<perldoc Module> on the command line).
+C<perldoc Module> on the command line). Do not expect that all
+features are presented. The more important were chosen, and for
+further details you should read each module documentation.
 
 The book is split in different chapters, each one covering a specific
 type of modules or frameworks. For instance, we have a chapter on web
