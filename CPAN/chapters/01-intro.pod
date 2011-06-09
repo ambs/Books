@@ -192,6 +192,8 @@ example we will describe the process of installing C<Try::Tiny>:
 
 Follows a brief explanation of the issued commands:
 
+=begin small
+
 =over
 
 =item *
@@ -243,6 +245,8 @@ this command as superuser (for example, prepending C<sudo> to the
 command).
 
 =back
+
+=end small
 
 =cut
 
