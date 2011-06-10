@@ -55,7 +55,11 @@ change the person name after initializing the object) while the second
 has read/write permissions. This information is used by C<Moo> to
 define whether to create accessors that are able to set and get
 values, or just get values. The I<required> option means that every
-time a I<Person> object is created a name must be provided.
+time a I<Person> object is created a name must be providedN<< All
+packages in Perl should return a true value after successful
+load. That is why they usually have a last line with C<1;>.  In the
+following examples we will add that line every time the example is a
+full package. >>.
 
 =begin Perl
 
@@ -345,11 +349,87 @@ also supplied: the value before the attribution takes place.
 
 =head2 *Inheritance and Roles
 
-Inheritance in C<Mouse> is also handled using the C<extends>
-method. 
+Inheritance in C<Mouse> is also handled using the C<extends> method.
+Regarding roles (handled by C<Mouse::Role> X<Mouse::Role> X<Module,
+Mouse::Role>), they are very similar in behavior with C<Moo> roles.
 
-Roles (handled by C<Mouse::Role> X<Mouse::Role> X<Module,
-Mouse::Role>), ...
+The main difference is that a C<Mouse::Role> can require that the
+object that uses it implements some methods. That is specified with
+the C<requires> method. As an example, consider a role that adds
+arithmetic to any object that can be converted to a real value. For
+that to be possible, the object must implement a method named
+C<value>.  The role will use this method to perform the arithmetic
+operation.
+
+=begin Perl
+
+  package Arithmetics;
+  use Mouse::Role;
+
+  requires 'value';
+
+  sub add {
+    my ($self, $other) = @_;
+    return $self->value + $other->value;
+  }
+  1;
+
+=end Perl
+
+Now, an object that represent stock exchange values can add stock
+values together:
+
+=begin Perl
+
+  package Stocks;
+  use Mouse;
+
+  has name  => ( is => 'rw', isa => 'Str');
+  has qt    => ( is => 'rw', isa => 'Int');
+  has price => ( is => 'rw', isa => 'Num');
+
+  sub value {
+    my $self = shift;
+    return $self->qt * $self->price;
+  }
+
+  with 'Arithmetics';
+
+  my $stock1 = Stocks->new( qt => 10, price => 1.1);
+  my $stock2 = Stocks->new( qt => 5,  price => 4.3);
+  my $total_amount = $stock1->add($stock2);
+  1;
+
+=end Perl
+
+Note that you can use an accessor to satisfy the role
+C<requires>. This object that represents a product and its market
+value would work as well:
+
+=begin Perl
+
+  package Product;
+  use Mouse;
+
+  has name  => ( is => 'rw', isa => 'Str');
+  has value => ( is => 'rw', isa => 'Int');
+
+  with 'Arithmetics';
+
+  my $prod1 = Product->new( value => 3 );
+  my $prod2 = Product->new( value => 5 );
+  my $total_prods = $prod1->add($prod2);
+  1;
+
+=end Perl
+
+You just need to make sure that the line with the C<has> that defines
+the attribute which accessor will satisfy the requirements is defined
+before composing the role. With this role you can even add different
+type of classes, given they satisfy the C<Arithmetics> role.
+
+As a final note, C<Mouse> supports more than one role at a time. Just
+take care about the order you use them. It might be relevant.
 
 =head2 *Method Modifiers
 
@@ -361,6 +441,41 @@ apply the modifier to all the methods that match the expression.
 
 Z<typeconstraints> X<Module,
 Mouse::Util::TypeConstraints> X<Mouse::Util::TypeConstraints>
+
+To have built-in types is a cool feature, but can be limiting. If you
+compare our I<Person> example using C<Moo> and C<Mouse>, you will
+notice that C<Moo> restricts phone numbers to have only a fixed amount
+digits while C<Mouse> accepts any string.
+
+The solution to make C<Mouse> more picky about its values is to define
+new data types. This is performed using the
+C<Mouse::Util::TypeConstraints> module, that defines new data types
+based on C<Mouse> basic types.
+
+=begin Perl
+
+  use Mouse::Util::TypeConstraints;
+
+  subtype 'PhoneNumber'
+    => as 'Str'
+    => where { m/^\d{9}$ }
+    => message { "The string ($_) is not a valid phone number." };
+
+=end Perl
+
+This code specifies the base data type (String), a code block that
+returns true for valid values, and a code block with the action or
+message that should be performed when the value is not valid.
+
+B<XXX> coerce
+
+B<XXX> enum
+
+It is part of the good practices to unload the module as soon as you
+defined your types (this will undefine all the syntactic sugar
+exported by the module):
+
+   no Mouse::Util::TypeConstraints;
 
 =head2 *Meta-Model
 
