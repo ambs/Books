@@ -190,3 +190,32 @@
   stringstyle=\sf,
 }
 
+
+
+\newlength{\seealsol}
+\newenvironment{SeeAlso}{~\\*[-1ex]
+  \protect{
+    {
+      \setlength{\seealsol}{\leftmargin}
+      {\mbox{}\hfill\fontspec[Variant=2,Color=DDDDDDFF,Scale=2]{Zapfino} \bfseries See Also \hfill\mbox{}}\\[-20pt]
+      \mbox{}\hfill {\fontspec[Contextuals={WordInitial,WordFinal},Color=00000055,Scale=1.4]{Hoefler Text Italic} See Also}\hfill\mbox{}
+    }
+    \addcontentsline{toc}{section}{\textit{See Also}}
+    \vskip -5mm
+    \noindent\rule{\textwidth}{.5pt}\\[-1pt]
+    \rule{.5pt}{15pt}\hfill\rule{.5pt}{15pt}\\
+  }
+  \list{}{
+    \addtolength{\rightmargin}{.03\textwidth}
+    \setlength{\leftmargin}{\seealsol}
+    \addtolength{\leftmargin}{.03\textwidth}
+  }  
+  \item\relax
+    \vskip -36pt
+}{
+  \endlist
+  \vskip -17pt
+  \rule{.5pt}{15pt}\rule{\textwidth}{.5pt}\rule{.5pt}{15pt}%\\[-14pt]
+%  \rule{\textwidth}{.5pt}
+}
+

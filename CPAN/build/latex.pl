@@ -74,10 +74,12 @@ sub parse_pod_file {
     my $pod    = $data{pod} or die;
     my $parser = Pod::PseudoPod::LaTeX->new(keep_ligatures => 1);
     $parser->output_fh($fh);
-    $parser->accept_target_as_text('CPANinfo', 'small');
+    $parser->accept_target_as_text('CPANinfo', 'small', 'SeeAlso', 'right');
     $parser->accept_target('Perl');
     $parser->emit_environments('CPANinfo' => 'cpaninfo',
                                'small'    => 'smallenv',
+                               'right'    => 'flushright',
+                               'SeeAlso'  => 'SeeAlso',
                                'Perl'     => 'lstlisting');
     $parser->parse_file($pod);
 }
@@ -97,7 +99,7 @@ sub add_tex_preamble {
 
 \title{CPAN Modules and Frameworks}
 \subtitle{A bunch of relevant Perl modules and frameworks available from CPAN}
-\author{Alberto Simões \and Nuno Carvalho}
+\author{Alberto Simões}
 \date{First Edition}
 
 \begin{document}

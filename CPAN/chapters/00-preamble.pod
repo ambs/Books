@@ -45,8 +45,20 @@ on how to contribute to CPAN.
 
 Regarding previous knowledge on Perl or CPAN, we expect you to know
 how to write basic Perl programs, including the use of modules and
-references. The usage of I<old> Object Oriented Perl might be useful
-as well.
+references. The knowledge about I<old> Object Oriented Perl might be
+useful as well.
+
+The author would like to thank
+Marcos Ramos
+and
+Magda Joana Silva
+for they comments, suggestions and proofreading.
+
+=begin right
+
+I<the author>
+
+=end right
 
 =for latex
 

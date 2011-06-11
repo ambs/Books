@@ -350,6 +350,12 @@ also supplied: the value before the attribution takes place.
 =head2 *Inheritance and Roles
 
 Inheritance in C<Mouse> is also handled using the C<extends> method.
+Note that when redefining an attribute in a subclass you need to
+prepend a plus sign to the name of the attribute begin redefined:
+
+   has +name => ( is => 'rw', required => 1, isa => 'Str');
+
+
 Regarding roles (handled by C<Mouse::Role> X<Mouse::Role> X<Module,
 Mouse::Role>), they are very similar in behavior with C<Moo> roles.
 
@@ -598,6 +604,97 @@ B<Version:> 2.0007
 B<CPAN:> L<http://search.cpan.org/dist/Moose>
 
 =end CPANinfo
+
+The path between C<Mouse> and C<Moose> is simple, as C<Mouse> was
+designed for compatibility. But C<Moose> has much more features as we
+will see.
+
+=head2 *Attributes
+
+C<Moose> attributes basic functionalities are similar to C<Mouse>
+attributes. There are few extra functionalities, like the definition
+of C<traits> or C<handles>, but these will not be covered in this
+book. Please read the C<Moose> manual page for details.
+
+=head2 *Inheritance and Roles
+
+C<Moose> makes it possible to require that a superclass or a role
+being imported satisfy a minimum module version. That is done passing
+a hash reference after each superclass or role:
+
+  extends 'Some::Parent'  => { -version => 3.20 },
+          'Other::Parent' => { -version => 1.03 };
+
+The syntax for roles is similar, just replace C<extends> with
+C<with>. Roles are defined by the C<Moose::Role> X<Moose::Role>
+X<Module, Moose::Role> module.
+
+=head2 *Method Modifiers
+
+C<Moose> extends the three basic method modifies (C<before>, C<after>
+and C<around>) with some new:
+
+=over
+
+=item C<override>
+
+Receive the name of the method being overridden, and the
+code. Although the same behavior can be obtained without using
+C<override> and defining a standard function, using C<override> will
+make it clearer that you are overriding the method. Inside your code
+you can call C<super> to access this method original definition in the
+superclass.
+
+=item C<augment>
+
+The C<augment> method modifier is not easy to explain. You can see it
+as the inverse of C<override>, and its companion method C<inner> as
+the inverse of C<super>. When you call an C<augment>ed method,
+C<Moose> will start with the top superclass definition, and substitute
+its C<inner> invocation by its child C<augment> code. This process
+will be repeated until you reach the bottom class. A complete example
+of this functionality is described in
+C<Moose::Cookbook::Basics::Recipe6>.
+
+=back
+
+=head2 *Type Constraints
+
+X<Moose::Util::TypeConstraints> X<Module, Moose::Util::TypeConstraints>
+
+Basic type constraints functionalities are similar with C<Mouse>. They
+are handled by the C<Moose::Util::TypeConstraints> module.
+
+=head2 *Meta-Model
+
+X<Moose::Meta::Class> X<Module, Moose::Meta::Class> C<Moose> meta
+class model is richer than C<Mouse> model, but again, their extended
+use is too advanced to be fully described here. You can read about its
+functionalities in C<Moose::Meta::Class.
+
+...
+
+=begin SeeAlso
+
+C<MooseX> is the namespace for Moose extensions. You can read
+C<Moose::Manual::MooseX> X<Moose::Manual::MooseX> X<Module,
+Moose::Manual::MooseX> for a list of some common and useful
+extensions. Follow some examples.
+
+C<MooseX::StrictConstructor> X<MooseX::StrictConstructor> X<Module,
+MooseX::StrictConstructor> will make your module complain if you pass
+any attribute name to the constructor that is not defined (by default
+C<Moose> will quietly ignore any unknown attribute names).
+
+C<MooseX::Getopt> X<Module, MooseX::Getopt> X<MooseX::Getopt> lets you
+define command line options as if they were standard C<Moose> attributes.
+
+C<MooseX::Declare> X<Module, MooseX::Declare> X<MooseX::Declare> is
+used to define methods signature as you would in a typed language like
+C or Java. At the moment it is still in alpha stage, but there are
+high hopes on it.
+
+=end SeeAlso
 
 =cut
 
