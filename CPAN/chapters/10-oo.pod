@@ -118,12 +118,12 @@ C<default> option. It takes a code reference that receives the object,
 and should return the new value. Note that you should not rely on
 other attributes for this initialization as there is no guarantee that
 they were already populated (for that use I<lazy> attributes). As an
-example, you can create an attribute C<sex> and define it
+example, you can create an attribute C<gender> and define it
 automatically to I<female> if not specified.
 
 =begin Perl
 
- has sex =>
+ has gender =>
       is => 'ro',
       default => sub { return 'female' };
 
@@ -334,7 +334,7 @@ Our I<Person> class is written with C<Mouse> as follows:
          send_sms( to => $_[1],
                    msg => "Phone number correctly updated.")
       };
- has sex =>
+ has gender =>
       is => 'ro', default => "female";
  1;
 
@@ -468,10 +468,10 @@ returns true for valid values, and a code block with the action or
 message that should be performed when the value is not valid.
 
 We can enhance our I<Person> class with some more interesting data
-types. For example, we know that the sex value will be one of I<male>
+types. For example, we know that the gender value will be one of I<male>
 or I<female>:
 
-   enum 'Sex' => ('male', 'female');
+   enum 'Gender' => ('male', 'female');
 
 C<Mouse::Util::TypeConstraints> allows the user to specify how to
 convert between data types. For instance, if we have a C<Time> data
@@ -541,37 +541,51 @@ Some of the B<methods> you can call on a meta-model object are:
 
 =over
 
-=item *
+=item C<superclasses>
 
-C<superclasses> is an accessor that retrieves the list of all
-super-classes for that class. It can also be used to set them.
+is an accessor that retrieves the list of all super-classes for that
+class. It can also be used to set them.
 
    my @superclases = $meta->superclasses();
 
-=item *
+=item C<has_method>
 
-C<has_method> returns a boolean value given a method name. The value
-will be true if the class implements that method:
+returns a boolean value given a method name. The value will be true
+if the class implements that method:
 
    $meta->has_method("compare");
 
-=item *
+=item C<add_method>
 
-C<add_method> lets you add method to the class. It receives the method
-name and the reference to a code block:
+lets you add method to the class. It receives the method name and the
+reference to a code block:
 
    $meta->add_method( dump => sub {
            use Data::Dumper; Dumper($_[0]); 
    });
 
-=item *
+=item C<has_attribute>
 
-C<has_attribute> works just like C<has_method> but returns a true
-value if there is an attribute with the supplied name:
+works just like C<has_method> but returns a true value if there is an
+attribute with the supplied name:
 
-   $meta->has_attribute("sex");
+   $meta->has_attribute("gender");
+
+=item C<add_attribute>
+
+lets you add a new attribute, works mostly like C<has>, but over a
+meta-class object:
+
+   $meta->add_attribute("age", is => "rw", isa => "Int");
 
 =back
+
+Some of these methods are polymorphic, and can cope with other type of
+arguments. There are accessors to attributes and methods, just like
+the setters explained above. This section will finish here. For
+further documentation please read C<Mouse::Meta::Class> for a list of
+the available methods, and C<Moose::Meta::Class> for their
+explanation.
 
 =head1 Moose
 
