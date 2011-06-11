@@ -670,9 +670,15 @@ are handled by the C<Moose::Util::TypeConstraints> module.
 X<Moose::Meta::Class> X<Module, Moose::Meta::Class> C<Moose> meta
 class model is richer than C<Mouse> model, but again, their extended
 use is too advanced to be fully described here. You can read about its
-functionalities in C<Moose::Meta::Class.
+functionalities in C<Moose::Meta::Class>.
 
-...
+In addition to C<add_method> there are also C<add_override_method_modifier>
+and C<add_augment_method_modifier>.
+
+There is the possibility to access all roles attached to a class with
+C<calculate_all_roles>, or to this class and all ancestors, with
+C<calculate_all_roles_with_inheritance>. Check if a specific class
+does a role with C<does_role>.
 
 =begin SeeAlso
 
