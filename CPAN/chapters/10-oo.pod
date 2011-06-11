@@ -676,9 +676,8 @@ In addition to C<add_method> there are also C<add_override_method_modifier>
 and C<add_augment_method_modifier>.
 
 There is the possibility to access all roles attached to a class with
-C<calculate_all_roles>, or to this class and all ancestors, with
-C<calculate_all_roles_with_inheritance>. Check if a specific class
-does a role with C<does_role>.
+C<calculate_all_roles>.  Check if a specific class does a role with
+C<does_role>.
 
 =begin SeeAlso
 
