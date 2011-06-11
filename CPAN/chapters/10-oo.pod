@@ -467,9 +467,53 @@ This code specifies the base data type (String), a code block that
 returns true for valid values, and a code block with the action or
 message that should be performed when the value is not valid.
 
-B<XXX> coerce
+We can enhance our I<Person> class with some more interesting data
+types. For example, we know that the sex value will be one of I<male>
+or I<female>:
 
-B<XXX> enum
+   enum 'Sex' => ('male', 'female');
+
+C<Mouse::Util::TypeConstraints> allows the user to specify how to
+convert between data types. For instance, if we have a C<Time> data
+type that is defined in a string, that contains information on number
+of minutes and number of seconds, we can tell how to convert it to a
+number (computing the total number of seconds, for instance):
+
+=begin Perl
+
+  use Mouse::Util::TypeConstraints;
+
+  subtype 'Time'
+    => as 'Str' => where { m[/^ \d+ m \d+ s $]x };
+
+  coerce 'Num'
+    => from 'Time'
+    => via { m[^ (\d+) m (\d+) s $]x; $1*60+$2 };
+
+=end Perl
+
+The C<Time> value can be coerced to a number filling some object
+attribute. The only requirement is that the attribute has the
+C<coerce> option to true. The following example presents two
+attributes, one for a C<Time> value, than whenever is changed,
+triggers the update of the number of seconds.  The opposite would be
+also possible after defining a C<coerce> rule from C<Num> to C<Time>.
+
+=begin Perl
+
+  has time =>
+    is      => 'rw',
+    isa     => 'Time',
+    trigger => { 
+       my ($self, $value) = @_;
+       $self->seconds($value);
+    };
+  has seconds =>
+    is     => 'rw',
+    isa    => 'Num',
+    coerce => 1;
+
+=end Perl
 
 It is part of the good practices to unload the module as soon as you
 defined your types (this will undefine all the syntactic sugar
@@ -478,6 +522,56 @@ exported by the module):
    no Mouse::Util::TypeConstraints;
 
 =head2 *Meta-Model
+
+X<Module, Mouse::Meta::Class> X<Mouse::Meta::Class>
+
+Another interesting feature of C<Mouse> (and C<Moose>) is the ability
+to query and change the object meta information (known in this context
+as meta-model). This meta-model defines the structure of the object:
+which attributes are defined, their definition details, whose methods
+are defined, its hierarchy and possible roles.
+
+To query a class meta-model you need to have an instance of it. The
+easiest way to access it (from inside the class definition file) is
+using:
+
+   my $meta = __PACKAGE__->meta;
+
+Some of the B<methods> you can call on a meta-model object are:
+
+=over
+
+=item *
+
+C<superclasses> is an accessor that retrieves the list of all
+super-classes for that class. It can also be used to set them.
+
+   my @superclases = $meta->superclasses();
+
+=item *
+
+C<has\_method> returns a boolean value given a method name. The value
+will be true if the class implements that method:
+
+   $meta->has_method("compare");
+
+=item *
+
+C<add\_method> lets you add method to the class. It receives the method
+name and the reference to a code block:
+
+   $meta->add_method( dump => sub {
+           use Data::Dumper; Dumper($_[0]); 
+   });
+
+=item *
+
+C<has\_attribute> works just like C<has\_method> but returns a true
+value if there is an attribute with the supplied name:
+
+   $meta->has_attribute("sex");
+
+=back
 
 =head1 Moose
 
