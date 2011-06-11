@@ -40,5 +40,5 @@ detect it correctly.
 Build
 --------------------------------
 
-ATM for building you need my branch of Pod::PseudoPod::LaTeX,
-available from https://github.com/ambs/Pod-PseudoPod-LaTeX/my-merge
+ATM for building you need head from Pod::PseudoPod::LaTeX git repository.
+Check it out: git://github.com/chromatic/Pod-PseudoPod-LaTeX.git
