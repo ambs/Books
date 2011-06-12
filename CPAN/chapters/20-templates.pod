@@ -58,8 +58,12 @@ easy to install in any Perl environment.
 =head2 *Variable Notation
 
 A template with simple place-holders is easy to define. Just create a
-text file (or even a string) and curly braces to delimit the
-predefined text from the place-holders variables:
+text file (or even a string) and curly bracesN<< If you do not like to
+have curly braces as delimiters you can configure C<Text::Template> to
+use some other characters. For example, C<< $tmpl->fill_in(DELIMITERS
+=> [ '[%', ']%' ]) >> would change the delimiters to C<[%> and C<%]>
+respectively. >> to delimit the predefined text from the place-holders
+variables:
 
    Dear { $name }:
    
@@ -201,6 +205,34 @@ B<Version:> 2.22
 B<CPAN:> L<http://search.cpan.org/dist/Template-Toolkit>
 
 =end CPANinfo
+
+
+
+
+=begin SeeAlso
+
+C<Mason> X<Mason> X<Module, Mason> is a web framework that
+incorporates its own template system. Some applications support
+C<Mason> syntax for templating via plug-ins.
+
+If your C<HTML::Template> templates are slow check X<Module,
+HTML::Template::Compiled>X<HTML::Template::Compiled>
+C<HTML::Template::Compiled>, that compiles a template into a Perl
+program making it faster.
+
+X<Module, Template::Simple> X<Template::Simple> C<Template::Simple> is
+a simple and fast template system. It is written entirely in Perl and
+has a modern interface, unlink C<Text::Template> or even
+C<HTML::Template>.
+
+X<Module, Text::Template::Simple> X<Text::Template::Simple>
+C<Text::Template::Simple> uses the same philosophy from
+C<Text::Simple> making Perl itself the templating language. Its main
+difference from C<Text::Template> is that the mark-up language has
+some extra sugar to configure whether they are place-holders or simple
+code blocks with no return text.
+
+=end SeeAlso
 
 =cut
 

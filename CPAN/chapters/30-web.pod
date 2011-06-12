@@ -13,7 +13,9 @@ X<Module, Mojolicious> X<Mojolicious>
 
 X<Module, Catalyst> X<Catalyst>
 
+=head1 Mason
 
+X<Module, Mason> X<Mason>
 
 =cut
 
