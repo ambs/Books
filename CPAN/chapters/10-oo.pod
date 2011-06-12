@@ -699,6 +699,11 @@ used to define methods signature as you would in a typed language like
 C or Java. At the moment it is still in alpha stage, but there are
 high hopes on it.
 
+If you use a basic subset of C<Moose> you might want to use
+C<Any::Moose> X<Any::Moose> X<Module, Any::Moose>. This module will
+load C<Moose> or C<Mouse> accordingly with the modules available on
+your system.
+
 =end SeeAlso
 
 =cut
