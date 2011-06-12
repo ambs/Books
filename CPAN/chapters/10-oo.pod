@@ -702,7 +702,12 @@ high hopes on it.
 If you use a basic subset of C<Moose> you might want to use
 C<Any::Moose> X<Any::Moose> X<Module, Any::Moose>. This module will
 load C<Moose> or C<Mouse> accordingly with the modules available on
-your system.
+your system. The following lines can be used to load the object
+system, the role system and the type constraints system:
+
+  use Any::Moose;                           # for classes
+  use Any::Moose 'Role';                    # for roles
+  use Any::Moose '::Util::TypeConstraints'; # for types
 
 =end SeeAlso
 
