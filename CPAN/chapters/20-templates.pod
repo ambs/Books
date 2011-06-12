@@ -1,14 +1,206 @@
 
-=head0 Templating
+=head0 Template-Systems
 
-=head1 Template::Toolkit
+Templates are documents with place-holders that are filled with values
+to produce final documents. For example, a corporate letter to send to
+all employees in a company, where the name will be personalized.
 
-X<Module, Template::Toolkit>X<Template::Toolkit>
+The usage of templates is a typical methodology to separate code from
+presentation, and are especially known for their relevance for web
+frameworks that claim to follow the MVC (Model--View--Controller)
+software architecture. Templates can be used to generate all type of
+text: pure text, HTML, XML or even LaTeX documents.
+
+There is a bunch of templating modules on CPAN. We chose three:
+
+=over
+
+=item C<Text::Template>
+
+A simple template system. Its mark-up language is not based on HTML
+notation but very similar to Perl code.
+
+=item C<HTML::Template::Pro>
+
+A derived module from C<HTML::Template>, but using some C<C> code,
+making it faster. Its main advantage is being smaller than
+C<Template::Toolkit> and quite efficient.
+
+=item C<Template::Toolkit>
+
+The complete template system. It is powerful, configurable and
+expendable. Has some dependencies, namely the requirement for a C<C>
+compiler.
+
+=back
+
+=head1 Text::Template
+
+X<Module, Text::Template>X<Text::Template>
+
+=begin CPANinfo
+
+B<Version:> 1.45
+
+B<CPAN:> L<http://search.cpan.org/dist/Text-Template>
+
+=end CPANinfo
+
+This module was designed to produce any kind of text files. Its syntax
+is not based in HTML or any other known mark-up language, but in Perl
+blocks. This makes it easier to understand by any Perl programmer (but
+harder for designers, for example).
+
+The module is stable for some time: the last stable version is from
+2003! It doesn't have any dependency other than Perl itself, making it
+easy to install in any Perl environment.
+
+=head2 *Variable Notation
+
+A template with simple place-holders is easy to define. Just create a
+text file (or even a string) and curly braces to delimit the
+predefined text from the place-holders variables:
+
+   Dear { $name }:
+   
+   I am sorry to inform that you are fired. Your compensation
+   is { $compensation{$name} } euro.
+   
+   Best regards, your boss.
+
+As the example illustrates, you can insert any type of variable
+between the curly braces. If the above text is saved in a file named
+"C<fire.tmpl>" you can generate the text for a list of employees with
+the following code:
+
+=begin Perl
+
+ use Text::Template;
+
+ my $tmpl = Text::Template->new(SOURCE => 'fire.tmpl') or die;
+
+ my %compensation = (John => 100, Mary => 300);
+
+ for my $employee (keys %compensation) {
+   my $text = $tmpl->fill_in( HASH => {
+                             name => $employee,
+                     compensation => \%compensation });
+   print $text;
+ }
+
+=end Perl
+
+Line 3 creates a new C<Text::Template> object, specifying where the
+template file it. If it fails returns an undefined variable. You can
+use the C<$Text::Template::ERROR> variable in the C<die> command to
+consult what happens when it fails.
+
+Line 8 fills the template for each employee. The C<fill_in> method can
+receive the variables to be filled in the template in two different
+ways. In this case we are passing a hash reference, where keys are
+variable names and their values the respective variable values.
+
+Another option would be to specify a package where the variables will
+come from. A variable C<$x> will be replaced by the C<$Package::x>.
+
+  $tmpl->fill_in( PACKAGE => "Foo::Bar");
+
+You can even suppress the package name, and C<Text::Template> will use
+the current package. In this case the variables being shared with the
+template system should not be declared with C<my> but C<our>:
+
+=begin Perl
+
+ use Text::Template;
+
+ my $tmpl = Text::Template->new(SOURCE => 'fire.tmpl') or die;
+
+ our %compensation = (John => 100, Mary => 300);
+ our $name;
+
+ for  $name (keys %compensation) {
+   my $text = $tmpl->fill_in();
+   print $text;
+ }
+
+=end Perl
+
+Take care when using the package approach. If you change variables'
+values inside your template, they will be propagated back to your
+code.
+
+Another useful option to the C<fill_in> method is C<OUTPUT>. Its value
+must be a file handle. The result of filling the template will be
+printed to that file instead of being returned. The following code
+will create a text file for each employee:
+
+=begin Perl
+
+ use Text::Template;
+
+ my $tmpl = Text::Template->new(SOURCE => 'fire.tmpl') or die;
+
+ our %compensation = (John => 100, Mary => 300);
+ our $name;
+
+ for  $name (keys %compensation) {
+   open my $fh, ">", "$name.txt" or die;
+   $tmpl->fill_in( OUTPUT => $fh );
+   close $fh;
+ }
+
+=end Perl
+
+=head2 *Complex structures
+
+Did I tell you that you can write any Perl code inside
+C<Text::Template> curly braces? But you can. And that is the way you
+can add advanced functionality to your template. First, you can format
+numbers calling the built-in command C<sprintf>:
+
+  My current debt is { sprintf("%.2f", $value) } euro.
+
+If you pass an array to the C<fill_in> method you can cycle the array
+in your code:
+
+  This is my wish list:
+  { for $item (@wishlist) { $list .= " * $item\n"; } $list }
+
+What this code does is cycle the C<wishlist> array and construct a
+string with the text to be included in the template. At the end, we
+return its content. C<Text::Template> makes a special variable C<$OUT>
+available in your code, making the above code easier to read:
+
+  This is my wish list:
+  { for $item (@wishlist) { $OUT .= " * $item\n"; } $list }
+
+With this variable and Perl code you can do mostly anything in your
+template.
 
 =head1 HTML::Template::Pro
 
 X<Module, HTML::Template::Pro>X<HTML::Template::Pro>
 
+=begin CPANinfo
+
+B<Version:> 0.9504
+
+B<CPAN:> L<http://search.cpan.org/dist/HTML-Template-Pro>
+
+=end CPANinfo
+
+=head1 Template::Toolkit
+
+X<Module, Template::Toolkit>X<Template::Toolkit>
+
+
+=begin CPANinfo
+
+B<Version:> 2.22
+
+B<CPAN:> L<http://search.cpan.org/dist/Template-Toolkit>
+
+=end CPANinfo
 
 =cut
 
