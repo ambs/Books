@@ -184,6 +184,7 @@ template.
 =head1 HTML::Template::Pro
 
 X<Module, HTML::Template::Pro>X<HTML::Template::Pro>
+X<Module, HTML::Template>X<HTML::Template>
 
 =begin CPANinfo
 
@@ -192,6 +193,85 @@ B<Version:> 0.9504
 B<CPAN:> L<http://search.cpan.org/dist/HTML-Template-Pro>
 
 =end CPANinfo
+
+C<HTML::Template::Pro> is an extended version of
+C<HTML::Template>. Most of the functionalities are available on both,
+but the C<::Pro> is faster as it is partially implemented in C<C>.
+
+=head2 *Variable Notation
+
+These modules were developed to generate HTML (although you can
+generate anything with them). The syntax is similar to an HTML tagN<<<
+With C<HTML::Template::Pro> is possible to write commands as if they
+were XHTML tags: C<< <TMPL_VAR NAME='variable_name'/> >>. >>>:
+
+   <TMPL_VAR NAME=variable_name>
+
+The first part (C<TMPL_VAR>) is the command name (we'll see other
+shortly) to include a variable value. Follows a key/value pair
+pointing C<NAME> to the name of the place holder. Consider the
+following HTML template:
+
+   <p>Dear <TMPL_VAR NAME=name>:</p>
+   
+   <p>I am sorry to inform that you are fired. Your compensation
+   is <TMPL_VAR NAME=compensation> euro.</p>
+   
+   <p>Best regards, your boss.</p>
+
+This template can be filled with the following code:
+
+=begin Perl
+
+ use HTML::Template::Pro;
+
+ my $tmpl = HTML::Template::Pro->new(filename => 'letter.tmpl');
+
+ my %compensation = (John => 100, Mary => 300);
+
+ for my $name (keys %compensation) {
+   $tmpl->param( name         => $name ); 
+   $tmpl->param( compensation => $compensation{$name} );
+   print $tmpl->output();
+ }
+
+=end Perl
+
+Changing the code above to generate a separate HTML file per letter:
+
+=begin Perl
+
+ use HTML::Template::Pro;
+
+ my $tmpl = HTML::Template::Pro->new(filename => 'letter.tmpl');
+
+ my %compensation = (John => 100, Mary => 300);
+
+ for my $name (keys %compensation) {
+   $tmpl->param( name         => $name,
+                 compensation => $compensation{$name} );
+
+   open my $fh, ">", "$name.html" or die;
+   $tmpl->output(print_to => $fh);
+   close $fh;
+ }
+
+=end Perl
+
+As a final note, although the syntax is meant to simulate normal HTML
+tags, you can use them inside HTML tags:
+
+   <img src="<TMPL_VAR NAME=image_url>" />
+
+This can even be simplified, if you prefer.
+
+   <img src="<TMPL_VAR image_url>" />
+
+=head2 *Complex structures
+
+Complex data structures can be managed directly in the
+template. C<HTML::Template::Pro> supports conditionals, loops or
+complex Perl expressions.
 
 =head1 Template::Toolkit
 
