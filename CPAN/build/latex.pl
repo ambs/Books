@@ -99,7 +99,7 @@ sub add_tex_preamble {
 
 \title{CPAN Modules and Frameworks}
 \subtitle{A bunch of relevant Perl modules and frameworks available from CPAN}
-\author{Alberto Simões}
+\author{Alberto Simões\\[2mm]Nuno Carvalho}
 \date{First Edition}
 
 \begin{document}

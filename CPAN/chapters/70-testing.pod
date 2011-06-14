@@ -34,7 +34,7 @@ X<Module, Test::Simple>X<Test::Simple>
 
 B<Version:> 0.98
 
-B<CPAN:> L<http://search.cpan.org/dist/Test-Simple/>
+B<CPAN:> L<http://search.cpan.org/dist/Test-Simple>
 
 =end CPANinfo
 
@@ -49,7 +49,7 @@ X<Module, Test::More>X<Test::More>
 
 B<Version:> 0.98
 
-B<CPAN:> L<http://search.cpan.org/dist/Test-Simple/>
+B<CPAN:> L<http://search.cpan.org/dist/Test-Simple>
 
 =end CPANinfo
 
@@ -65,7 +65,7 @@ X<Module, Test::Deep>X<Test::Deep>
 
 B<Version:> 0.108
 
-B<CPAN:> L<http://search.cpan.org/dist/Test-Deep/>
+B<CPAN:> L<http://search.cpan.org/dist/Test-Deep>
 
 =end CPANinfo
 
@@ -77,7 +77,7 @@ X<Module, Test::Output>X<Test::Output>
 
 B<Version:> 1.01
 
-B<CPAN:> L<http://search.cpan.org/dist/Test-Output/>
+B<CPAN:> L<http://search.cpan.org/dist/Test-Output>
 
 =end CPANinfo
 
@@ -89,7 +89,7 @@ X<Module, Test::TCP>X<Test::TCP>
 
 B<Version:> 1.13
 
-B<CPAN:> L<http://search.cpan.org/dist/Test-TCP/>
+B<CPAN:> L<http://search.cpan.org/dist/Test-TCP>
 
 =end CPANinfo
 
@@ -101,7 +101,7 @@ X<Module, Test::Output>X<Test::Output>
 
 B<Version:> 0.78
 
-B<CPAN:> L<http://search.cpan.org/dist/Devel-Cover/>
+B<CPAN:> L<http://search.cpan.org/dist/Devel-Cover>
 
 =end CPANinfo
 
