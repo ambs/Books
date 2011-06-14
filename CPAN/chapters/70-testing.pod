@@ -1,13 +1,121 @@
 
 =head0 Testing
 
+X<Testing> Testing is a indispensable stage in every modern software
+development cycle. Tests can help asserting that software is
+working properly, and also to make sure that software behaviour is
+kept when major re-factors to the code are performed.
+
+In this chapter we introduce some important modules that can be used
+to create and maintain a suite of heterogeneous tests. These
+modules can be used to write tests for most of the common situations,
+but there are a lot more. Search CPAN for a module to help test your
+code before starting to write your own, most probably someone has already
+been in the same situation.
+
+Most of the module starter tools will create a directory for tests, with
+some simple tests, and also a way to run your test suite. It's up to the
+developers to write and maintain further test files to cover as much as
+possible of the code. We hope that the modules described in the following
+sections help to perform this task.
+
+Except some comparrisons and simple situations, most of the test cases fall
+in this philosophy: execute some snippet of code, and compare the result
+with the correct answer. The way you provide this snippet of code and
+capture the result may vary, and that is one of the main reasons to have
+such a great panoply of modules to implement tests. That, and the tools
+that provide shortcuts to more common tests.
+
+=head1 Test::Simple
+
+X<Module, Test::Simple>X<Test::Simple>
+
+=begin CPANinfo
+
+B<Version:> 0.98
+
+B<CPAN:> L<http://search.cpan.org/dist/Test-Simple/>
+
+=end CPANinfo
+
+This module provides a simple and intuitive framework to start creating
+tests. This can be the place to start.
+
 =head1 Test::More
+
+X<Module, Test::More>X<Test::More>
+
+=begin CPANinfo
+
+B<Version:> 0.98
+
+B<CPAN:> L<http://search.cpan.org/dist/Test-Simple/>
+
+=end CPANinfo
+
+After C<Test::Simple> X<Test::Simple> X<Module, Test::Simple> this is the
+next place to go. This module is a drop in replacement for C<Test::Simple>
+X<Test::Simple> X<Module, Test::Simple>
+
+=head1 Test::Deep
+
+X<Module, Test::Deep>X<Test::Deep>
+
+=begin CPANinfo
+
+B<Version:> 0.108
+
+B<CPAN:> L<http://search.cpan.org/dist/Test-Deep/>
+
+=end CPANinfo
 
 =head1 Test::Output
 
+X<Module, Test::Output>X<Test::Output>
+
+=begin CPANinfo
+
+B<Version:> 1.01
+
+B<CPAN:> L<http://search.cpan.org/dist/Test-Output/>
+
+=end CPANinfo
+
 =head1 Test::TCP
 
+X<Module, Test::TCP>X<Test::TCP>
+
+=begin CPANinfo
+
+B<Version:> 1.13
+
+B<CPAN:> L<http://search.cpan.org/dist/Test-TCP/>
+
+=end CPANinfo
+
 =head1 Devel::Cover
+
+X<Module, Test::Output>X<Test::Output>
+
+=begin CPANinfo
+
+B<Version:> 0.78
+
+B<CPAN:> L<http://search.cpan.org/dist/Devel-Cover/>
+
+=end CPANinfo
+
+=cut
+
+=begin SeeAlso
+
+If it is your first time writing tests C<Test::Tutorial> X<Test::Tutorial>
+is the place to start.
+
+C<Test> is the namespace dedicated to modules related with testing in
+CPAN.
+
+=end SeeAlso
 
 =cut
 
