@@ -273,10 +273,145 @@ Complex data structures can be managed directly in the
 template. C<HTML::Template::Pro> supports conditionals, loops or
 complex Perl expressions.
 
+Lists are typical structures in web pages (together with tables and
+other information structuring elements). To generate a list using
+C<HTML::Template::Pro> you use the C<TMPL_LOOP> tag, like in this
+example:
+
+   <ul>
+      <TMPL_LOOP NAME=employees>
+         <li>Name: <TMPL_VAR NAME=name> Age: <TMPL_VAR name=age></li>
+      </TMPL_LOOP>
+   </ul>
+
+To make C<HTML::Template::Pro> unroll this loop you set a parameter
+named C<employees> that is an array reference of hash references (one
+hash reference per employee). Each hash reference will include two
+keys, C<name> and C<age>, whose values would be used to fill in the
+template:
+
+=begin Perl 
+
+  $tmpl->param( employees => [
+                     { name => "John", age => 35 },
+                     { name => "Mary", age => 27 },
+               ]);
+
+=end Perl
+
+Nested loops work just as you expect:
+
+   <ul>
+      <TMPL_LOOP NAME=employees>
+        <li><TMPL_VAR NAME=name> children:
+            <ul>
+               <TMPL_LOOP NAME=childs>
+                   <li><TMPL_VAR NAME=name></li>
+               </TMPL_LOOP>
+            </ul>
+        </li>
+      </TMPL_LOOP>
+   </ul>
+
+To fill in this template use the following code:
+
+=begin Perl
+
+  $tmpl->param(
+      employees => [
+         { name => "John",
+           childs => [ { name => "Peter" }, { name => "James" }] },
+         { name => "Mary",
+           childs => [ { name => "Anne" } ] },
+      ]
+  );
+
+=end Perl
+
+Conditional structures are easy as well. Conditional generation is
+obtained with C<TMPL_IF> that checks if the variable whose name is
+used in the tag is true or false. Also, the name of a loop can be used
+in a C<TMPL_IF>, that will hold a true value if the array is not empty
+(if the loop needs to be unroll).
+
+The above example of employees' children can be rewritten to output
+correctly employees who doesn't have a child:
+
+   <ul>
+     <TMPL_LOOP NAME=employees>
+       <TMPL_IF NAME=childs>
+         <li><TMPL_VAR NAME=name> children:
+           <ul>
+             <TMPL_LOOP NAME=childs>
+               <li><TMPL_VAR NAME=name></li>
+             </TMPL_LOOP>
+           </ul>
+         </li>
+       <TMPL_ELSE>
+         <li><TMPL_VAR NAME=name> does not have any child.</li>
+       </TMPL_IF>
+     </TMPL_LOOP>
+   </ul>
+
+The C<TMPL_ELSE> command can be omitted. C<TMPL_UNLESS> and
+C<TMPL_ELSIF> can also be used, just like standard PerlN<< Note
+however that C<TMPL_ELSIF> is currently not supported on
+C<HTML::Template>. >>.
+
+Templates can be included from other templates (up to a recursive
+level of 10 includes). This is achieved using the C<TMPL_INCLUDE> tag:
+
+     <TMPL_INCLUDE NAME="filename.tmpl"/>
+
+If the file name starts with a slash, then it is considered an
+absolute path. If not, the template file will be searched locally. The
+C<new> constructor for the C<HTML::Template::Pro> object can receive
+an optional argument to set an array of possible paths where templates
+can lie. If a template file is not found in the current working
+directory, these paths will be searched in order:
+
+=begin Perl
+
+  my $tmpl = HTML::Template::Pro->new(
+               filename => 'file.tmpl',
+               path => [ '/my/templates', '/some/other/templates' ]
+             );
+
+=end Perl
+
+Finally, C<HTML::Template::Pro> supports simple expressions to be
+used. They can be a security vulnerability. If you think you need
+them, probably you want to give a look into C<Template::Toolkit>.
+
+=head2 *Filters
+
+C<HTML::Template::Pro> supports a very simple filtering
+mechanism. When interpolating a template your variable can hold very
+different kind of data, ranging from a simple string, to an URL, an
+HTML block or even Java Script code. The way this data will be
+interpolated will change, and probably you will need to escape some
+special characters. This can be accomplished using the C<TMPL_VAR>
+tag, and adding a C<ESCAPE> option:
+
+  <input name="param" type="text"
+         value="<TMPL_VAR ESCAPE=HTML NAME="param">"/>
+
+This will ensure that all HTML characters will be properly
+encoded. The C<ESCAPE> option accept the following values: C<NONE> to
+disable escaping, C<URL> to encode non-standard URL characters (spaces
+replaced by C<+>, C</> replaced by C<%2F>, etc), C<HTML> to encode
+HTML special characters (C<< < >>, C<< > >> and C<< & >>), and C<JS>
+to encode JavaScript. for further details read
+C<HTML::Template::SYNTAX>.
+
 =head1 Template::Toolkit
 
 X<Module, Template::Toolkit>X<Template::Toolkit>
 
+C<Template::Toolkit> is a complex full featured and extensible
+templating system. There is a good book from O'ReillyN<< Perl Template
+Toolkit, by Darren Chamberlain, Dave Cross and Andy Wardley. O'Reilly
+2003.>> where you can find in depth details.
 
 =begin CPANinfo
 
