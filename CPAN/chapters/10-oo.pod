@@ -607,7 +607,9 @@ B<CPAN:> L<http://search.cpan.org/dist/Moose>
 
 The path between C<Mouse> and C<Moose> is simple, as C<Mouse> was
 designed for compatibility. But C<Moose> has much more features as we
-will see.
+will see. In-depth discussion on C<Moose> can be read on Dave Rolsky
+and Stevan Little book available from LuluN<<
+L<http://www.lulu.com/product/paperback/moose/5187831> >>.
 
 =head2 *Attributes
 
