@@ -83,7 +83,7 @@ the following code:
 
  my $tmpl = Text::Template->new(SOURCE => 'fire.tmpl') or die;
 
- my %compensation = (John => 100, Mary => 300);
+ my %compensation = (John => 100, Mary => 300 );
 
  for my $employee (keys %compensation) {
    my $text = $tmpl->fill_in( HASH => {
@@ -408,11 +408,6 @@ C<HTML::Template::SYNTAX>.
 
 X<Module, Template::Toolkit>X<Template::Toolkit>
 
-C<Template::Toolkit> is a complex full featured and extensible
-templating system. There is a good book from O'ReillyN<< Perl Template
-Toolkit, by Darren Chamberlain, Dave Cross and Andy Wardley. O'Reilly
-2003.>> where you can find in depth details.
-
 =begin CPANinfo
 
 B<Version:> 2.22
@@ -421,7 +416,72 @@ B<CPAN:> L<http://search.cpan.org/dist/Template-Toolkit>
 
 =end CPANinfo
 
+C<Template::Toolkit> is a complex full featured and extensible
+templating system. Other than the documentation that gets installed in
+your system and the documentation available from
+L<http://template-toolkit.org/>, there is a good book from O'ReillyN<<
+Perl Template Toolkit, by Darren Chamberlain, Dave Cross and Andy
+Wardley. O'Reilly 2003.>> where you can find in depth details.
 
+C<Template::Toolkit> (we will call it C<TT> during this section) is
+mostly used for templating HTML documents, and although our examples
+will be with HTML documents (as C<Template::Toolkit> is useful if you
+want to learn a web framework), you can use it to generate all kind of
+documents.
+
+When installing, note that the distribution name is C<Template>.
+
+=head2 *Variable Notation
+
+The syntax to annotate C<TT> variables and commands is
+configurable. By default they are enclosed in two delimiters: C<[%>
+and C<%]>. Follows a simple C<TT> template, using only
+variablesN<< Consider that the template file is saved in a file named
+C<letter.tmpl>. >>:
+
+   <p>Dear [% name %]:</p>
+   
+   <p>I am sorry to inform that you are fired. Your compensation
+   is [% compensation %] euro.</p>
+   
+   <p>Best regards, your boss.</p>
+
+The first thing to note is that the syntax is very clear. Second,
+there are no dollar signs. This is a design feature of C<TT>, making
+it easier to use by non Perl programmers (for example, Web designers).
+
+The code needed to interpolate this template for two different
+employees is quite simple: first create a C<Template> object (that can
+be used to process more than one template), then ask this object to
+interpolate a specific template with some variables.
+
+=begin Perl
+
+  use Template;
+  my $tmpl = Template->new();
+  
+  my %compensations = ( John => 100, Mary => 300 );
+
+  for my $employee (keys %compensations) {
+     my $vars = { name         => $employee,
+                  compensation => $compensations{$name}};
+     $tmpl->process('letter.tmpl', $vars);
+  }
+
+=end Perl
+
+Note that no output is specified or C<print> is used. This is because
+C<process> prints by default t C<STDOUT>. To create a file for each
+employee is simple as well, just add a third argument to the
+C<process> method, as follows:
+
+     $tmpl->process('letter.tmpl', $vars, "$name.html");
+
+...
+
+=head2 *Complex structures
+
+=head2 *Filters
 
 
 =begin SeeAlso
