@@ -496,12 +496,15 @@ in the C<TT> constructor:
    my $tmpl = Template->new( { ENCODING => 'utf8' });
 
 C<TT> variables can be more complex than just the variable name. For
-example, there is the possibility to get the C<n>G<th>
+example, there is the possibility to get the C<n>G<th> element from a
+list, the value from an hash with a specific key, call a method,
+etc. Some of these will be presented in the next loop and conditional
+examples.
 
 =head2 *Complex structures
 
-C<TT> supports more than just conditional or loop constructs. C<TT>
-supports a relatively large language.
+C<TT> supports a relatively large language, much more than just
+conditional or loop constructs.
 
 =head2 *Filters
 
