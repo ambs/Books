@@ -435,8 +435,10 @@ When installing, note that the distribution name is C<Template>.
 
 The syntax to annotate C<TT> variables and commands is
 configurable. By default they are enclosed in two delimiters: C<[%>
-and C<%]>. Follows a simple C<TT> template, using only
-variablesN<< Consider that the template file is saved in a file named
+and C<%]>N<< They can be changed using C<START_TAG> and
+C<END_TAG> attributes when creating the C<TT>
+object. >>. Follows a simple C<TT> template, using only variablesN<<
+Consider that the template file is saved in a file named
 C<letter.tmpl>. >>:
 
    <p>Dear [% name %]:</p>
@@ -475,11 +477,31 @@ C<process> prints by default t C<STDOUT>. To create a file for each
 employee is simple as well, just add a third argument to the
 C<process> method, as follows:
 
-     $tmpl->process('letter.tmpl', $vars, "$name.html");
+   $tmpl->process('letter.tmpl', $vars, "$name.html");
 
-...
+There are more than a dozen configuration options for the C<TT>
+parser. Here we will just add that C<TT> can be configured to process
+templates in different encodings.
+
+If your variables have C<UTF-8> values, then add a C<binmode> option
+at the end of the C<process> directive:
+
+   $tmpl->process('letter.tmpl', $vars, "$name.html",
+                  binmode => ':utf8');
+
+In the other hand, if your template files are already in C<UTF-8> and
+include C<UTF-8> characters, you can set the C<encode> option globally
+in the C<TT> constructor:
+
+   my $tmpl = Template->new( { ENCODING => 'utf8' });
+
+C<TT> variables can be more complex than just the variable name. For
+example, there is the possibility to get the C<n>G<th>
 
 =head2 *Complex structures
+
+C<TT> supports more than just conditional or loop constructs. C<TT>
+supports a relatively large language.
 
 =head2 *Filters
 
