@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl -s
 
 use strict;
 use warnings;
@@ -7,6 +7,9 @@ use utf8;
 use File::Slurp qw.edit_file.;
 use Pod::PseudoPod::LaTeX;
 
+our ($draft);
+
+$draft = 1 unless defined $draft;
 
 my $pod = 'build/book.pod';
 my $tex = "book.tex";
@@ -88,8 +91,11 @@ sub add_tex_preamble {
     my $fh = shift;
     # XXX - TODO: put this into a separate .tex file, and copy its
     #             contents here.
-    print $fh <<'EOTeX'
+    print $fh <<'EOTex';
 \documentclass[a5paper,twoside,9pt]{extbook}
+EOTex
+    print $fh "\\usepackage{draftwatermark}\n" if $draft;
+    print $fh <<'EOTeX';
 \usepackage[left=1.7cm,right=2.2cm,top=2cm,bottom=1.5cm,footskip=7mm,headsep=7mm]{geometry}
 \usepackage{makeidx}
 \makeindex
