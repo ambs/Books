@@ -504,7 +504,52 @@ examples.
 =head2 *Complex structures
 
 C<TT> supports a relatively large language, much more than just
-conditional or loop constructs.
+conditional or loop constructs. This language lets the user insert
+files, process sub-templates, wrap templates, use conditionals and
+loops and even throw exceptions. We will focus some of them in this
+section.
+
+To start with the more natural constructs, C<TT> supports conditionals
+just like Perl itself: C<if>, C<unless>, C<elsif> and
+C<else>. Conditions are just like Perl, just remember that you do not
+prefix variables with the dollar "C<$>" or at "C<@>" signs, and that
+you should use numeric comparison operators always.
+
+  Dear [% name %]:
+  [% IF salary > 3000 %]
+    <p>You are fired!</p>
+  [% ELSIF salary > 1500 %]
+    <p>Your salary will be raised by 10%.</p>
+  [% ELSE %]
+    <p>Do you still work here? Silly!</p>
+  [% END %]
+
+Just like in Perl, you can use lists and variables instead of
+conditions. They will be evaluated as a boolean value.
+
+Loops are supported both as C<while> or C<foreach> constructs. Follows
+an example of using C<while>, to calculate a twelve month mortgage
+table with a 5% flat tax, given a variable C<mortgage> with the
+valueN<< If you try to use a C<while> loop and your code does not
+output anything, probably you have an infinite loop or a loop with
+more than 1000 iterations. >>:
+
+  <p>Your mortgage payment in 12 months:</p>
+  <ul>
+  [% i = 0 %]
+  [% WHILE i < 12 %]
+    [% i=i+1 %]
+    <li>[% i %] month: [% (mortgage / 12) * 1.05 %] euro</li>
+  [% END %]
+  </ul>
+
+The C<foreach> construct is used to cycle through lists.
+
+  - insert
+  - process / include
+  - wrapper
+  - foreach
+
 
 =head2 *Filters
 
