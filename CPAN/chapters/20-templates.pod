@@ -548,12 +548,51 @@ the template. All place holders with an assignment will compute the
 supplied expression, and store the result in the variable. No value
 will be interpolated in the template.
 
-The C<foreach> construct is used to cycle through lists.
+The C<foreach> construct is used to cycle through lists. Just like the
+C<Perl> counterpart, a local variable is used, and it will iterate
+over all the values in the list.
+
+   <ul>
+      [% FOREACH employee IN employees %]
+         [% IF employee.children %]
+         <li>[% employee.name %] children:
+           <ul>
+             [% FOREACH child IN employee.children %]
+               <li>[% child %]</li>
+             [% END %]
+           </ul>
+         </li>
+         [% ELSE %]
+         <li>[% employee.name %] does not have any child.</li>
+         [% END %]
+      [% END %]
+   </ul>
+
+Fill in this template with the following Perl code. Note how natural
+it is to describe in the template how to traverse the data structure.
+
+=begin Perl
+
+  use Template;
+  
+  my $tmpl = Template->new;
+  my $data = {
+    employees => [
+      { name => "Mary",
+        children => [ "Ann" ] },
+      { name => "John",
+        children => [ "Paul", "Sebastien" ] },
+    ],
+  };
+  
+  $tmpl->process("emp.tmpl", $data);
+
+=end Perl
+
 
   - insert
   - process / include
   - wrapper
-  - foreach
 
 
 =head2 *Filters
