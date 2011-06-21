@@ -1,5 +1,5 @@
 
-=head0 Template-Systems
+=head0 Template Systems
 
 Templates are documents with place-holders that are filled with values
 to produce final documents. For example, a corporate letter to send to
@@ -543,6 +543,11 @@ more than 1000 iterations. >>:
   [% END %]
   </ul>
 
+This example also presents the ability to compute values directly in
+the template. All place holders with an assignment will compute the
+supplied expression, and store the result in the variable. No value
+will be interpolated in the template.
+
 The C<foreach> construct is used to cycle through lists.
 
   - insert
@@ -553,6 +558,7 @@ The C<foreach> construct is used to cycle through lists.
 
 =head2 *Filters
 
+=head2 *Virtual Methods
 
 =begin SeeAlso
 
