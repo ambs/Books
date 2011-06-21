@@ -17,6 +17,29 @@
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 0. Headings and Footers
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\small\thepage}
+\fancyfoot[R,L]{}
+%%\fancyfoot[C]{\today}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{}
+\renewcommand{\chaptermark}[1]{\markboth{ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{ \thesection.\ #1}}
+%\rhead{\nouppercase{\rightmark}}
+%\lhead{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\small\rightmark}}
+\fancyhead[RE]{\nouppercase{\small\leftmark}}
+%\fancyhead[RE,LO]{}      
+\pagestyle{plain}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% 1. Set Chapter style
@@ -81,6 +104,7 @@
   \addcontentsline{toc}{section}{%
     \protect\numberline{\thesection}%
     #1}%
+  \sectionmark{#1}
   }
 
 \def\unnumberedsectionwithtwoarguments[#1]#2{%
@@ -100,6 +124,7 @@
   \addcontentsline{toc}{section}{%
 %    \protect\numberline{\thesection}%
     #1}%
+  \sectionmark{#1}
 }
 
 
@@ -130,28 +155,6 @@
   \end{leftbar}
   \cleardoublepage
 }
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% 4. Headings and Footers
-
-\pagestyle{plain}
-\usepackage{fancyhdr}
-\fancyhead[LE,RO]{\small\thepage}
-\fancyfoot[R,L]{}
-%%\fancyfoot[C]{\today}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\fancyfoot[C]{}
-\renewcommand{\chaptermark}[1]{\markboth{ \thechapter.\ #1}{}}
-\renewcommand{\sectionmark}[1]{\markright{ \thesection.\ #1}}
-%\rhead{\nouppercase{\rightmark}}
-%\lhead{\nouppercase{\leftmark}}
-\fancyhead[LO]{\nouppercase{\small\rightmark}}
-\fancyhead[RE]{\nouppercase{\small\leftmark}}
-%\fancyhead[RE,LO]{}      
 
 
 
