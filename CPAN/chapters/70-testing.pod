@@ -155,11 +155,7 @@ comparison between the first two arguments if tries to match the first
 argument to the second, being the second argument a regular expression, for
 example:
 
-=begin Perl
-
-  like( $day, qr/\d+/, 'day ok' );
-
-=end Perl
+    like( $day, qr/\d+/, 'day ok' );
 
 The C<unlike> function has a similar behavior but the test passes if
 the first argument does not match the regular expression given as second
@@ -169,11 +165,7 @@ the name of the test and is optional.
 Scalar variables can hold references for complex that structures, if you
 wish to compare these data structure you should use the C<is_deeply> function
 
-=begin Perl
-
-  is_deeply( $data, $reference, 'data is equal' );
-
-=end Perl
+     is_deeply( $data, $reference, 'data is equal' );
 
 For a more complete way for comparing complete data structures that a
 look at the C<Test::Deep> X<Test::Deep> X<Module, Test::Deep> module.
@@ -181,11 +173,7 @@ look at the C<Test::Deep> X<Test::Deep> X<Module, Test::Deep> module.
 Another useful function is the C<use_ok> function, that can be used
 to verify if a module can be loaded correctly. For example:
 
-=begin Perl
-
-  use_ok( 'Test::more' );
-
-=end Perl
+      use_ok( 'Test::more' );
 
 This can be used that a module is syntax error free and that the Perl
 compiler can load this module.
