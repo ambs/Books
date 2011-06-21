@@ -3,7 +3,7 @@
 
 X<Testing> Testing is a indispensable stage in every modern software
 development cycle. Tests can help asserting that software is
-working properly, and also to make sure that software behaviour is
+working properly, and also to make sure that software behavior is
 kept when major re-factors to the code are performed.
 
 In this chapter we introduce some important modules that can be used
@@ -19,7 +19,7 @@ developers to write and maintain further test files to cover as much as
 possible of the code. We hope that the modules described in the following
 sections help to perform this task.
 
-Except some comparrisons and simple situations, most of the test cases fall
+Except some comparisons and simple situations, most of the test cases fall
 in this philosophy: execute some snippet of code, and compare the result
 with the correct answer. The way you provide this snippet of code and
 capture the result may vary, and that is one of the main reasons to have
@@ -39,7 +39,57 @@ B<CPAN:> L<http://search.cpan.org/dist/Test-Simple>
 =end CPANinfo
 
 This module provides a simple and intuitive framework to start creating
-tests. This can be the place to start.
+tests. This can be the place to start. The simple test you can have is
+something in the lines of:
+
+=begin Perl
+
+  use Test::Simple tests => 1;
+  ok('true' eq 'true', 'the test of truth');
+
+=end Perl
+
+The first line loads the C<Test::Simple> X<Test::Simple>
+X<Module, Test::Simple> module, and defines how many tests will run.
+The number of tests to run is a mandatory requirement
+of this module. The second line of this small snippet implements a test.
+This test uses the C<ok> function that has two arguments: first is
+the expression validating the requirement, in this simple case a simple
+string comparison is performed, and a second optional argument which
+is the name of the test. Variables can be used has in any other common
+expression, for example:
+
+=begin Perl
+
+  use Test::Simple tests => 2;
+
+  my $age = 24;
+  my $day = 35;
+
+  ok($age > 0, 'valid age');
+  ok($day <= 31, 'valid day');
+
+=end Perl
+
+In this later case variables and binary operators are being used in the
+expression passed to the C<ok> function. Bottom line, if the result of
+evaluating the expression given as argument is true the result of the
+test is ok, otherwise the test is not ok. Running the above script you
+would get:
+
+  1..2
+  ok 1 - valid age
+  not ok 2 - valid day
+  #   Failed test 'valid day'
+  #   at t.pl line 7.
+  # Looks like you failed 1 test of 2.
+
+Remember that the second argument passed to the C<ok> function is simply
+the name of the test for easy reference, and is optional.
+
+The main goal of this module is to get you started writing tests.
+C<Test::More> X<Test::More> X<Module, Test::More> in the next section is
+the next typical step for building a test suite.
 
 =head1 Test::More
 
@@ -53,9 +103,96 @@ B<CPAN:> L<http://search.cpan.org/dist/Test-Simple>
 
 =end CPANinfo
 
+If it is your first time writing tests you should start by taking a
+look at C<Test::Simple> X<Test::Simple> X<Module, Test::Simple>.
 After C<Test::Simple> X<Test::Simple> X<Module, Test::Simple> this is the
 next place to go. This module is a drop in replacement for C<Test::Simple>
-X<Test::Simple> X<Module, Test::Simple>
+X<Test::Simple> X<Module, Test::Simple> which means that you can start
+using it and keep previous tests already written using C<Test::Simple>
+X<Test::Simple> X<Module, Test::Simple>.
+
+The first major difference is that sometimes you are not sure how many
+tests you are going to run. To circumvent this problem you can use the
+following approach:
+
+=begin Perl
+
+  use Test::More;
+  # do tests
+  done_testing;
+
+=end Perl
+
+Has you can see no plan (number of tests) are defined we the module is used
+in line 1. After all the tests are executed the C<done_testing> function
+is called to let the testing framework know that all the tests have been
+executed. You can provide an extra argument to this function which is
+the number of tests that were executed if you can calculate it easily.
+
+Some new useful functions are also introduced in this module, and has
+stated earlier the C<ok> function is still provided and has the same
+behavior as in C<Test::Simple> X<Test::Simple> X<Module, Test::Simple>.
+C<is> is another function that can be used, for example:
+
+=begin Perl
+
+  my $got = 12;
+  my $expected = 12;
+
+  is( $got, $expected, 'simple test' );
+
+=end Perl
+
+The C<is> function requires at least two arguments, and when is called
+performs a comparison between these two arguments, if this comparison
+evaluates as a true value then the test passed. There is a dual for this
+function called C<isnt> that will consider the test as passed if the
+result of evaluating the expression of comparing the two first arguments
+is not true.
+
+The C<like> function works in a similar way but instead of doing an equals
+comparison between the first two arguments if tries to match the first
+argument to the second, being the second argument a regular expression, for
+example:
+
+=begin Perl
+
+  like( $day, qr/\d+/, 'day ok' );
+
+=end Perl
+
+The C<unlike> function has a similar behavior but the test passes if
+the first argument does not match the regular expression given as second
+argument. Common to all these functions is the third argument, which is
+the name of the test and is optional.
+
+Scalar variables can hold references for complex that structures, if you
+wish to compare these data structure you should use the C<is_deeply> function
+
+=begin Perl
+
+  is_deeply( $data, $reference, 'data is equal' );
+
+=end Perl
+
+For a more complete way for comparing complete data structures that a
+look at the C<Test::Deep> X<Test::Deep> X<Module, Test::Deep> module.
+
+Another useful function is the C<use_ok> function, that can be used
+to verify if a module can be loaded correctly. For example:
+
+=begin Perl
+
+  use_ok( 'Test::more' );
+
+=end Perl
+
+This can be used that a module is syntax error free and that the Perl
+compiler can load this module.
+
+We only described some of the features that this module provides for
+maintaing a test suite, for a complete list of functions read the module
+documentation.
 
 =head1 Test::Deep
 
