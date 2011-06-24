@@ -48,15 +48,20 @@ how to write basic Perl programs, including the use of modules and
 references. The knowledge about I<old> Object Oriented Perl might be
 useful as well.
 
-The author would like to thank
-Marcos Ramos
+The authors would like to thank
+Pedro Melo,
+Marcos Ramos,
+Sawyer X,
 and
 Magda Joana Silva
 for they comments, suggestions and proofreading.
 
+Also, this book wasn't possible without LaTeX and, chromatic and
+Moritz C<Pod::PseudoPod::LaTeX> Perl module.
+
 =begin right
 
-I<the author>
+I<the authors>
 
 =end right
 

@@ -32,6 +32,10 @@ The complete template system. It is powerful, configurable and
 expendable. Has some dependencies, namely the requirement for a C<C>
 compiler.
 
+=item C<Text::Xslate>
+
+...XXX FIX ME
+
 =back
 
 =head1 Text::Template
@@ -652,6 +656,8 @@ predefined ones, but the user can extend this language with his own
 methods. This section will present a few of the predefined virtual
 methods, so you can start understanding how they work, and later
 search for reference on other documents.
+
+=head1 Text::Xslate
 
 =begin SeeAlso
 
