@@ -589,15 +589,69 @@ it is to describe in the template how to traverse the data structure.
 
 =end Perl
 
+C<TT> can include sub-templates or other files. Including other files
+is easy, just use the C<insert> command. Note that the inserted file
+will not be processed as a template.
 
-  - insert
-  - process / include
-  - wrapper
+   [% INSERT copyright.html %]
 
+If you want to include a sub-template, you need to use C<process> or
+C<include>. They are very similar. The main difference is that
+C<include> consider all code in the sub-template to be local. All
+changed variables will remain private to that sub-template. In the
+other hand, C<process> will make all sub-template changes available in
+the calling template.
+
+When using any of these commands you can pass some extra variables
+(separated by commas). These are two simple examples:
+
+   [% PROCESS header %]
+   [% PROCESS footer year=2011]
+
+There is another including mechanism named C<wrapper>, that instead of
+including an external template on a specific point of the current
+template, wraps the current template in the external template. This
+gets easier to understand with an example. You can have a web page
+design (typical header and footer) in a document, named C<layout>,
+like this:
+
+   <html>
+     <head><title>My brand new site</title></head>
+     <body>
+       [% content %]
+       <div id="copyright">Copyright by me</div>
+     </body>
+   </html>
+
+Now, instead of rendering this template directly with your Perl code,
+interpolating C<content> with your web page, you can render a more
+specific template that wraps this header and footer:
+
+  [% WRAPPER layout %]
+     <h1>About this site</h1>
+     <p>Blah, blah [% somevar %] blah blh</p>
+  [% END %]
+
+This template can be rendered directly as a standard template, and
+C<TT> will automatically insert the result of processing this template
+in the C<layout> template.
 
 =head2 *Filters
 
+C<TT> supports a powerful filtering mechanism. Some filters are
+available out of the box, but it lets the user define their own. In
+this section we will look into some of the predefined filters.
+
 =head2 *Virtual Methods
+
+As you might have noticed in the previous sections, C<TT> is a complex
+language by itself. This language supports some methods to be called
+into variables. As they are not methods directly available on your
+code, they are named I<Virtual Methods>. C<TT> includes a set of
+predefined ones, but the user can extend this language with his own
+methods. This section will present a few of the predefined virtual
+methods, so you can start understanding how they work, and later
+search for reference on other documents.
 
 =begin SeeAlso
 
