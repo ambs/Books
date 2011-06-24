@@ -646,6 +646,51 @@ C<TT> supports a powerful filtering mechanism. Some filters are
 available out of the box, but it lets the user define their own. In
 this section we will look into some of the predefined filters.
 
+Filters are functions that take your variables values or sections of
+your document and process them in some way. A simple example is the
+C<collapse> filter, that will remove all extra spaces and
+newlines. Filters can be applied in a block with the C<filter>
+keyword:
+
+  [% FILTER collapse %]
+     This     is   some
+       spaced      text.
+  [% END %]
+
+C<TT> will ensure that the output rendersN<< Note that C<TT> is tailored
+for HTML output. >> exactly the same, but does not have extra spaces
+or new lines:
+
+  This is some spaced text.
+
+Filters can also be applied to the result of a specific C<TT>
+command. For instance, we can uppercase the name of a person stored in
+the C<name> variable with:
+
+  [% name FILTER uppercase %]
+
+C<TT> makes in-line filtering, just like the shown, easier, trying to
+mimic the behavior of shell filters. For instance, quoting HTML
+special characters from a variable C<code> is as simple as:
+
+  [% code | html %]
+
+This will ensure that all special HTML characters used in the C<code>
+variable are correctly protected. Other useful filter for web
+applications is named C<uri>. It filters the text protecting special
+characters accordingly with RFC 2396, that is, replacing them by a
+percent sign followed by the hex code of the character being replaced
+(for example, the usual replacement of space by C<%20>). However, note
+that you should not apply this filter to the full URL. For that use
+the C<url> filter:
+
+  <a href="[% page_url | url %]">Check this page.</a>
+
+There are a lot of other filters, ranging from simple text
+transformation to full Perl code evaluation. Just be caution on where
+you use them. A complete reference is available at
+L<http://template-toolkit.org/docs/manual/Filters.html>
+
 =head2 *Virtual Methods
 
 As you might have noticed in the previous sections, C<TT> is a complex
@@ -658,6 +703,18 @@ methods, so you can start understanding how they work, and later
 search for reference on other documents.
 
 =head1 Text::Xslate
+
+X<Module, Text::Xslate>X<Text::Xslate>
+
+=begin CPANinfo
+
+B<Version:> 1.3000
+
+B<CPAN:> L<http://search.cpan.org/dist/Text-Xslate>
+
+=end CPANinfo
+
+
 
 =begin SeeAlso
 
