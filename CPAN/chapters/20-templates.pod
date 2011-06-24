@@ -687,8 +687,9 @@ the C<url> filter:
   <a href="[% page_url | url %]">Check this page.</a>
 
 There are a lot of other filters, ranging from simple text
-transformation to full Perl code evaluation. Just be caution on where
-you use them. A complete reference is available at
+transformation, trimming strings, truncating string, to full Perl code
+evaluation. Just be caution on where you use them. A complete
+reference is available at
 L<http://template-toolkit.org/docs/manual/Filters.html>
 
 =head2 *Virtual Methods
@@ -701,6 +702,13 @@ predefined ones, but the user can extend this language with his own
 methods. This section will present a few of the predefined virtual
 methods, so you can start understanding how they work, and later
 search for reference on other documents.
+
+These methods are called just as most OO languages, put a dot after
+the variable, and the method name. The available methods depend on the
+variable type (scalar, hash or array). A full list can be consulted at
+L<http://template-toolkit.org/docs/manual/VMethods.html>.
+
+Some of the more relevant...
 
 =head1 Text::Xslate
 
