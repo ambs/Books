@@ -36,6 +36,13 @@ Also, for footnotes, use N<< ... >> but do not leave a blank space
 before the N. If it gets glued with another word, the parser will
 detect it correctly.
 
+6. Code blocks
+
+Perl code blocks should be enclosed in =begin Perl and =end
+Perl. Also, keep them indented two or three spaces. If referring to
+one line of code, only, use standard verbatim. For other non-perl
+blocks, use standard verbatim blocks.
+
 
 Build
 --------------------------------
