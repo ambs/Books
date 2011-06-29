@@ -706,9 +706,69 @@ search for reference on other documents.
 These methods are called just as most OO languages, put a dot after
 the variable, and the method name. The available methods depend on the
 variable type (scalar, hash or array). A full list can be consulted at
-L<http://template-toolkit.org/docs/manual/VMethods.html>.
+L<http://template-toolkit.org/docs/manual/VMethods.html>. Some of the
+more relevant method are presented bellow.
 
-Some of the more relevant...
+=over
+
+=item B<Scalar methods>
+
+The most useful methods are C<defined> to check if the value for a
+specific variable is set:
+
+   [% IF var.defined %]  ...  [% END %]
+
+The C<length> returns the length of a string. The C<repeat> method
+repeats a string I<n> times, like the following code that renders
+I<hohoho>:
+
+   [% name = 'ho' %] [% name.repeat(3) %]
+
+There are methods to C<replace>, C<remove> a regular expression
+(substitute it by nothing), or even C<match> and then access each of
+the match capture zones, C<split> to divide a string by some
+separator, etc.
+
+=item B<Array or lists methods>
+
+For lists, you can use C<first> or C<last> to access the first and
+last elements from the array. The C<size> returns the number of
+elements, while C<max> returns the index for the last element (size
+minus 1).
+
+For lists, the C<defined> method receives the element number to be
+tested:
+
+   [% list.defined(4) ? "Yes, defined" : "No, not defined" %]
+
+Other Perl-like methods are also available, like C<reverse>, C<grep>
+(receives the regular expression as first parameter), C<join>
+(receives the join string as first parameter), C<sort> for string
+sort, and C<nsort> for numeric comparisons, C<push>, C<unshift>,
+C<shift>, C<pop>, C<slice>, C<splice>, etc.
+
+One interesting feature very useful is that C<sort> or C<nsort> can
+receive a list of strings that are used as keys for hash
+references. So, if you have a list of hash references, and each hash
+reference has a key named C<id>, you can sort those elements with:
+
+   [% FOREACH book IN books.sort('id') %] ... [% END %]
+
+If you use more than one key, they will be used for second level
+sorting (if the values are equal for the first key).
+
+=item B<Hash methods>
+
+For hash values you can issue C<keys> to get the keys list, or
+C<values> for the values list. The C<items> virtual method returns a
+list where each position is a pair (a small list with the key and the
+value). Similar is the C<pairs> method:
+
+  [% FOREACH book IN books.pairs %]
+    <td> [% book.key %] </td><td> [% book.value %] </td>
+  [% END %]
+
+=back
 
 =head1 Text::Xslate
 
