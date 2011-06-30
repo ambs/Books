@@ -876,6 +876,45 @@ generate a different HTML file per employee:
 
 =head2 *Complex structures
 
+C<Text::Xslate> has the concept of code line, that is, a line in the
+template that is completely interpreted as a template command. In the
+I<Kolon> syntax they start with a colon (C<:>).
+
+For example, a conditional is written mostly like you would write in Perl:
+
+   : if ($employee.children) {
+       <: $employee.name :> has some children!
+   : }
+   : else {
+       <: $employee.name :> does not have any children!
+   : }
+
+There are C<for> loops as well, but they have a syntax slightly
+different from Perl:
+
+   : for $employees -> $employee {
+   :   if ($employee.children) {
+       <: $employee.name :> has some children!
+   :   } else {
+       <: $employee.name :> does not have any children!
+   :   }
+   : }
+
+Interpolate this template with the following Perl code:
+
+=begin Perl
+
+  use Text::Xslate;
+  my $tx = Text::Xslate->new();
+
+  print $tx->render('letter.tx', {
+         employees => [
+             { name => "Mary", children => ["Anne"] },
+             { name => "John" },
+         ] } );
+
+=end Perl
+
 =begin SeeAlso
 
 C<Mason> X<Mason> X<Module, Mason> is a web framework that
