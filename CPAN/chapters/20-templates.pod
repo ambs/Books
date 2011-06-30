@@ -1,5 +1,5 @@
 
-=head0 Template Systems
+=head0 Template Engines
 
 Templates are documents with place-holders that are filled with values
 to produce final documents. For example, a corporate letter to send to
@@ -17,24 +17,31 @@ There is a bunch of templating modules on CPAN. We chose three:
 
 =item C<Text::Template>
 
-A simple template system. Its mark-up language is not based on HTML
-notation but very similar to Perl code.
+A simple template engine. It embeds Perl into the template text,
+surrounding it by curly braces. This makes the template engine very
+powerful and easy to understand by Perl programmers. In the other
+hand, makes it hard to use by other users, like designers.
 
 =item C<HTML::Template::Pro>
 
-A derived module from C<HTML::Template>, but using some C<C> code,
-making it faster. Its main advantage is being smaller than
-C<Template::Toolkit> and quite efficient.
+This is a reimplementation of C<HTML::Template>, but using some C<C>
+code, making it faster. Its main advantage is being smaller than
+C<Template::Toolkit>, have a syntax resembling HTML, and being
+relatively fast.
 
 =item C<Template::Toolkit>
 
-The complete template system. It is powerful, configurable and
-expendable. Has some dependencies, namely the requirement for a C<C>
-compiler.
+The complete template engine, and probably the most common choice. It
+is powerful, configurable and expendable. Has some dependencies,
+namely the requirement for a C<C> compiler.
 
 =item C<Text::Xslate>
 
-...XXX FIX ME
+This is a relatively new template engine, that has been getting the
+attentions recently. It claims to be scalable, and fastest than
+C<Template::Toolkit>. It defines a new syntax named Kolon, but also
+includes a compatibility module that makes the migration from
+C<Template::Toolkit> easier.
 
 =back
 
@@ -115,7 +122,7 @@ come from. A variable C<$x> will be replaced by the C<$Package::x>.
 
 You can even suppress the package name, and C<Text::Template> will use
 the current package. In this case the variables being shared with the
-template system should not be declared with C<my> but C<our>:
+template engine should not be declared with C<my> but C<our>:
 
 =begin Perl
 
@@ -421,7 +428,7 @@ B<CPAN:> L<http://search.cpan.org/dist/Template-Toolkit>
 =end CPANinfo
 
 C<Template::Toolkit> is a complex full featured and extensible
-templating system. Other than the documentation that gets installed in
+templating engine. Other than the documentation that gets installed in
 your system and the documentation available from
 L<http://template-toolkit.org/>, there is a good book from O'ReillyN<<
 Perl Template Toolkit, by Darren Chamberlain, Dave Cross and Andy
@@ -768,7 +775,29 @@ value). Similar is the C<pairs> method:
     <td> [% book.key %] </td><td> [% book.value %] </td>
   [% END %]
 
+C<sort> and C<nsort> can be used to gather a list of the keys sorted
+alphabetically or numerically. Note that you do not need to use the
+C<keys> method:
+
+  [% FOREACH bookId IN books.nsort %] ... [% END %]
+
+The C<defined> and C<exists> methods do exactly what you are
+expecting. Pass them a key, and they will return a true value if that
+key is defined or exists in the hash. It is also possible to define
+items form the hash, using the C<delete> method. Pass it any number of
+keys you like. They will be removed from the hash (together with their
+respective values).
+
+You can access hash values using the key name as if it were a virtual
+method C<< [% hash.key1 %] >> or use the C<item> method, with C<< [%
+hash.item('key1') %] >>.
+
 =back
+
+This was a quick and condensed look into the existing virtual
+methods. Give a look into the documentation for a in depth look with
+examples. You can also define your own virtual methods (check
+C<Template::Stash> for documentation).
 
 =head1 Text::Xslate
 
@@ -782,12 +811,75 @@ B<CPAN:> L<http://search.cpan.org/dist/Text-Xslate>
 
 =end CPANinfo
 
+C<Text::Xslate> is inspired in some existing template engines, like
+C<Template::Toolkit>, C<Text::MicroTemplate>, C<HTML::Template> and
+others. Although inspired by these modules, the author claims that
+C<Text::Xslate> has a completely different philosophy: the template
+logic, that is, the template code should not be able to access/change
+data outside the template without permission.
 
+The notation described in this section is the I<Kolon> syntax, that
+uses as delimiters C<< <: >> and C<< :> >>. There is a I<Metakolon>
+syntax, that uses C<< [% >> and C<< %] >>, and a I<TTerse> syntax,
+that implements a subset of C<Template::Toolkit> syntax.
+
+=head2 *Variable Notation
+
+Place holders are enclosed in C<< <: >> and C<< :> >> as already
+mentioned. Variables are written as in Perl, preceded by a dollar
+sign:
+
+   <: $name :>
+
+After the variable name you can add a method name (if the variable is
+an object), a key value (if the variable is a hash reference) or an
+array position (if the variable is an array reference):
+
+   <: $array.2 :>
+   <: $hash.key :>
+   <: $obj.method :>
+
+If you prefer the array syntax, you can use it as well:
+
+   <: $array[2] :>
+   <: $hash["key"] :>
+   <: $obj["method"] :>
+
+Using the same template that has being used in the previous sections,
+saved as C<letter.tx>:
+
+   <p>Dear <: $name :>:</p>
+   
+   <p>I am sorry to inform that you are fired. Your compensation
+   is <: $compensation[$name] :> euro.</p>
+   
+   <p>Best regards, your boss.</p>
+
+To fill-in this template we can use the following Perl code, that will
+generate a different HTML file per employee:
+
+=begin Perl
+
+  use Text::Xslate;
+  my $tx = Text::Xslate->new();
+  my %compensation = (John => 100, Mary => 300);
+
+  for my $name (keys %compensation) {
+      open OUT, ">", "$name.html" or die;
+      print OUT $tx->render('letter.tx',
+                            { name         => $name,
+                              compensation => \%compensation});
+      close OUT;
+  }
+
+=end Perl
+
+=head2 *Complex structures
 
 =begin SeeAlso
 
 C<Mason> X<Mason> X<Module, Mason> is a web framework that
-incorporates its own template system. Some applications support
+incorporates its own template engine. Some applications support
 C<Mason> syntax for templating via plug-ins.
 
 If your C<HTML::Template> templates are slow check X<Module,
@@ -796,7 +888,7 @@ C<HTML::Template::Compiled>, that compiles a template into a Perl
 program making it faster.
 
 X<Module, Template::Simple> X<Template::Simple> C<Template::Simple> is
-a simple and fast template system. It is written entirely in Perl and
+a simple and fast template engine. It is written entirely in Perl and
 has a modern interface, unlink C<Text::Template> or even
 C<HTML::Template>.
 
