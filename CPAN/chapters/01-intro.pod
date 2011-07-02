@@ -257,6 +257,50 @@ installed on different paths for different projects.
 
 =head2 *Configuring CPAN for a Non-Standard Path
 
+When using the usual CPAN clients (C<cpan> and C<cpanp>) it is
+possible to define some variables where the modules will be installed.
+Enter the CPAN shell and configure the variables C<makepl_arg> and
+C<mbuild_arg>. They are the default arguments when running
+C<Makefile.PL> or C<Build.PL>. The following screen shows the
+interaction with C<cpan> to set the installation base to
+C</home/user/mymodules>.
+
+=begin screen Configuring CPAN install base
+
+  $ cpan
+  cpan> o conf makepl_arg INSTALL_BASE=/home/user/mymodules
+  cpan> o conf mbuild_arg "--install_base /home/user/mymodules"
+  cpan> o conf commit 
+
+=end screen
+
+After this, every time you run the C<cpan> shell, these configuration
+variables will be loaded, and will be used when installing modules. You
+will not need to configure the client again.
+
+To use the modules installed in this location you have two
+options. The first is to define an environment variable named
+C<PERL5LIB>X<PERL5LIB> with the path where your modules got installed:
+
+  export PERL5LIB=/home/user/mymodules
+
+Unfortunately the Perl 5 installation path is quite complicated, and
+probably you will need to define more than one path:
+
+=begin small
+
+ export PERL5LIB=/home/user/mymodules:/home/user/mymodules/5.14.0/:
+ /home/user/mymodules/site_perl/5.14.0/:/home/user/mymodules/site_perl/
+
+=end small
+
+A more interesting and versatile method is to use the C<lib> pragma in
+the beginning of all your script files, followed by the path names
+where to find modules:
+
+  use lib '/home/user/mymodules';
+  
+
 =head2 *Using C<local::lib> Module
 
 X<Module, local::lib> X<local::lib>
