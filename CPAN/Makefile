@@ -12,9 +12,8 @@ clean:
 	find . -name '*~' -delete
 	rm -f book.* *.log
 
-dropbox: book.pdf
-	@ cp -v book.pdf ~/'Dropbox/Shared/share ambs mjsr/CPAN Modules and Frameworks/cpan.pdf'
-	@ cp -v book.pdf ~/Dropbox/Public/cpan.pdf
+share: book.pdf
+	@ rsync -aASPvz book.pdf ambs@eremita:public_html/cpan.pdf
 
 nodraft: build/latex.pl chapters/*.pod tex/asbook.sty
 	build/latex.pl -draft=0

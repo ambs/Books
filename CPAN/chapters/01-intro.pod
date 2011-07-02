@@ -300,14 +300,62 @@ where to find modules:
 
   use lib '/home/user/mymodules';
   
-
 =head2 *Using C<local::lib> Module
 
 X<Module, local::lib> X<local::lib>
 
-=head2 *Using Perlbrew
+The module C<local::lib> makes it easier to have a module tree in your
+home (by default, C<~/perl5>), install modules and use them. To start
+with, you need C<local::lib> in your system. If your system doesn't
+have this module installed and your administrator is not willing to
+install it, you can install it using the I<bootstrapping> technique.
 
-X<Module, App::Perlbrew> X<App::Perlbrew>
+First, download the C<local::lib> tarball from a CPAN mirror. Extract
+it, and run:
+
+   perl Makefile.PL --bootstrap
+
+The system should ask you some questions. You can let it configure as
+much as possible automatically. Then, run:
+
+   make test && make install
+
+After this, you need to set up your environment variables. You can the
+list of environment variables to define running:
+
+   perl -I$HOME/perl5/lib/perl5 -Mlocal::lib
+
+Add the output of this command to your C<~/.bashrc> or your
+C<~/.cshrc> file, depending on the shell you are running (Bourne shell
+or C shell, respectively). After this step you might need to reload
+the config file (or close and open a new shell).
+
+To install modules use one of the following command lines:
+
+  cpan -I Module::Name
+  cpanm -l Module::Name
+
+As some of these commands just works on recent versions, you can use
+instead:
+
+  perl -MCPAN -Mlocal::lib -e 'CPAN::install("Module::Name")'
+
+Now, you can write your scripts adding the following line in the
+beginning of your file:
+
+  use local::lib;
+
+If you prefer to use the C<lib> pragma, you can use:
+
+  use lib '/home/user/perl5';
+
+=head2 *Using App::perlbrew
+
+X<Module, App::perlbrew> X<App::perlbrew>
+
+C<App::perlbrew> is something completely different. Its main purpose
+is not to install Perl modules locally, but to install a B<full> Perl
+version locally.
 
 =cut
 
