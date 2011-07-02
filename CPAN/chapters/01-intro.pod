@@ -248,6 +248,23 @@ command).
 
 =end small
 
+=head1 Installing Modules Locally
+
+Perl lets you install modules on non standard directories. This is
+relevant if you are not the system administrator and need to install
+modules in your home directory, of if you like to have some modules
+installed on different paths for different projects.
+
+=head2 *Configuring CPAN for a Non-Standard Path
+
+=head2 *Using C<local::lib> Module
+
+X<Module, local::lib> X<local::lib>
+
+=head2 *Using Perlbrew
+
+X<Module, App::Perlbrew> X<App::Perlbrew>
+
 =cut
 
 ## Local Variables:
