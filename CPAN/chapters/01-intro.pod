@@ -355,7 +355,90 @@ X<Module, App::perlbrew> X<App::perlbrew>
 
 C<App::perlbrew> is something completely different. Its main purpose
 is not to install Perl modules locally, but to install a B<full> Perl
-version locally.
+version locally. First of all, install the module. Although you can
+install the module like a standard one, the author defends that the
+best installation procedure is to execute the following command on
+your shell:
+
+      curl -L http://xrl.us/perlbrewinstall | bash
+
+This will install C<perlbrew> in your home folder, under
+C<~/perl5/perlbrew/bin>. After installation, follow the on-screen
+instructions to set up your C<.bashrc> or C<.cshrc> to define the
+correct environment variables.
+
+After this you need to reload your shell configuration files or start
+a new shell session. To initialize the C<perlbrew> folders run:
+
+      perlbrew init
+
+Then, a good idea is to install a local C<cpanm> to your C<perlbrew>
+installation. This can be easily done by:
+
+      perlbrew install-cpanm
+
+And now everything is set to start using C<App::perlbrew>.
+
+=over
+
+=item B<Installing a Perl version>
+
+C<perlbrew> is great if you need more than one Perl version installed
+in your system. For example, because if you are a module developer and
+want to test your software against different Perl versions, or because
+you have different Perl projects that depend on different Perl
+versions.
+
+To install a Perl version using C<perlbrew> is simple. Just issue the
+command:
+
+   perlbrew install perl-5.14.0
+
+You just need to know the official version name. If everything goes
+well you should end up with a new Perl installed in your home. For
+Perl 5.14.0, it will get installed on (using default the configuration
+values):
+
+   ~/perl5/perlbrew/perls/perl-5.14.0/bin/perl
+
+=item B<Switching from Perl versions>
+
+Having more than on Perl installed in the system it gets crucial to
+know what Perl versions are installed, and to switch from different
+Perl versions. A list of the Perl versions installed in your system is
+available using:
+
+   perlbrew list
+
+It lists the name or the path to the Perl interpreter, and its
+versions. The current Perl version is marked with an asterisk. You can
+use a Perl version temporarily for the current shell with:
+
+   perlbrew use perl-5.14.0
+
+All consequent commands will use that Perl version, but any other
+shell or new shell will still use the previous Perl interpreter.
+To switch to other Perl interpreter globally (for your user) use:
+
+   perlbrew switch perl-5.14.0
+
+=item B<Installing modules>
+
+The modules installation is simple. Switch to the Perl where you want
+to install the module, and use C<cpanm>:
+
+   cpanm Module::Name
+
+The module will be installed in the tree for that specific Perl. This
+means that every time you switch from Perl version an installed module
+can be no longer available.
+
+=back
+
+Although C<perlbrew> is quite interesting and powerful, it is still
+under heavy development and has some known problems. To use it well
+you need some expertise. For further documentation check the
+C<perlbew> page.
 
 =cut
 
