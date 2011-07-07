@@ -53,6 +53,15 @@ this web site can be used to detect whether it is a local fail, or a
 known bug. For module developers it is useful to check if modules are
 portable and if tests pass.
 
+=item B<CPAN Ratings>
+
+X<CPAN, Ratings>
+CPAN Ratings (L<http://cpanratings.perl.org/>) allows users of modules to
+leave ratings and reviews on Perl modules, providing useful information to
+other users looking for a module to fulfil a particular task and facing
+multiple modules to decide between.  Ratings are visible when viewing
+distributions on L<http://search.cpan.org/>.
+
 =back
 
 =head1 Installing CPAN Modules
