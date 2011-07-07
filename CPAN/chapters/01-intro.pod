@@ -173,8 +173,8 @@ an application by ActiveState to install modules from their own module
 repository. These packages have the advantage of being pre-compiled,
 making it easier to install on Windows machines without a compiler
 available. The main drawback is that PPM repositories do not have all
-available modules from CPAN, and it is natural that the module you
-need is not there.
+available modules from CPAN, so you may well find that the module you
+need is not available, or is somewhat outdated.
 
 Therefore, the authors suggest Windows users to download Strawberry
 Perl X<Strawberry Perl> that includes C<cpan> and a quite complete
