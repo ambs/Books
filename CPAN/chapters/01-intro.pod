@@ -4,7 +4,7 @@
 X<CPAN> The Comprehensive Perl Archive Network, known as CPANN<< It is
 named after another archive, The Comprehensive TeX Archive Network, an
 archive of TeX and LaTeX modules and styles. >> is an archive of Perl
-applications, modules and frameworks.it is available through the
+applications, modules and frameworks.  It is available through the
 Network and is Comprehensive, in the sense that it is a large
 collection, but also that it includes nearly all developed modules,
 and they are available in an organized way.
@@ -16,14 +16,14 @@ community is great, as it gives information about their quality and
 trust.
 
 CPAN is available from L<http://cpan.org/> or one of the hundreds of
-available mirror. You can access the modules using C<FTP> or, more
-interesting, using the search feature of CPAN. It will give you
-information on the module author, what the latest version is, points
-to the download file, gives you access to the module documentation and
-a rating system, where users can rate modules.
+available mirrors around the world. You can access the modules using 
+C<FTP>, C<HTTP> or, more interestingly, using the search feature of 
+CPAN. It will give you information on the module author, what the 
+latest version is, points to the download file, gives you access to 
+the module documentation and a rating system, where users can rate modules.
 
 There are a bunch of other web sites that were developed to make the
-CPAN experience more rich. There are some of them:
+CPAN experience richer. There are some of them:
 
 =over
 
