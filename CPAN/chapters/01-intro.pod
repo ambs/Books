@@ -183,7 +183,7 @@ complete build system.
 =head2 *Manual Install
 
 X<Module, manual installation> The process of installing a module by
-hand depends a little of your operating system.  The instructions
+hand depends a little on your operating system.  The instructions
 presented here describe the most usual process. First, get the module
 archive from a CPAN mirror. These files are usually named I<tarballs>,
 and are compressed using C<gzip> and archived by C<tar>. For this
@@ -219,7 +219,7 @@ example we will describe the process of installing C<Try::Tiny>:
 
 =end screen
 
-Follows a brief explanation of the issued commands:
+A brief explanation of the issued commands follows:
 
 =begin small
 
@@ -230,7 +230,7 @@ Follows a brief explanation of the issued commands:
 B<Line 1:> uncompress the tarball. The command used is the more common
 for most Unix/BSD systems. It might be similar under Windows if you
 have GNU tools installed. If not, you can download a tool to
-uncompress this kind of files, like C<7zip> or C<IzArch>.
+uncompress these kind of files, like C<7zip> or C<IzArch>.
 
 =item *
 
@@ -239,7 +239,7 @@ B<Line 2:> go to the folder created after uncompressing the tarball.
 =item *
 
 B<Line 3:> run C<perl> against the C<Makefile.PL> file, to configure the
-module. Note that some modules use other build system, named
+module. Note that some modules use a different build system, named
 C<Module::Build> X<Module, Module::Build> X<Module::Build> instead of
 C<ExtUtils::MakeMaker> X<Module, ExtUtils::MakeMaker>
 X<ExtUtils::MakeMaker>, the one responsible for C<Makefile.PL>. In
@@ -263,15 +263,16 @@ file.
 
 B<Line 11:> after compiling the module it is a good idea to test if
 your module is passing all the tests defined by the developers. To
-test your newly compiled module run C<< make test >> or C<< Build test
+test your newly compiled module run C<< make test >> or C<< ./Build test
 >> depending on the module you are installing.
 
 =item *
 
 B<Line 21:> finally, time to install the module. Just run C<< make
-install >> or C<< Build install >>. It might be a good idea to run
+install >> or C<< ./Build install >>. It might be a good idea to run
 this command as superuser (for example, prepending C<sudo> to the
-command).
+command) as, by default, modules are installed system-wide into a directory to
+which normal users will not have write access..
 
 =back
 
