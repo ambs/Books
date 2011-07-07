@@ -75,9 +75,10 @@ from the OS vendor's repo (for instance, via C<apt-get> for Debian-based
 systems) is preferred by some, but packages can lag behind the latest versions
 available on CPAN.
 
-Installing modules using C<cpan>, C<cpanp> or C<cpanm> is considered ideal by
-many, as it provides easy installation with automated tests and dependency
-handling, but allows you to install the freshest version available from CPAN.
+Installing modules using CPAN.pm (C<cpan>), CPANPLUS (C<cpanp>) or cpanminus
+(C<cpanm>) is considered ideal by many, as it provides easy installation with 
+automated tests and dependency handling, but allows you to install the freshest 
+version available from CPAN.
 
 Installing manually gives the most control, but forces you to deal with
 satisfying dependencies yourself; for a module with a long dependency chain on a
@@ -95,11 +96,16 @@ smaller packages. In this case use your package system and search for
 the C<cpan> package.
 
 Usually you want to run C<cpan> as a system administrator, so you have
-the needed permissions to write into the system tree. Recent C<cpan>
+the needed permissions to write into the system tree.  Alternatively, the CPAN
+client can run as a normal user, and be configured to use C<sudo> where required
+to perform the final installation; this has the benefit of making the test suite
+run as a normal user, which can be preferable for security.
+
+Recent C<cpan>
 versions have an automated configuring system. Nevertheless, if you
 run C<cpan> and it asks a lot of questions, you are safe on choosing
-the default answers. Just take care of choosing a nearby mirror, so
-packages download faster.
+the default answers. Just take care to choose a nearby mirror, so
+packages download faster.  
 
 C<cpan> can be used from the command line issuing:
 
