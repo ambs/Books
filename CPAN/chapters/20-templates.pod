@@ -915,6 +915,21 @@ Interpolate this template with the following Perl code:
 
 =end Perl
 
+C<Text::Xslate> also supports C<while> loops and C<given/when>
+conditional structures. Be sure to read the documentation with
+caution, as the syntax is tricky, and not exactly like Perl.
+
+...include
+
+...block/cascade
+
+=head2 *Filters
+
+=head2 *Virtual Methods
+
+The documentation doesn't refer to the methods as virtual. The section
+is named this way for homogeneity.
+
 =begin SeeAlso
 
 C<Mason> X<Mason> X<Module, Mason> is a web framework that
