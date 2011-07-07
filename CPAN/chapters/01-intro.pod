@@ -1,9 +1,9 @@
 
 =head0 The Comprehensive Perl Archive Network
 
-X<CPAN> The Comprehensive Perl Archive Network, known as CPANN<<It is
+X<CPAN> The Comprehensive Perl Archive Network, known as CPANN<< It is
 named after another archive, The Comprehensive TeX Archive Network, an
-archive of TeX and LaTeX modules and styles.>> is an archive of Perl
+archive of TeX and LaTeX modules and styles. >> is an archive of Perl
 applications, modules and frameworks.it is available through the
 Network and is Comprehensive, in the sense that it is a large
 collection, but also that it includes nearly all developed modules,
