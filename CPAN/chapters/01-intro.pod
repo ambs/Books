@@ -177,8 +177,8 @@ available modules from CPAN, so you may well find that the module you
 need is not available, or is somewhat outdated.
 
 Therefore, the authors suggest Windows users to download Strawberry
-Perl X<Strawberry Perl> that includes C<cpan> and a quite complete
-build system.
+Perl X<Strawberry Perl> distribution which includes C<cpan> and a quite
+complete build system.
 
 =head2 *Manual Install
 
