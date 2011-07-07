@@ -1,16 +1,13 @@
 
 =head0 The Comprehensive Perl Archive Network
 
-X<CPAN>
-The Comprehensive Perl Archive Network, known as CPAN is an archive of
-Perl applications, modules and frameworks. It is named after another
-archive, The Comprehensive TeX Archive Network, an archive of TeX and
-LaTeX modules and styles.
-
-CPAN is an Archive of Perl stuff, it is available throught the Network
-and is Comprehensive, in the sense that it is a large collection, but
-also that it includes nearly all developed modules, and they are
-available in an organized way.
+X<CPAN> The Comprehensive Perl Archive Network, known as CPANN<<It is
+named after another archive, The Comprehensive TeX Archive Network, an
+archive of TeX and LaTeX modules and styles.>> is an archive of Perl
+applications, modules and frameworks.it is available through the
+Network and is Comprehensive, in the sense that it is a large
+collection, but also that it includes nearly all developed modules,
+and they are available in an organized way.
 
 Note that CPAN does not have any kind of guarantee that the available
 modules are not malicious, or that provides the documented
@@ -438,7 +435,7 @@ can be no longer available.
 Although C<perlbrew> is quite interesting and powerful, it is still
 under heavy development and has some known problems. To use it well
 you need some expertise. For further documentation check the
-C<perlbew> page.
+C<perlbrew> page.
 
 =cut
 
