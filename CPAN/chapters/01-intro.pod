@@ -68,12 +68,20 @@ distributions on L<http://search.cpan.org/>.
 =head1 Installing CPAN Modules
 
 X<Module, installing>
-There are two main different ways to install a module from CPAN: using
-an automated installation tool, like C<cpan>, C<cpanp> or C<cpanm>, or
-installing manually. The main difference is that the automated
-approach fetches the module from CPAN, calculates its dependencies and
-install them. When installing manually, you will need to follow the
-non installed dependencies by yourself.
+There are three main different ways to install a module from CPAN: using
+an automated installation tool, like C<cpan>, C<cpanp> or C<cpanm>, installing a
+package provided by your OS vendor, or installing manually.  Installing packages
+from the OS vendor's repo (for instance, via C<apt-get> for Debian-based
+systems) is preferred by some, but packages can lag behind the latest versions
+available on CPAN.
+
+Installing modules using C<cpan>, C<cpanp> or C<cpanm> is considered ideal by
+many, as it provides easy installation with automated tests and dependency
+handling, but allows you to install the freshest version available from CPAN.
+
+Installing manually gives the most control, but forces you to deal with
+satisfying dependencies yourself; for a module with a long dependency chain on a
+fresh Perl install, this can be a real pain.
 
 =head2 *Using C<cpan>
 
