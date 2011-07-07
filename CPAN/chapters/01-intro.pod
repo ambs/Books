@@ -160,9 +160,9 @@ Install the module, and use C<cpanm> from the command lineN<<
 C<cpanm> does not have an interactive shell. You must use it directly
 from the command line. >>.
 
-   cpanm -S Module::Name another::Module
+   cpanm --sudo Module::Name another::Module
 
-The "C<-S>" switch is used to ask C<cpanm> to call C<sudo> when
+The "C<--sudo>" switch is used to ask C<cpanm> to call C<sudo> when
 installing the module. This way you can call C<cpanm> from your user,
 knowing the when needed a password will be asked.
 
