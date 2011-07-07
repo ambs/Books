@@ -176,7 +176,7 @@ available. The main drawback is that PPM repositories do not have all
 available modules from CPAN, so you may well find that the module you
 need is not available, or is somewhat outdated.
 
-Therefore, the authors suggest Windows users to download Strawberry
+Therefore, the authors suggest Windows users to download the Strawberry
 Perl X<Strawberry Perl> distribution which includes C<cpan> and a quite
 complete build system.
 
