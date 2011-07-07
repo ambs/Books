@@ -117,6 +117,11 @@ that, just type C<cpan> in your command line, and a C<cpan> shell will
 appear. You can get help on the C<cpan> shell commands using "C<h>". To
 install modules use the "C<i>" command.
 
+If for some reason the C<cpan> command is not installed, you can try to execute
+the CPAN.pm shell with:
+
+  perl -MCPAN -e shell
+
 Z<cpaninstall>
 
 =begin screen Simple cpan interaction
