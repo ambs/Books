@@ -48,10 +48,11 @@ to create mailing lists.
 X<CPAN, Testers>
 CPAN Testers (L<http://static.cpantesters.org/>) gives information
 about how each module installs, and how their tests pass or fail in
-different architectures. When installing a module, if the build fails,
-this web site can be used to detect whether it is a local fail, or a
-known bug. For module developers it is useful to check if modules are
-portable and if tests pass.
+different architectures and perl versions.  When installing a module, 
+if the build fails, this web site can be used to detect whether it is 
+a local fail, or a known bug. For module developers it is very valuable
+to check if modules are portable and if tests pass on different systems, helping
+all authors to improve the quality and reliability of their code.
 
 =item B<CPAN Ratings>
 
