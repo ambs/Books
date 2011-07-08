@@ -1,6 +1,8 @@
 
 =head0 Modern Perl OO
 
+Z<chap:OO>
+
 X<Moo>X<Module, Moo> X<Moose>X<Module, Moose> X<Mouse>X<Module, Mouse>
 X<OO Programming> Perl always suffered from the lack of a rigid object
 oriented system. Although blessed references did the trick for years,

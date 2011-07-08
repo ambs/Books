@@ -919,9 +919,68 @@ C<Text::Xslate> also supports C<while> loops and C<given/when>
 conditional structures. Be sure to read the documentation with
 caution, as the syntax is tricky, and not exactly like Perl.
 
-...include
+There are two distinct ways to include sub-templates. The first is
+using the C<include> command, followed by the name of the sub-template
+to process. Optionally a hash of further variables to be defined in
+the sub-template can be supplied:
 
-...block/cascade
+   : include "header.tx"
+   : include "footer.tx" { date => 'Christmas', copyright => 'me' }
+
+The other approach is to use template cascading. This feature can be
+seen as some kind of inheritance between templates, together with the
+possibility to use rolesN<< For a better description on roles read the
+chapter A<chap:OO> or the documentation of any new Perl
+object-oriented framework. >>.
+
+It all starts with the definition of blocks using the C<block>
+keyword. Think of blocks as place holders, where some text (or
+anything else, in fact) will be placed. Each block has a name and
+optionally a default content.
+
+For example, for a web site we can define the basic layout in a
+C<base.tx> document, as follows:
+
+  : block header -> {
+      Welcome to my Website!
+  : }
+  : block contents -> { }
+  : block footer -> {
+      Copyright by me!
+  : }
+
+This code defines three zones, and specifies default content for the
+header and footer blocks. Note that the content should be placed in
+different lines from the commands. If you render this template the
+result will be the two lines defined as default content.
+
+We can extend (C<cascade>) this template into another, for example,
+C<about.tx> that sets the I<contents> block text:
+
+  : cascade "base.tx"
+  : around contents -> {
+      My name is Homer Simpson and I like beer.
+  : }
+
+The C<cascade> command is telling the template engine this template is
+a I<child> from C<base.tx>, and C<around> is redefining the
+I<contents> block with some other text. Also relevant is that there is
+a C<super> method to call the previous defined block. 
+
+=XXX Get example for :super
+
+Similar with C<around> there are the C<before> and C<after> commands
+that, instead of redefining the full block, define content to be
+placed I<before> or I<after> the block.
+
+=XXX Get example for before/after
+
+Templates cascading is one of the main features from
+C<Text::Xslate>. It still supports roles and macros, but these topics
+will not be covered in this book.
+
+Always remember that from your Perl code you must render the lowest
+template in this hierarchy.
 
 =head2 *Filters
 
