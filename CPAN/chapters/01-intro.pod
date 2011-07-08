@@ -4,7 +4,7 @@
 X<CPAN> The Comprehensive Perl Archive Network, known as CPANN<< It is
 named after another archive, The Comprehensive TeX Archive Network, an
 archive of TeX and LaTeX modules and styles. >> is an archive of Perl
-applications, modules and frameworks.it is available through the
+applications, modules and frameworks.  It is available through the
 Network and is Comprehensive, in the sense that it is a large
 collection, but also that it includes nearly all developed modules,
 and they are available in an organized way.
@@ -16,14 +16,14 @@ community is great, as it gives information about their quality and
 trust.
 
 CPAN is available from L<http://cpan.org/> or one of the hundreds of
-available mirror. You can access the modules using C<FTP> or, more
-interesting, using the search feature of CPAN. It will give you
-information on the module author, what the latest version is, points
-to the download file, gives you access to the module documentation and
-a rating system, where users can rate modules.
+available mirrors around the world. You can access the modules using 
+C<FTP>, C<HTTP> or, more interestingly, using the search feature of 
+CPAN. It will give you information on the module author, what the 
+latest version is, points to the download file, gives you access to 
+the module documentation and a rating system, where users can rate modules.
 
 There are a bunch of other web sites that were developed to make the
-CPAN experience more rich. There are some of them:
+CPAN experience richer. There are some of them:
 
 =over
 
@@ -48,22 +48,41 @@ to create mailing lists.
 X<CPAN, Testers>
 CPAN Testers (L<http://static.cpantesters.org/>) gives information
 about how each module installs, and how their tests pass or fail in
-different architectures. When installing a module, if the build fails,
-this web site can be used to detect whether it is a local fail, or a
-known bug. For module developers it is useful to check if modules are
-portable and if tests pass.
+different architectures and perl versions.  When installing a module, 
+if the build fails, this web site can be used to detect whether it is 
+a local fail, or a known bug. For module developers it is very valuable
+to check if modules are portable and if tests pass on different systems, helping
+all authors to improve the quality and reliability of their code.
+
+=item B<CPAN Ratings>
+
+X<CPAN, Ratings>
+CPAN Ratings (L<http://cpanratings.perl.org/>) allows users of modules to
+leave ratings and reviews on Perl modules, providing useful information to
+other users looking for a module to fulfil a particular task and facing
+multiple modules to decide between.  Ratings are visible when viewing
+distributions on L<http://search.cpan.org/>.
 
 =back
 
 =head1 Installing CPAN Modules
 
 X<Module, installing>
-There are two main different ways to install a module from CPAN: using
-an automated installation tool, like C<cpan>, C<cpanp> or C<cpanm>, or
-installing manually. The main difference is that the automated
-approach fetches the module from CPAN, calculates its dependencies and
-install them. When installing manually, you will need to follow the
-non installed dependencies by yourself.
+There are three main different ways to install a module from CPAN: using
+an automated installation tool, like C<cpan>, C<cpanp> or C<cpanm>, installing a
+package provided by your OS vendor, or installing manually.  Installing packages
+from the OS vendor's repo (for instance, via C<apt-get> for Debian-based
+systems) is preferred by some, but packages can lag behind the latest versions
+available on CPAN.
+
+Installing modules using CPAN.pm (C<cpan>), CPANPLUS (C<cpanp>) or cpanminus
+(C<cpanm>) is considered ideal by many, as it provides easy installation with 
+automated tests and dependency handling, but allows you to install the freshest 
+version available from CPAN.
+
+Installing manually gives the most control, but forces you to deal with
+satisfying dependencies yourself; for a module with a long dependency chain on a
+fresh Perl install, this can be a real pain.
 
 =head2 *Using C<cpan>
 
@@ -77,11 +96,16 @@ smaller packages. In this case use your package system and search for
 the C<cpan> package.
 
 Usually you want to run C<cpan> as a system administrator, so you have
-the needed permissions to write into the system tree. Recent C<cpan>
+the needed permissions to write into the system tree.  Alternatively, the CPAN
+client can run as a normal user, and be configured to use C<sudo> where required
+to perform the final installation; this has the benefit of making the test suite
+run as a normal user, which can be preferable for security.
+
+Recent C<cpan>
 versions have an automated configuring system. Nevertheless, if you
 run C<cpan> and it asks a lot of questions, you are safe on choosing
-the default answers. Just take care of choosing a nearby mirror, so
-packages download faster.
+the default answers. Just take care to choose a nearby mirror, so
+packages download faster.  
 
 C<cpan> can be used from the command line issuing:
 
@@ -92,6 +116,11 @@ C<Another::Module>. The other approach is using C<cpan> shell. For
 that, just type C<cpan> in your command line, and a C<cpan> shell will
 appear. You can get help on the C<cpan> shell commands using "C<h>". To
 install modules use the "C<i>" command.
+
+If for some reason the C<cpan> command is not installed, you can try to execute
+the CPAN.pm shell with:
+
+  perl -MCPAN -e shell
 
 Z<cpaninstall>
 
@@ -123,14 +152,17 @@ X<Command, cpanm> X<cpanm> C<cpanm> is available through
 X<App::Cpanminus> C<App::Cpanminus> module. The main advantage of
 C<cpanm> regarding the other two approaches described above is
 efficiency. C<cpanm> is very quick, as it doesn't perform the amount
-of checks C<cpan> or C<cpanp> does. Nevertheless, you probably want to
-use it. Install the module, and use C<cpanm> from the command lineN<<
+of checks C<cpan> or C<cpanp> does, and finds out about modules via the MetaCPAN
+API, rather than by parsing large indexes - this provides fast operation, and
+ensures fresh module versions.
+
+Install the module, and use C<cpanm> from the command lineN<<
 C<cpanm> does not have an interactive shell. You must use it directly
 from the command line. >>.
 
-   cpanm -S Module::Name another::Module
+   cpanm --sudo Module::Name another::Module
 
-The "C<-S>" switch is used to ask C<cpanm> to call C<sudo> when
+The "C<--sudo>" switch is used to ask C<cpanm> to call C<sudo> when
 installing the module. This way you can call C<cpanm> from your user,
 knowing the when needed a password will be asked.
 
@@ -141,17 +173,17 @@ an application by ActiveState to install modules from their own module
 repository. These packages have the advantage of being pre-compiled,
 making it easier to install on Windows machines without a compiler
 available. The main drawback is that PPM repositories do not have all
-available modules from CPAN, and it is natural that the module you
-need is not there.
+available modules from CPAN, so you may well find that the module you
+need is not available, or is somewhat outdated.
 
-Therefore, the authors suggest Windows users to download Strawberry
-Perl X<Strawberry Perl> that includes C<cpan> and a quite complete
-build system.
+Therefore, the authors suggest Windows users to download the Strawberry
+Perl X<Strawberry Perl> distribution which includes C<cpan> and a quite
+complete build system.
 
 =head2 *Manual Install
 
 X<Module, manual installation> The process of installing a module by
-hand depends a little of your operating system.  The instructions
+hand depends a little on your operating system.  The instructions
 presented here describe the most usual process. First, get the module
 archive from a CPAN mirror. These files are usually named I<tarballs>,
 and are compressed using C<gzip> and archived by C<tar>. For this
@@ -187,7 +219,7 @@ example we will describe the process of installing C<Try::Tiny>:
 
 =end screen
 
-Follows a brief explanation of the issued commands:
+A brief explanation of the issued commands follows:
 
 =begin small
 
@@ -198,7 +230,7 @@ Follows a brief explanation of the issued commands:
 B<Line 1:> uncompress the tarball. The command used is the more common
 for most Unix/BSD systems. It might be similar under Windows if you
 have GNU tools installed. If not, you can download a tool to
-uncompress this kind of files, like C<7zip> or C<IzArch>.
+uncompress these kind of files, like C<7zip> or C<IzArch>.
 
 =item *
 
@@ -207,7 +239,7 @@ B<Line 2:> go to the folder created after uncompressing the tarball.
 =item *
 
 B<Line 3:> run C<perl> against the C<Makefile.PL> file, to configure the
-module. Note that some modules use other build system, named
+module. Note that some modules use a different build system, named
 C<Module::Build> X<Module, Module::Build> X<Module::Build> instead of
 C<ExtUtils::MakeMaker> X<Module, ExtUtils::MakeMaker>
 X<ExtUtils::MakeMaker>, the one responsible for C<Makefile.PL>. In
@@ -231,15 +263,16 @@ file.
 
 B<Line 11:> after compiling the module it is a good idea to test if
 your module is passing all the tests defined by the developers. To
-test your newly compiled module run C<< make test >> or C<< Build test
+test your newly compiled module run C<< make test >> or C<< ./Build test
 >> depending on the module you are installing.
 
 =item *
 
 B<Line 21:> finally, time to install the module. Just run C<< make
-install >> or C<< Build install >>. It might be a good idea to run
+install >> or C<< ./Build install >>. It might be a good idea to run
 this command as superuser (for example, prepending C<sudo> to the
-command).
+command) as, by default, modules are installed system-wide into a directory to
+which normal users will not have write access..
 
 =back
 
