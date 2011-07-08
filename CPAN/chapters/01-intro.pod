@@ -63,6 +63,15 @@ other users looking for a module to fulfil a particular task and facing
 multiple modules to decide between.  Ratings are visible when viewing
 distributions on L<http://search.cpan.org/>.
 
+=item B<MetaCPAN>
+
+X<CPAN, MetaCPAN> MetaCPAN (L<http://metacpan.org/>) is a new
+interface to the CPAN repository. Aims at a fresh, light and fast user
+interface, using new technologies like JavaScript. It has a very nice
+feature over the standard CPAN web site, as it indexes new modules
+faster. They get available on MetaCPAN a few minutes after the
+developer uploads them.
+
 =back
 
 =head1 Installing CPAN Modules
@@ -144,7 +153,8 @@ the command line add the "C<-i>" switch:
 
     cpanp -i Module::Name Another::Module
 
-For the interactive shell, C<cpanp> also uses the C<i> command (see A<cpaninstall>).
+For the interactive shell, C<cpanp> also uses the C<i> command (see
+A<cpaninstall>).
 
 =head2 *Using C<cpanm>
 
@@ -153,8 +163,8 @@ X<App::Cpanminus> C<App::Cpanminus> module. The main advantage of
 C<cpanm> regarding the other two approaches described above is
 efficiency. C<cpanm> is very quick, as it doesn't perform the amount
 of checks C<cpan> or C<cpanp> does, and finds out about modules via
-the MetaCPAN API, rather than by parsing large indexes. This provides
-fast operation, and ensures fresh module versions.
+the CPAN MetaDB API, rather than by parsing large indexes. This
+provides fast operation, and ensures fresh module versions.
 
 Install the module, and use C<cpanm> from the command lineN<<
 C<cpanm> does not have an interactive shell. You must use it directly
