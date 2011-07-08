@@ -50,10 +50,11 @@ useful as well.
 
 The authors would like to thank
 Pedro Melo,
+David Precious,
 Marcos Ramos,
-Sawyer X,
-and
 Magda Joana Silva
+and
+Sawyer X
 for they comments, suggestions and proofreading.
 
 Also, this book wouldn't be possible without LaTeX and the
