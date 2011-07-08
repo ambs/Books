@@ -965,31 +965,93 @@ C<about.tx> that sets the I<contents> block text:
 The C<cascade> command is telling the template engine this template is
 a I<child> from C<base.tx>, and C<around> is redefining the
 I<contents> block with some other text. Also relevant is that there is
-a C<super> method to call the previous defined block. 
+a C<super> method to call the previous defined block. For instance, to
+surround the I<header> block with a new C<div> element we can write
+the following template:
 
-=XXX Get example for :super
+  : cascade "base.tx"
+  : around header -> {
+     <div id='header'>
+        :super
+     </div>
+  : }
+
+The line with the C<super> command will cascade into C<base.tx> and
+use its default value.
 
 Similar with C<around> there are the C<before> and C<after> commands
 that, instead of redefining the full block, define content to be
-placed I<before> or I<after> the block.
+placed I<before> or I<after> the block. As an example, the following
+template cascades on C<base.tx>, adding an year before the copyright
+notice, in the I<footer> block.
 
-=XXX Get example for before/after
+  : cascade "base.tx"
+  : before footer -> {
+        <: $year :>
+  : }
+
+
+Always remember that from your Perl code you must render the more
+specific template, the one that cascades into other templates.
 
 Templates cascading is one of the main features from
 C<Text::Xslate>. It still supports roles and macros, but these topics
 will not be covered in this book.
 
-Always remember that from your Perl code you must render the lowest
-template in this hierarchy.
-
 =head2 *Filters
+
+C<Text::Xslate> has some built-in filters defined, but the definition
+of user filters is also simple (unlike, for instance,
+C<Template::Toolkit>, that forces to create a new package with the
+filter definition).
+
+The two main filters available are C<html> and C<dump>:
+
+    : $var | html       # html-escape the variable content
+    : $var | dump       # dump the variable with Data::Dumper
+
+These filters are implemented as functions. This makes it possible to
+use them as a standard function call:
+
+    : html($var)
+
+For an example on defining your own filters please refer to
+C<Text::Xslate> documentation.
 
 =head2 *Virtual Methods
 
-The documentation doesn't refer to the methods as virtual. The section
-is named this way for homogeneity.
+The C<Text::Xslate> documentation doesn't refer to the methods as
+virtual. This section is named this way for homogeneity with the
+previous module. Also, there aren't really much methods defined as it
+supports a big subset of the Perl language.
+
+Nevertheless, there are three methods that are crucial when cycling
+through hashes: C<keys>, C<values> and C<kv>. The first two are quite
+straightforward, make it possible to cycle through keys of values:
+
+  : for $data.keys() -> $key {
+      * <: $key :> - <: $data[$key] :>
+  : }
+
+The C<kv> variant is similar to the C<each> command from Perl. In each
+iteration returns a pair, with a key and a value:
+
+  : for $data.kv() -> $pair {
+      * <: $pair.key :> - <: $pair.value :>
+  : }
+
+For arrays and hashes there is a C<size> method that returns their
+number of elements. For arrays there are the typical C<reverse>,
+C<join>, C<sort> and C<map>, together with a C<reduce> method.
 
 =begin SeeAlso
+
+Note that this chapter intends to be a gentle introduction to the
+described template systems. Each of them has much more that can be
+achieved using built-in features, or extending it (especially
+C<Template::Toolkit> and C<Text::Xslate>). Use the information in this
+chapter as a start point but refer to their documentation for in-depth
+information.
 
 C<Mason> X<Mason> X<Module, Mason> is a web framework that
 incorporates its own template engine. Some applications support

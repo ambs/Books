@@ -1,4 +1,4 @@
-CHAPTERS=cpan-chapter1.pdf cpan-chapter2.pdf
+CHAPTERS=cpan-chapter1.pdf cpan-chapter2.pdf cpan-chapter3.pdf
 
 book.pdf: book.tex tex/asbook.sty
 	TEXINPUTS=$$TEXINPUTS:tex xelatex book
@@ -22,6 +22,9 @@ cpan-chapter1.pdf: book.pdf
 
 cpan-chapter2.pdf: book.pdf
 	pdfjam -q book.pdf 15-26 -o cpan-chapter2.pdf
+
+cpan-chapter3.pdf: book.pdf
+	pdfjam -q book.pdf 27-44 -o cpan-chapter3.pdf
 
 nodraft: build/latex.pl chapters/*.pod tex/asbook.sty
 	build/latex.pl -draft=0
