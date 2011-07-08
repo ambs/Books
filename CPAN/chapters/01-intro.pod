@@ -67,22 +67,22 @@ distributions on L<http://search.cpan.org/>.
 
 =head1 Installing CPAN Modules
 
-X<Module, installing>
-There are three main different ways to install a module from CPAN: using
-an automated installation tool, like C<cpan>, C<cpanp> or C<cpanm>, installing a
-package provided by your OS vendor, or installing manually.  Installing packages
-from the OS vendor's repo (for instance, via C<apt-get> for Debian-based
-systems) is preferred by some, but packages can lag behind the latest versions
+X<Module, installing> There are three main different ways to install a
+module from CPAN: using an automated installation tool, like C<cpan>,
+C<cpanp> or C<cpanm>, installing a package provided by your OS vendor,
+or installing manually.  Installing packages from the OS vendor's
+repository (for instance, via C<apt-get> for Debian-based systems) is
+preferred by some, but packages can lag behind the latest versions
 available on CPAN.
 
-Installing modules using CPAN.pm (C<cpan>), CPANPLUS (C<cpanp>) or cpanminus
-(C<cpanm>) is considered ideal by many, as it provides easy installation with 
-automated tests and dependency handling, but allows you to install the freshest 
-version available from CPAN.
+Installing modules using CPAN.pm (C<cpan>), CPANPLUS (C<cpanp>) or
+cpanminus (C<cpanm>) is considered ideal by many, as it provides easy
+installation with automated tests and dependency handling, and allows
+you to install the freshest version available from CPAN.
 
-Installing manually gives the most control, but forces you to deal with
-satisfying dependencies yourself; for a module with a long dependency chain on a
-fresh Perl install, this can be a real pain.
+Installing manually gives the most control, but forces you to deal
+with satisfying dependencies yourself; for a module with a long
+dependency chain on a fresh Perl install, this can be a real pain.
 
 =head2 *Using C<cpan>
 
@@ -152,9 +152,9 @@ X<Command, cpanm> X<cpanm> C<cpanm> is available through
 X<App::Cpanminus> C<App::Cpanminus> module. The main advantage of
 C<cpanm> regarding the other two approaches described above is
 efficiency. C<cpanm> is very quick, as it doesn't perform the amount
-of checks C<cpan> or C<cpanp> does, and finds out about modules via the MetaCPAN
-API, rather than by parsing large indexes - this provides fast operation, and
-ensures fresh module versions.
+of checks C<cpan> or C<cpanp> does, and finds out about modules via
+the MetaCPAN API, rather than by parsing large indexes. This provides
+fast operation, and ensures fresh module versions.
 
 Install the module, and use C<cpanm> from the command lineN<<
 C<cpanm> does not have an interactive shell. You must use it directly
