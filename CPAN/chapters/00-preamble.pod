@@ -8,7 +8,7 @@
 =head0 *Preamble
 
 This book does not intend to be a complete reference to all modules
-from CPAN, neither a complete reference to some modules from
+from CPAN, nor a complete reference to some modules from
 CPAN. That would be mostly impossible to print, as there are thousands
 of Perl modules available, and some of them have rather long
 documentation.
@@ -30,7 +30,7 @@ chapter ends with a special section, where pointers to other useful
 modules that were not discussed but might be useful.
 
 When writing this book we tried to make it possible to be read in any
-order: you can peek a chapter about a topic you are interested in, and
+order: you can peek at a chapter about a topic you are interested in, and
 read it without reading all the other chapters. We even tried to make
 sections independent, so you can read a section on a specific
 framework without needing to read the sections for the other
@@ -56,8 +56,8 @@ and
 Magda Joana Silva
 for they comments, suggestions and proofreading.
 
-Also, this book wasn't possible without LaTeX and, chromatic and
-Moritz C<Pod::PseudoPod::LaTeX> Perl module.
+Also, this book wouldn't be possible without LaTeX and the
+C<Pod::PseudoPod::LaTeX> Perl module from chromatic and Moritz.
 
 =begin right
 
