@@ -432,7 +432,7 @@ templating engine. Other than the documentation that gets installed in
 your system and the documentation available from
 L<http://template-toolkit.org/>, there is a good book from O'ReillyN<<
 Perl Template Toolkit, by Darren Chamberlain, Dave Cross and Andy
-Wardley. O'Reilly 2003.>> where you can find in depth details.
+Wardley. O'Reilly 2003. >> where you can find in depth details.
 
 C<Template::Toolkit> (we will call it C<TT> during this section) is
 mostly used for templating HTML documents, and although our examples
