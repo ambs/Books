@@ -94,7 +94,7 @@ sub add_tex_preamble {
     print $fh <<'EOTex';
 \documentclass[a5paper,twoside,9pt]{extbook}
 EOTex
-    print $fh "\\usepackage{draftwatermark}\n" if $draft;
+    print $fh "\\usepackage{draftwatermark}\n\\SetWatermarkLightness{0.95}\n" if $draft;
     print $fh <<'EOTeX';
 \usepackage[left=1.7cm,right=2.2cm,top=2cm,bottom=1.5cm,footskip=7mm,headsep=7mm]{geometry}
 \usepackage{makeidx}

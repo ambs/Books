@@ -296,13 +296,7 @@ B<CPAN:> L<http://search.cpan.org/dist/Devel-Cover>
 
 =end CPANinfo
 
-=head1 Test::Exception
-
-??
-
-=head1 Test::Class
-
-??
+=cut
 
 =begin SeeAlso
 
