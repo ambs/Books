@@ -18,8 +18,13 @@ that lead to even more frameworks.
 
 This book does not intent to be a full reference to CPAN modules, or
 to be a in-depth book on too technical aspects. These reasons made us
-decide to not exploit C<PSGI> or C<Plack> directly, but present some
-of the frameworks that use them, like C<Dancer> or C<Mojolicious>.
+decide to not exploit C<PSGI> or C<Plack> directly, but present
+frameworks that use them, like C<Dancer> or C<Mojolicious>. With this
+same idea in mind, we will not cover deployment, as there are too many
+options (from Apache C<mod_perl>, FastCGI running under Apache or
+nginx, using Starman, and others). We will just describe how to get
+some code running for developing purposes. Then you must read the
+documentation for the specific deployment method you plan.
 
 This section will B<introduce> Web programming using four different
 web frameworks:
@@ -70,7 +75,18 @@ X<Module, Mojolicious> X<Mojolicious>
 
 =head1 Dancer
 
-X<Module, Dancer> X<Dancer>
+X<Module, Dancer> X<Dancer> C<Dancer> has a nice command that eases
+the task of creating the required files to run a C<Dancer> web
+site. In fact, not those files are required, but the C<dancer>
+application creates a typical Perl module structure and a simple
+running web site. Use the following command:
+
+    dancer -a MyApp
+
+A folder named C<MyApp> will be created, with a bunch of files. In the
+next section we will analyze this folder structure.
+
+=head2 *Default Dancer Application Structure
 
 =cut
 
