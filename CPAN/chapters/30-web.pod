@@ -88,6 +88,65 @@ next section we will analyze this folder structure.
 
 =head2 *Default Dancer Application Structure
 
+The structure scaffolded by C<Dancer> is presented bellow, together
+with some comments on their meaning. Note that this structure already
+includes code that already runs and presents a simple web page with
+some C<Dancer> configuration variables. To make this page nicer,
+C<Dancer> authors added some style sheets and images. This decision
+explains why the C<dancer> script creates this kind of files.
+
+Also, C<Dancer> applications are full Perl modules. This second
+decision explains why there is a C<Makefile.PL> (where you should add
+all your application dependencies), a C<MANIFEST> and C<MANIFEST.SKIP>
+files, that list the files that should and should not be included in
+the Perl module, a C<lib> folder with a module (with the same name of
+your application) and a C<t> folder with some basic tests for your
+application.
+
+=begin figure Structure of a C<Dancer> scaffolded application.
+
+=for latex
+
+\renewcommand*\DTstylecomment{\it}
+\dirtree{%
+ .1 MyApp/. 
+ .2 Makefile.PL\DTcomment{Dancer applications are Perl Modules!}. 
+ .2 MANIFEST. 
+ .2 MANIFEST.SKIP. 
+ .2 config.yml\DTcomment{Generic application configuration}. 
+ .2 environments/. 
+ .3 development.yml\DTcomment{Specific development configuration}. 
+ .3 production.yml\DTcomment{Specific production configuration}. 
+ .2 bin/. 
+ .3 app.pl\DTcomment{Stand-alone PSGI development server}. 
+ .2 views/. 
+ .3 index.tt\DTcomment{Template used on the index route}. 
+ .3 layouts/. 
+ .4 main.tt\DTcomment{Global layout template}. 
+ .2 lib/. 
+ .3 MyApp.pm\DTcomment{Where you route code lays}. 
+ .2 public/. 
+ .3 500.html\DTcomment{Page to show on 500 error}. 
+ .3 404.html\DTcomment{Page to show on 404 error}. 
+ .3 dispatch.cgi\DTcomment{Dispatcher to use with CGI}. 
+ .3 dispatch.fcgi\DTcomment{Dispatcher to use with FastCGI}. 
+ .3 javascripts/. 
+ .4 jquery.js\DTcomment{Yes, Dancer ships with jquery}.
+ .3 css/. 
+ .4 \ldots\DTcomment{A couple of style sheets}.
+ .3 images/. 
+ .4 \ldots\DTcomment{And a couple of image files}. 
+ .2 t/. 
+ .3 001\_base.t\DTcomment{Tests if your application loads}. 
+ .3 002\_index\_route.t\DTcomment{Tests if your application has a root route handler}. 
+}
+
+=end
+
+=end figure
+
+We will dissect some of these files in the next paragraphs.
+
 =cut
 
 ## Local Variables:
