@@ -75,7 +75,7 @@ sub parse_pod_file {
     my %data   = @_;
     my $fh     = $data{out} or die;
     my $pod    = $data{pod} or die;
-    my $parser = Pod::PseudoPod::LaTeX->new(keep_ligatures => 1);
+    my $parser = Pod::PseudoPod::LaTeX->new(captions_bellow => 1, keep_ligatures => 1);
     $parser->output_fh($fh);
     $parser->accept_target_as_text('CPANinfo', 'small', 'SeeAlso', 'right');
     $parser->accept_target('Perl');
