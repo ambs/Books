@@ -107,6 +107,7 @@ application.
 
 =for latex
 
+\begin{minipage}{\textwidth}
 \renewcommand*\DTstylecomment{\it}
 \dirtree{%
  .1 MyApp/. 
@@ -140,6 +141,7 @@ application.
  .3 001\_base.t\DTcomment{Tests if your application loads}. 
  .3 002\_index\_route.t\DTcomment{Tests if your application has a root route handler}. 
 }
+\end{minipage}
 
 =end
 
