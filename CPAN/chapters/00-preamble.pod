@@ -49,6 +49,7 @@ references. The knowledge about I<old> Object Oriented Perl might be
 useful as well.
 
 The authors would like to thank
+Stevan Little,
 Pedro Melo,
 David Precious,
 Marcos Ramos,
