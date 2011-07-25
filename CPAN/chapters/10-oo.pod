@@ -21,7 +21,7 @@ loading C<Moose> is not acceptable.
 
 To solve this problem some developers started C<Mouse>, a smaller
 implementation that does not include all C<Moose> functionalities, but
-only the more relevant ones. It maintains the API compatible with
+only the more relevant ones. It maintains the API compatibility with
 C<Moose>, making it easier to switch whenever needed.
 
 Another implementation, named C<Moo>, claims to be yet smaller and
@@ -173,7 +173,7 @@ the super-classes, not add a new. >>:
 
 =end Perl
 
-One of C<Moo> premises to remain small is not support to
+One of C<Moo> premises to remain small is to not support
 C<super>. This means it is not that easy to override
 methods. Nevertheless it can be done using method modifiers (see
 A<moomodifiers>).
@@ -199,6 +199,7 @@ error (useful for debugging):
    my $self = shift;
    print STDERR Dumper($self);
  }
+
  1;
 
 =end Perl
@@ -327,17 +328,23 @@ Our I<Person> class is written with C<Mouse> as follows:
  package Person;
  use Mouse;
 
- has name  => 
-      is => 'ro', required => 1,  isa => 'Str';
- has phone =>
-      is => 'rw',
-      isa => 'Str',
+ has name =>  (
+      is => 'ro', required => 1,  isa => 'Str',
+ );
+
+ has phone => (
+      is      => 'rw',
+      isa     => 'Str',
       trigger => sub {
          send_sms( to => $_[1],
                    msg => "Phone number correctly updated.")
-      };
- has gender =>
-      is => 'ro', default => "female";
+      },
+  );
+
+ has gender => (
+      is => 'ro', default => "female",
+ );
+
  1;
 
 =end Perl
@@ -355,7 +362,7 @@ Inheritance in C<Mouse> is also handled using the C<extends> method.
 Note that when redefining an attribute in a subclass you need to
 prepend a plus sign to the name of the attribute begin redefined:
 
-   has +name => ( is => 'rw', required => 1, isa => 'Str');
+   has +name => ( is => 'rw', required => 1, isa => 'Str' );
 
 
 Regarding roles (handled by C<Mouse::Role> X<Mouse::Role> X<Module,
@@ -380,6 +387,7 @@ operation.
     my ($self, $other) = @_;
     return $self->value + $other->value;
   }
+
   1;
 
 =end Perl
@@ -392,9 +400,9 @@ values together:
   package Stocks;
   use Mouse;
 
-  has name  => ( is => 'rw', isa => 'Str');
-  has qt    => ( is => 'rw', isa => 'Int');
-  has price => ( is => 'rw', isa => 'Num');
+  has name  => ( is => 'rw', isa => 'Str' );
+  has qt    => ( is => 'rw', isa => 'Int' );
+  has price => ( is => 'rw', isa => 'Num' );
 
   sub value {
     my $self = shift;
@@ -403,9 +411,10 @@ values together:
 
   with 'Arithmetics';
 
-  my $stock1 = Stocks->new( qt => 10, price => 1.1);
-  my $stock2 = Stocks->new( qt => 5,  price => 4.3);
+  my $stock1 = Stocks->new( qt => 10, price => 1.1 );
+  my $stock2 = Stocks->new( qt => 5,  price => 4.3 );
   my $total_amount = $stock1->add($stock2);
+
   1;
 
 =end Perl
@@ -419,14 +428,15 @@ value would work as well:
   package Product;
   use Mouse;
 
-  has name  => ( is => 'rw', isa => 'Str');
-  has value => ( is => 'rw', isa => 'Int');
+  has name  => ( is => 'rw', isa => 'Str' );
+  has value => ( is => 'rw', isa => 'Int' );
 
   with 'Arithmetics';
 
   my $prod1 = Product->new( value => 3 );
   my $prod2 = Product->new( value => 5 );
   my $total_prods = $prod1->add($prod2);
+
   1;
 
 =end Perl
@@ -509,17 +519,20 @@ also possible after defining a C<coerce> rule from C<Num> to C<Time>.
 
 =begin Perl
 
-  has time =>
+  has time => (
     is      => 'rw',
     isa     => 'Time',
     trigger => { 
        my ($self, $value) = @_;
        $self->seconds($value);
-    };
-  has seconds =>
+    },
+  );
+
+  has seconds => (
     is     => 'rw',
     isa    => 'Num',
-    coerce => 1;
+    coerce => 1,
+  );
 
 =end Perl
 
