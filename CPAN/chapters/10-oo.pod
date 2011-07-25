@@ -193,7 +193,7 @@ error (useful for debugging):
 
 =begin Perl
 
- package Dumper::Role;
+ package Role::Dumper;
  use Moo;
  use Role::Tiny;
  use Data::Dumper;
@@ -208,17 +208,19 @@ error (useful for debugging):
 =end Perl
 
 Now, you can switch from role to role using C<with>. For simplicity
-C<Moo> activates only one role at a time. Our main program now can
-say:
+C<Moo> activates only one role at a time. Our class now can call
+C<dump> on a C<Person>:
 
 =begin Perl
 
+ package Person;
  use Moo;
- use Person;
+
+ ...
 
  my $person = Person->new(name => 'Mary', phone => '987654321');
 
- with 'Dumper::Role';
+ with 'Role::Dumper';
  $person->dump;
 
 =end Perl
@@ -245,7 +247,7 @@ modifier, asking to run some code before the actual method:
 
 =begin Perl
 
-   with 'Dumper::Role';
+   with 'Role::Dumper';
    before dump => sub { print STDERR "Dumping a Person!\n" };
 
 =end Perl
@@ -363,11 +365,18 @@ also supplied: the value before the attribution takes place.
 =head2 *Inheritance and Roles
 
 Inheritance in C<Mouse> is also handled using the C<extends> method.
-Note that when redefining an attribute in a subclass you need to
-prepend a plus sign to the name of the attribute begin redefined:
+You an redefine completely any attribute:
 
-   has +name => ( is => 'rw', required => 1, isa => 'Str' );
+   has name => ( is => 'rw', isa => 'Str' );
 
+Or you can use the superclass attribute definition as the base for
+your new definition. If the line above this paragraph was in a
+superclass, we can redefine the attribute as required with:
+
+   has +name => ( required => 1 );
+
+This would maintain the C<is> and C<isa> properties, and add the
+C<required> flag.
 
 Regarding roles (handled by C<Mouse::Role> X<Mouse::Role> X<Module,
 Mouse::Role>), they are very similar in behavior with C<Moo> roles.
@@ -450,8 +459,8 @@ the attribute which accessor will satisfy the requirements is defined
 before composing the role. With this role you can even add different
 type of classes, given they satisfy the C<Arithmetics> role.
 
-As a final note, C<Mouse> supports more than one role at a time. Just
-take care about the order you use them. It might be relevant.
+As a final note, note that unlike C<Moo>, C<Mouse> supports more than
+one role at a time.
 
 =head2 *Method Modifiers
 
