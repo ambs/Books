@@ -10,16 +10,17 @@ developers felt sorry they did not have support for some common OO
 features, like interfaces (or roles), multiple inheritance and
 encapsulation.
 
-A few years ago C<Moose> appeared. At first it was quite slow and its
-usage was discouraged. Fortunately, in the last years, C<Moose> became
-quite fast and includes a lot of relevant and useful features.
+A few years ago C<Moose> appeared. It revolutionized the OO world of
+Perl. During these years it has been enriched with a lot of relevant
+and useful features.
 
-Nevertheless, C<Moose> is still quite slow for applications that need
-to start every time. That is, in applications like CGI scripts, that
-are parsed and run every time a request is made, the overhead of
-loading C<Moose> is not acceptable.
+Nevertheless, C<Moose> has a big load time (or compilation time, if
+you prefer).  This means that this load time will be an overhead for
+applications that should start and act quickly, like CGI scripts, that
+are parsed and compiled every time a request is made, or a command
+line tool, that should load and execute as fast as possible.
 
-To solve this problem some developers started C<Mouse>, a smaller
+To minimize this problem some developers started C<Mouse>, a smaller
 implementation that does not include all C<Moose> functionalities, but
 only the more relevant ones. It maintains the API compatibility with
 C<Moose>, making it easier to switch whenever needed.
@@ -166,6 +167,7 @@ the super-classes, not add a new. >>:
 =begin Perl
 
  package Student;
+ use Moo;
  extends 'Person';
 
  has final_grade => ( is => 'rw' );
@@ -192,6 +194,7 @@ error (useful for debugging):
 =begin Perl
 
  package Dumper::Role;
+ use Moo;
  use Role::Tiny;
  use Data::Dumper;
 
@@ -248,8 +251,9 @@ modifier, asking to run some code before the actual method:
 =end Perl
 
 The method will receive the same arguments as the method
-itself. Return values are ignored, but you can change C<@_> directly,
-and the changed values will be received by the original method.
+itself. Return values are ignoredN<< In fact, you can can change C<@_>
+directly, and the changed values will be received by the original
+method. But this approach is not suggested. Use C<around> instead. >>.
 
 C<after> works in the same way, and receives C<@_> as the original
 method received. This means that if the original method changes the
@@ -319,7 +323,7 @@ C<ref>.
 
 The C<default> value for the attribute can be set like with C<Moo>
 using a code reference, but it is also possible to specify directly a
-value. But be caution about references.
+scalar value (you can not use references).
 
 Our I<Person> class is written with C<Mouse> as follows:
 
