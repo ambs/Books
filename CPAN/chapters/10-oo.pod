@@ -21,7 +21,7 @@ loading C<Moose> is not acceptable.
 
 To solve this problem some developers started C<Mouse>, a smaller
 implementation that does not include all C<Moose> functionalities, but
-only the more relevant ones. It maintains the API compatible with
+only the more relevant ones. It maintains the API compatibility with
 C<Moose>, making it easier to switch whenever needed.
 
 Another implementation, named C<Moo>, claims to be yet smaller and
