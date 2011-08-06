@@ -385,7 +385,7 @@ operation.
 
 =end Perl
 
-Now, an object that represent stock exchange values can add stock
+Now, an object which represents stock exchange values can add stock
 values together:
 
 =begin Perl
