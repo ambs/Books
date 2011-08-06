@@ -174,7 +174,7 @@ the super-classes, not add a new. >>:
 
 =end Perl
 
-One of C<Moo> premises to remain small is not support to
+One of C<Moo>'s sacrifices to remain small is to not support
 C<super>. This means it is not that easy to override
 methods. Nevertheless it can be done using method modifiers (see
 A<moomodifiers>).
