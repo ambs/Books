@@ -50,9 +50,9 @@ Perl equivalent to what we are used to call classes).
 
 =head2 *Attributes
 
-Follows a simple example of a I<Person> object with two attributes,
+There follows a simple example of a I<Person> object with two attributes,
 I<name> and I<phone>. The first is a read only attribute (you can't
-change the person name after initializing the object) while the second
+change the person's name after initializing the object) while the second
 has read/write permissions. This information is used by C<Moo> to
 define whether to create accessors that are able to set and get
 values, or just get values. The I<required> option means that every
@@ -73,13 +73,13 @@ full package. >>.
 
 =end Perl
 
-Note that the fat arrow is equivalent to a comma, and the parenthesis
+Note that the "fat comma" arrow  is equivalent to a comma, and the parenthesis
 are not needed. The first attribute could be defined as:
 
   has "name", "is", "ro", "required", 1;
 
 but its legibility is not the same. Therefore we will stick to the
-usage of the fat arrow together with parenthesis or indentation to
+usage of the fat comma arrow together with parenthesis or indentation to
 group attribute options.
 
 This object usage is similar to the usage of standard blessed
