@@ -102,7 +102,7 @@ Unlike the next two alternatives, C<Moo> doesn't have a type
 system. If you need to guarantee that an attribute keeps a specific
 type of data, you need to validate it yourself. That is done by adding a
 code reference. The next example is a redefinition of the attribute
-C<phone> forcing requring the value to consist of nine numeric digits:
+C<phone> requiring the value to consist of nine numeric digits:
 
 =begin Perl
 
