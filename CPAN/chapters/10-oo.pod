@@ -137,9 +137,9 @@ only be computed when it is first accessed.
 
 When some code should run after a specific attribute is set a
 C<trigger> should be used. It is just a code reference that will be
-called over the object, with the new value as argument. For instance,
-when a phone number is registered, call some method to send a SMS to
-the new number acknowledging the change:
+called over the object (receiving the object as the first parameter), with the 
+new value as the second param. For instance, when a phone number is registered,
+call some function to send a SMS to the new number acknowledging the change:
 
 =begin Perl
 
@@ -149,8 +149,10 @@ the new number acknowledging the change:
          die "Need a nine digit string!" unless $_[0] =~ /^\d{9}$/
       },
       trigger => sub {
-         send_sms( to  => $_[1],
-                   msg => "Phone number correctly updated.")
+         my ($self, $new_number) = @_; 
+         send_sms( to  => $new_number,
+                   msg => "Hello there " $self->name 
+                       . ", phone number correctly updated, thanks!")
       };
 
 =end Perl
