@@ -83,8 +83,8 @@ usage of the fat comma arrow together with parenthesis or indentation to
 group attribute options.
 
 This object usage is similar to the usage of standard blessed
-reference objects. C<Moo> creates automatically the constructor and
-accessors.
+reference objects. C<Moo> creates the constructor and accessors automatically
+for you.
 
 =begin Perl
 
