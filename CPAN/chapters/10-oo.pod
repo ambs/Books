@@ -228,7 +228,7 @@ for any object.
 
 Z<moomodifiers>X<Class::Method::Modifiers>X<Module, Class::Method::Modifiers>
 
-The method modifiers here described are not really part of the object
+The method modifiers described here are not really part of the object
 system, but are available in C<Moo> as a workaround for some
 limitations, like the lack of access to C<super>. They are implemented
 though the C<Class::Method::Modifiers> module that can be used
@@ -260,7 +260,7 @@ method. This means that the code run should call the original method
 (if needed, or just ignore it). For that to be possible, the code you
 define will receive as first argument the method that is being
 replaced. Suppose you have a role that implements a method similar
-with the described above, to send a SMS message, but that uses the
+to that  described above, to send a SMS message, but which uses the
 phone number stored in the object, but you need to add a prefix to the
 number ("+0", for instance) before calling it, and that you need to
 get the result (a boolean) and transform it into a string "OK" or
