@@ -130,7 +130,7 @@ automatically to I<female> if not specified.
 
 =end Perl
 
-If the default value need to be computed based on some attributes, or
+If the default value needs to be computed based on other attributes, or
 the task of computing it is time or CPU expensive, you can define the
 attribute as I<lazy> (set it to a true value). This way the value will
 only be computed when it is first accessed.
