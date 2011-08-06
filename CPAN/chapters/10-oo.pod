@@ -12,10 +12,10 @@ A few years ago C<Moose> appeared. At first it was quite slow and its
 usage was discouraged. Fortunately, in the last years, C<Moose> became
 quite fast and includes a lot of relevant and useful features.
 
-Nevertheless, C<Moose> is still quite slow for applications that need
-to start every time. That is, in applications like CGI scripts, that
-are parsed and run every time a request is made, the overhead of
-loading C<Moose> is not acceptable.
+Nevertheless, C<Moose> still imposes a delay upon initial compilation and
+startup, which can be problematic for applications like CGI scripts, which
+are parsed and run every time a request is made, for which the overhead of
+loading C<Moose> may not be acceptable.
 
 To solve this problem some developers started C<Mouse>, a smaller
 implementation that does not include all C<Moose> functionalities, but
