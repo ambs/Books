@@ -149,7 +149,7 @@ the new number acknowledging the change:
          die "Need a nine digit string!" unless $_[0] =~ /^\d{9}$/
       },
       trigger => sub {
-         send_sms( to => $_[1],
+         send_sms( to  => $_[1],
                    msg => "Phone number correctly updated.")
       };
 
