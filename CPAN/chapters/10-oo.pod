@@ -26,11 +26,11 @@ Another implementation, named C<Moo>, claims to be yet smaller and
 faster than C<Mouse>, although at the time of writing, it still has a relatively
 small userbase in comparison.
 
-Given that all these modules share the basic syntax, this chapter
+Given that all these modules share the same basic syntax, this chapter
 structure will be slightly different from the next ones. First, we
 will present C<Moo>, then, what C<Mouse> offers over C<Moo>, and
-finally, what C<Moose> offers more than C<Mouse>. This approach will
-make this chapter smaller and help the reader when choosing one
+finally, what C<Moose> offers in addition.  It is hoped that this approach 
+will make this chapter smaller and more helpful to the reader when choosing one
 implementation.
 
 =head1 Moo
