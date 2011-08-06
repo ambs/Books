@@ -23,7 +23,8 @@ only the more relevant ones. It maintains the API compatible with
 C<Moose>, making it easier to switch whenever needed.
 
 Another implementation, named C<Moo>, claims to be yet smaller and
-faster than C<Mouse>, although it does not have much users yet.
+faster than C<Mouse>, although at the time of writing, it still has a relatively
+small userbase in comparison.
 
 Given that all these modules share the basic syntax, this chapter
 structure will be slightly different from the next ones. First, we
