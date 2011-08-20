@@ -14,11 +14,10 @@ A few years ago C<Moose> appeared. It revolutionized the OO world of
 Perl. During these years it has been enriched with a lot of relevant
 and useful features.
 
-Nevertheless, C<Moose> has a big load time (or compilation time, if
-you prefer).  This means that this load time will be an overhead for
-applications that should start and act quickly, like CGI scripts, that
-are parsed and compiled every time a request is made, or a command
-line tool, that should load and execute as fast as possible.
+Nevertheless, C<Moose> still imposes a delay upon initial compilation
+and startup, which can be problematic for applications like CGI
+scripts, which are parsed and run every time a request is made, for
+which the overhead of loading C<Moose> may not be acceptable.
 
 To minimize this problem some developers started C<Mouse>, a smaller
 implementation that does not include all C<Moose> functionalities, but
@@ -26,13 +25,14 @@ only the more relevant ones. It maintains the API compatibility with
 C<Moose>, making it easier to switch whenever needed.
 
 Another implementation, named C<Moo>, claims to be yet smaller and
-faster than C<Mouse>, although it does not have much users yet.
+faster than C<Mouse>, although at the time of writing, it still has a relatively
+small userbase in comparison.
 
-Given that all these modules share the basic syntax, this chapter
+Given that all these modules share the same basic syntax, this chapter
 structure will be slightly different from the next ones. First, we
 will present C<Moo>, then, what C<Mouse> offers over C<Moo>, and
-finally, what C<Moose> offers more than C<Mouse>. This approach will
-make this chapter smaller and help the reader when choosing one
+finally, what C<Moose> offers in addition.  It is hoped that this approach 
+will make this chapter smaller and more helpful to the reader when choosing one
 implementation.
 
 =head1 Moo
@@ -52,9 +52,9 @@ Perl equivalent to what we are used to call classes).
 
 =head2 *Attributes
 
-Follows a simple example of a I<Person> object with two attributes,
+There follows a simple example of a I<Person> object with two attributes,
 I<name> and I<phone>. The first is a read only attribute (you can't
-change the person name after initializing the object) while the second
+change the person's name after initializing the object) while the second
 has read/write permissions. This information is used by C<Moo> to
 define whether to create accessors that are able to set and get
 values, or just get values. The I<required> option means that every
@@ -75,18 +75,18 @@ full package. >>.
 
 =end Perl
 
-Note that the fat arrow is equivalent to a comma, and the parenthesis
+Note that the "fat comma" arrow  is equivalent to a comma, and the parenthesis
 are not needed. The first attribute could be defined as:
 
   has "name", "is", "ro", "required", 1;
 
 but its legibility is not the same. Therefore we will stick to the
-usage of the fat arrow together with parenthesis or indentation to
+usage of the fat comma arrow together with parenthesis or indentation to
 group attribute options.
 
 This object usage is similar to the usage of standard blessed
-reference objects. C<Moo> creates automatically the constructor and
-accessors.
+reference objects. C<Moo> creates the constructor and accessors automatically
+for you.
 
 =begin Perl
 
@@ -102,9 +102,9 @@ accessors.
 
 Unlike the next two alternatives, C<Moo> doesn't have a type
 system. If you need to guarantee that an attribute keeps a specific
-type of data, you need to validate it yourself. That is done adding a
+type of data, you need to validate it yourself. That is done by adding a
 code reference. The next example is a redefinition of the attribute
-C<phone> forcing a nine digits string:
+C<phone> requiring the value to consist of nine numeric digits:
 
 =begin Perl
 
@@ -132,16 +132,16 @@ automatically to I<female> if not specified.
 
 =end Perl
 
-If the default value need to be computed based on some attributes, or
+If the default value needs to be computed based on other attributes, or
 the task of computing it is time or CPU expensive, you can define the
 attribute as I<lazy> (set it to a true value). This way the value will
 only be computed when it is first accessed.
 
 When some code should run after a specific attribute is set a
 C<trigger> should be used. It is just a code reference that will be
-called over the object, with the new value as argument. For instance,
-when a phone number is registered, call some method to send a SMS to
-the new number acknowledging the change:
+called over the object (receiving the object as the first parameter), with the 
+new value as the second param. For instance, when a phone number is registered,
+call some function to send a SMS to the new number acknowledging the change:
 
 =begin Perl
 
@@ -151,8 +151,10 @@ the new number acknowledging the change:
          die "Need a nine digit string!" unless $_[0] =~ /^\d{9}$/
       },
       trigger => sub {
-         send_sms( to => $_[1],
-                   msg => "Phone number correctly updated.")
+         my ($self, $new_number) = @_; 
+         send_sms( to  => $new_number,
+                   msg => "Hello there " . $self->name 
+                       . ", phone number correctly updated, thanks!")
       };
 
 =end Perl
@@ -175,7 +177,7 @@ the super-classes, not add a new. >>:
 
 =end Perl
 
-One of C<Moo> premises to remain small is to not support
+One of C<Moo>'s sacrifices to remain small is to not support
 C<super>. This means it is not that easy to override
 methods. Nevertheless it can be done using method modifiers (see
 A<moomodifiers>).
@@ -233,7 +235,7 @@ for any object.
 
 Z<moomodifiers>X<Class::Method::Modifiers>X<Module, Class::Method::Modifiers>
 
-The method modifiers here described are not really part of the object
+The method modifiers described here are not really part of the object
 system, but are available in C<Moo> as a workaround for some
 limitations, like the lack of access to C<super>. They are implemented
 though the C<Class::Method::Modifiers> module that can be used
@@ -266,7 +268,7 @@ method. This means that the code run should call the original method
 (if needed, or just ignore it). For that to be possible, the code you
 define will receive as first argument the method that is being
 replaced. Suppose you have a role that implements a method similar
-with the described above, to send a SMS message, but that uses the
+to that  described above, to send a SMS message, but which uses the
 phone number stored in the object, but you need to add a prefix to the
 number ("+0", for instance) before calling it, and that you need to
 get the result (a boolean) and transform it into a string "OK" or
@@ -405,7 +407,7 @@ operation.
 
 =end Perl
 
-Now, an object that represent stock exchange values can add stock
+Now, an object which represents stock exchange values can add stock
 values together:
 
 =begin Perl
