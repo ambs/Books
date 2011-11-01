@@ -1,30 +1,29 @@
-
 =head0 Web Frameworks
 
 Web development in Perl started with the X<CGI> X<Module, CGI> C<CGI>
 module. It includes mechanisms to generate HTML from Perl statements,
 and to access CGI parameters, sessions and cookies. Although it is a
-quite powerful method it shows the sign of age, and there are a wide
+quite powerful method it is showing signs of age, and there are a wide
 variety of other tools that make Web development easier, more
 structured and faster. These are the main reasons why the C<CGI>
-module will not be focused in this chapter. Yet another reason is the
+module will not be the focus of this chapter. Yet another reason is the
 quantity of books and tutorials that are available that teach how to
 develop with C<CGI>.
 
-There are a lot of Web Frameworks in Perl, and with the advent of
+There are many Web Frameworks in Perl, and with the advent of
 C<PSGI> and C<Plack> X<PSGI> X<Module, PSGI> X<Plack> X<Module, Plack>
-the interface between web servers and Perl got more user friendly,
-that lead to even more frameworks.
+the interface between web servers and Perl has become more user friendly,
+which has in turn lead to even more frameworks.
 
-This book does not intent to be a full reference to CPAN modules, or
-to be a in-depth book on too technical aspects. These reasons made us
-decide to not exploit C<PSGI> or C<Plack> directly, but present
+This book does not intend to be a full reference to CPAN modules, or
+to be a in-depth book on extremely technical aspects. These reasons made us
+decide not to discuss C<PSGI> or C<Plack> directly, but present
 frameworks that use them, like C<Dancer> or C<Mojolicious>. With this
 same idea in mind, we will not cover deployment, as there are too many
 options (from Apache C<mod_perl>, FastCGI running under Apache or
-nginx, using Starman, and others). We will just describe how to get
-some code running for developing purposes. Then you must read the
-documentation for the specific deployment method you plan.
+nginx, using Starman, and others). Instead, we describe how to get
+code running for in development. We recommend you then read the
+documentation for the specific deployment method you plan to use.
 
 This section will B<introduce> Web programming using four different
 web frameworks:
@@ -55,9 +54,9 @@ lighter.
 
 =item B<Dancer>
 
-Heavily inspired by Ruby Sinatra, C<Dancer> is gaining adepts in the
-last monthes. The fact of one of the book authors is a C<Dancer>
-developer was a reason good enough to include it here.
+Heavily inspired by Ruby's Sinatra, C<Dancer> has gained adherents over
+recent months. The fact that one of the authors of this book is a C<Dancer>
+developer was a good enough reason to include it here.
 
 =back
 
@@ -77,13 +76,13 @@ X<Module, Mojolicious> X<Mojolicious>
 
 X<Module, Dancer> X<Dancer> C<Dancer> has a nice command that eases
 the task of creating the required files to run a C<Dancer> web
-site. In fact, not those files are required, but the C<dancer>
-application creates a typical Perl module structure and a simple
+site. In fact, the C<dancer> application creates not just the required files,
+but also a typical Perl module structure and a simple
 running web site. Use the following command:
 
     dancer -a MyApp
 
-A folder named C<MyApp> will be created, with a bunch of files. In the
+A folder named C<MyApp> will be created, with a number of files. In the
 next section we will analyze this folder structure.
 
 =head2 *Default Dancer Application Structure
