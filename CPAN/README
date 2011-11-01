@@ -1,13 +1,12 @@
-
 Book Guidelines
 --------------------------------
 
-1. Chapters should be independents
+1. Chapters should be independent
 
-A reader can read just a chapter, and no dependencies to other chapter
+A reader can read just a chapter, and no dependencies to other chapters
 should exist. Only pointers for further information.
 
-2. Sections should be independents
+2. Sections should be independent
 
 Only the first paragraphs of the chapter, before the first section,
 should/can compare the modules being discussed. Each module section
