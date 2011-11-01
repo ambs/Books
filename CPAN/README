@@ -9,13 +9,13 @@ should exist. Only pointers for further information.
 2. Sections should be independent
 
 Only the first paragraphs of the chapter, before the first section,
-should/can compare the modules being discussed. Each module section
-should not compare to other modules unless it is strictly necessary.
+should/can compare the modules being discussed. Individual module sections
+should not make comparisons bwteeen modules unless strictly necessary.
 
 3. See also section
 
 Each chapter should end in a special section named 'See also', that is
-an itemize of modules available on CPAN for similar tasks, and small
+an listing of modules available on CPAN for similar tasks, and a small
 description on them.
 
 4. Depth
